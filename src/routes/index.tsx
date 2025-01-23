@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import clsx from "clsx";
 import { DateTime, Duration } from "effect";
+import DaysBeforeFates from "../components/days-before-fates";
 import { Td, Th } from "../components/table";
 import UpdateProgressForm from "../components/update-progress-form";
 import { useProgress } from "../lib/hooks/use-progress";
@@ -30,6 +31,10 @@ function HomeComponent() {
   return (
     <main className="my-12 flex flex-col gap-y-8">
       <UpdateProgressForm progress={currentProgress} />
+
+      <hr />
+
+      <DaysBeforeFates currentProgress={currentProgress} today={today} />
 
       <hr />
 
