@@ -4,6 +4,8 @@ import { Console, Effect } from "effect";
 import { Dexie } from "../lib/services/dexie";
 import { RuntimeClient } from "../lib/services/runtime-client";
 
+import "../tailwind.css";
+
 export const Route = createRootRoute({
   component: RootComponent,
   errorComponent: (error) => <pre>{JSON.stringify(error, null, 2)}</pre>,
@@ -23,7 +25,9 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <>
-      <Outlet />
+      <div className="mx-auto max-w-[40rem]">
+        <Outlet />
+      </div>
       <TanStackRouterDevtools position="bottom-right" />
     </>
   );
