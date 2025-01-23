@@ -1,0 +1,27 @@
+{
+  "name": "genshin-impact-primogems-planner",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "dev": "vite --port=3001",
+    "build": "vite build",
+    "serve": "vite preview",
+    "start": "vite"
+  },
+  "devDependencies": {
+    "@tanstack/router-plugin": "^1.97.14",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "@vitejs/plugin-react": "^4.3.2",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.3"
+  },
+  "dependencies": {
+    "@tanstack/react-router": "^1.97.14",
+    "@tanstack/router-devtools": "^1.97.14",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
