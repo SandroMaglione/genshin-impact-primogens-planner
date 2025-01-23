@@ -11,8 +11,8 @@ interface Prediction {
   totalPrimogems: number;
   totalFates: number;
   date: DateTime.Utc;
-  collectedPrimogems: number;
-  collectedFates: number;
+  eventsPrimogems: number;
+  eventsFates: number;
 }
 
 const buildPrediction = ({
@@ -29,6 +29,9 @@ const buildPrediction = ({
   let accumulatedPrimogems = currentProgress.primogems;
 
   for (let day = 0; day < 100; day++) {
+    let eventsPrimogems = 0;
+    let eventsFates = 0;
+
     accumulatedPrimogems += currentProgress.dailyPrimogems;
     const date = DateTime.addDuration(Duration.days(day))(today);
 
@@ -41,15 +44,18 @@ const buildPrediction = ({
       .forEach((event) => {
         accumulatedPrimogems += event.primogems;
         accumulatedFates += event.fates;
+
+        eventsPrimogems += event.primogems;
+        eventsFates += event.fates;
       });
 
     predictionList.push({
       dayId: day,
+      eventsPrimogems,
+      eventsFates,
       date,
       totalPrimogems: accumulatedPrimogems,
       totalFates: accumulatedFates + Math.floor(accumulatedPrimogems / 160),
-      collectedPrimogems: accumulatedPrimogems - currentProgress.primogems,
-      collectedFates: accumulatedFates - currentProgress.fates,
     });
   }
 
@@ -83,8 +89,8 @@ export default function ProgressTablePrediction({
         {buildPrediction({ today, currentProgress, events }).map(
           (
             {
-              collectedFates,
-              collectedPrimogems,
+              eventsFates,
+              eventsPrimogems,
               date,
               dayId,
               totalFates,
@@ -102,14 +108,24 @@ export default function ProgressTablePrediction({
               >
                 <Td className="font-light text-sm">{dayId}</Td>
                 <Td>
-                  <p className="text-xl">{totalPrimogems.toLocaleString()}</p>
-                  <p className="text-sm font-light">
-                    +{collectedPrimogems.toLocaleString()}
+                  <p className="text-xl">
+                    {totalPrimogems.toLocaleString()}{" "}
+                    {eventsPrimogems !== 0 && (
+                      <span className="text-sm font-light">
+                        (+{eventsPrimogems})
+                      </span>
+                    )}
                   </p>
                 </Td>
                 <Td>
-                  <p className="text-xl">{totalFates}</p>
-                  <p className="text-sm font-light">{collectedFates}</p>
+                  <p className="text-xl">
+                    {totalFates}{" "}
+                    {eventsFates !== 0 && (
+                      <span className="text-sm font-light">
+                        (+{eventsFates})
+                      </span>
+                    )}
+                  </p>
                 </Td>
                 <Td className="text-right">
                   <p className="text-xl font-medium">

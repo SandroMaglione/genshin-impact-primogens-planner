@@ -104,7 +104,7 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
           isApplied: EventTable.fields.isApplied,
         }),
         (params) =>
-          db.event.update(params.eventId, { isApplied: params.isApplied })
+          db.event.update(params.eventId, { isApplied: !params.isApplied })
       ),
     };
   }),
