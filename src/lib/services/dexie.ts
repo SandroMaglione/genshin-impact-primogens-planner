@@ -2,6 +2,10 @@ import * as _Dexie from "dexie";
 import { Data, Effect, Schema } from "effect";
 import { ProgressTable } from "../schema";
 
+class ReadApiError extends Data.TaggedError("ReadApiError")<{
+  cause: unknown;
+}> {}
+
 class WriteApiError extends Data.TaggedError("WriteApiError")<{
   cause: unknown;
 }> {}
@@ -18,12 +22,12 @@ const formDataToRecord = (formData: FormData): Record<string, string> => {
 
 export class Dexie extends Effect.Service<Dexie>()("Dexie", {
   effect: Effect.gen(function* () {
-    const db = new _Dexie.Dexie("_db") as _Dexie.Dexie & {
+    const db = new _Dexie.Dexie("genshin-planner") as _Dexie.Dexie & {
       progress: _Dexie.EntityTable<typeof ProgressTable.Encoded, "progressId">;
     };
 
     db.version(1).stores({
-      activity: "++progressId",
+      progress: "++progressId",
     });
 
     const execute =
@@ -46,14 +50,19 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
 
     return {
       db,
-      addProgress: execute(
-        Schema.Struct({
-          dailyPrimogems: ProgressTable.fields.dailyPrimogems,
-          fates: ProgressTable.fields.fates,
-          primogems: ProgressTable.fields.primogems,
-        }),
-        (params) => db.progress.add(params)
-      ),
+      progressExists: Effect.tryPromise({
+        try: () => db.progress.count(),
+        catch: (error) => new ReadApiError({ cause: error }),
+      }).pipe(Effect.map((count) => count > 0)),
+      addProgress: Effect.tryPromise({
+        try: () =>
+          db.progress.add({
+            dailyPrimogems: 0,
+            fates: 0,
+            primogems: 0,
+          }),
+        catch: (error) => new WriteApiError({ cause: error }),
+      }),
       updateProgress: execute(
         Schema.Struct({
           progressId: ProgressTable.fields.progressId,
