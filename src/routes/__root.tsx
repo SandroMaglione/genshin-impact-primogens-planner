@@ -25,7 +25,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <>
-      <div className="mx-auto max-w-[40rem]">
+      <div className="mx-auto max-w-[60rem]">
         <Outlet />
       </div>
       <TanStackRouterDevtools position="bottom-right" />
