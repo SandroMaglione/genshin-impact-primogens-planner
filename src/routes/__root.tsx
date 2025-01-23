@@ -25,7 +25,19 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <>
-      <div className="mx-auto max-w-[60rem]">
+      <div className="mx-auto max-w-[60rem] my-12">
+        <nav>
+          <ul>
+            <li>
+              <a
+                href="https://www.reddit.com/r/Genshin_Impact/?f=flair_name%3A%22%3Ahoyo1%3A%3Ahoyo2%3A%20Official%20Post%22"
+                target="_blank"
+              >
+                Announcements
+              </a>
+            </li>
+          </ul>
+        </nav>
         <Outlet />
       </div>
       <TanStackRouterDevtools position="bottom-right" />

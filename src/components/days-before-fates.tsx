@@ -1,15 +1,44 @@
 import { DateTime, Duration } from "effect";
 import { useState } from "react";
-import type { ProgressTable } from "../lib/schema";
+import { useEvents } from "../lib/hooks/use-events";
+import type { EventTable, ProgressTable } from "../lib/schema";
 
-const daysBeforeFates = (goal: number, currentProgress: ProgressTable) => {
-  // goal = fates + (x * daily + primogems) / 160;
-  const fates = currentProgress.fates;
-  const daily = currentProgress.dailyPrimogems;
-  const primogems = currentProgress.primogems;
+const daysBeforeFates = ({
+  currentProgress,
+  events,
+  today,
+  goal,
+}: {
+  goal: number;
+  currentProgress: ProgressTable;
+  events: readonly EventTable[];
+  today: DateTime.Utc;
+}) => {
+  let accumulatedFates = currentProgress.fates;
+  let accumulatedPrimogems = currentProgress.primogems;
+  let day = 0;
 
-  const to90 = ((goal - fates) * 160) / daily - primogems / daily;
-  return Math.floor(to90);
+  while (true) {
+    accumulatedPrimogems += currentProgress.dailyPrimogems;
+    const date = DateTime.addDuration(Duration.days(day))(today);
+
+    events
+      .filter((event) => {
+        const eventDate = new Date(event.date).setHours(0, 0, 0, 0);
+        const currentDate = DateTime.toDate(date).setHours(0, 0, 0, 0);
+        return eventDate === currentDate;
+      })
+      .forEach((event) => {
+        accumulatedPrimogems += event.primogems;
+        accumulatedFates += event.fates;
+      });
+
+    if (accumulatedFates + Math.floor(accumulatedPrimogems / 160) >= goal) {
+      return day;
+    } else {
+      day += 1;
+    }
+  }
 };
 
 export default function DaysBeforeFates({
@@ -19,8 +48,14 @@ export default function DaysBeforeFates({
   today: DateTime.Utc;
   currentProgress: ProgressTable;
 }) {
+  const { data } = useEvents();
   const [goal, setGoal] = useState(90);
-  const daysToFates = daysBeforeFates(goal, currentProgress);
+  const daysToFates = daysBeforeFates({
+    today,
+    goal,
+    currentProgress,
+    events: data ?? [],
+  });
   const dateForFates = DateTime.toDate(
     DateTime.addDuration(Duration.days(daysToFates))(today)
   );

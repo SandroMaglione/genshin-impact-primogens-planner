@@ -1,12 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import clsx from "clsx";
-import { DateTime, Duration } from "effect";
+import { DateTime } from "effect";
 import AddEventForm from "../components/add-event-form";
 import DaysBeforeFates from "../components/days-before-fates";
-import Fate from "../components/fate";
 import ListEvents from "../components/list-events";
-import Primogem from "../components/primogem";
-import { Td, Th } from "../components/table";
+import ProgressTablePrediction from "../components/progress-table-prediction";
 import UpdateProgressForm from "../components/update-progress-form";
 import { useProgress } from "../lib/hooks/use-progress";
 import { RuntimeClient } from "../lib/services/runtime-client";
@@ -39,67 +36,10 @@ function HomeComponent() {
 
         <hr />
 
-        <table className="w-full">
-          <thead>
-            <tr>
-              <Th className="text-left">Days</Th>
-              <Th className="text-left">
-                <Primogem className="size-8" />
-              </Th>
-              <Th className="text-left">
-                <Fate className="size-8" />
-              </Th>
-              <Th className="text-right">Date</Th>
-            </tr>
-          </thead>
-          <tbody>
-            {Array.from({ length: 100 }).map((_, index) => {
-              const dayIndex = index + 1;
-              const collectedPrimogems =
-                currentProgress.dailyPrimogems * dayIndex;
-              const totalPrimogems =
-                currentProgress.primogems + collectedPrimogems;
-              const collectedFates = Math.floor(totalPrimogems / 160);
-              const totalFates = currentProgress.fates + collectedFates;
-              const date = DateTime.toDate(
-                DateTime.addDuration(Duration.days(index))(today)
-              );
-              return (
-                <tr
-                  key={index}
-                  className={clsx(
-                    totalFates >= 90 && "bg-primary/10",
-                    totalFates >= 180 && "bg-primary/20"
-                  )}
-                >
-                  <Td className="font-light text-sm">{dayIndex}</Td>
-                  <Td>
-                    <p className="text-xl">{totalPrimogems.toLocaleString()}</p>
-                    <p className="text-sm font-light">
-                      {collectedPrimogems.toLocaleString()}
-                    </p>
-                  </Td>
-                  <Td>
-                    <p className="text-xl">{totalFates}</p>
-                    <p className="text-sm font-light">{collectedFates}</p>
-                  </Td>
-                  <Td className="text-right">
-                    <p className="text-xl font-medium">
-                      {date.toLocaleDateString("en-US", { weekday: "long" })}
-                    </p>
-                    <p className="text-sm font-light">
-                      {date.toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "2-digit",
-                      })}
-                    </p>
-                  </Td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <ProgressTablePrediction
+          currentProgress={currentProgress}
+          today={today}
+        />
       </section>
 
       <section className="flex flex-col gap-y-8 col-span-5">

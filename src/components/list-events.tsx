@@ -10,6 +10,7 @@ export default function ListEvents() {
   } else if (error) {
     return <div>Error: {error.reason}</div>;
   }
+
   return (
     <table>
       <thead>
