@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DateTime, Duration } from "effect";
+import UpdateProgressForm from "../components/update-progress-form";
 import { useProgress } from "../lib/hooks/use-progress";
 import { RuntimeClient } from "../lib/services/runtime-client";
 
@@ -25,34 +26,39 @@ function HomeComponent() {
   }
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Days</th>
-          <th>Primogems</th>
-          <th>Fates</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        {Array.from({ length: 100 }).map((_, index) => {
-          const totalPrimogems =
-            currentProgress.primogems + currentProgress.dailyPrimogems * index;
-          const date = DateTime.toDate(
-            DateTime.addDuration(Duration.days(index))(today)
-          );
-          return (
-            <tr key={index}>
-              <td>{index + 1}</td>
-              <td>{totalPrimogems}</td>
-              <td>
-                {currentProgress.fates + Math.floor(totalPrimogems / 160)}
-              </td>
-              <td>{date.toDateString()}</td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+    <main>
+      <UpdateProgressForm progress={currentProgress} />
+
+      <table>
+        <thead>
+          <tr>
+            <th>Days</th>
+            <th>Primogems</th>
+            <th>Fates</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Array.from({ length: 100 }).map((_, index) => {
+            const totalPrimogems =
+              currentProgress.primogems +
+              currentProgress.dailyPrimogems * index;
+            const date = DateTime.toDate(
+              DateTime.addDuration(Duration.days(index))(today)
+            );
+            return (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{totalPrimogems}</td>
+                <td>
+                  {currentProgress.fates + Math.floor(totalPrimogems / 160)}
+                </td>
+                <td>{date.toDateString()}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </main>
   );
 }

@@ -66,11 +66,9 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
       updateProgress: execute(
         Schema.Struct({
           progressId: ProgressTable.fields.progressId,
-          dailyPrimogems: Schema.UndefinedOr(
-            ProgressTable.fields.dailyPrimogems
-          ),
-          fates: Schema.UndefinedOr(ProgressTable.fields.fates),
-          primogems: Schema.UndefinedOr(ProgressTable.fields.primogems),
+          dailyPrimogems: ProgressTable.fields.dailyPrimogems,
+          fates: ProgressTable.fields.fates,
+          primogems: ProgressTable.fields.primogems,
         }),
         ({ progressId, ...params }) =>
           db.progress.update(progressId, {
