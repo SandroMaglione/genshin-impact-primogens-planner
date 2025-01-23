@@ -7,7 +7,7 @@ const Th = ({
   React.ThHTMLAttributes<HTMLTableHeaderCellElement>,
   HTMLTableHeaderCellElement
 >) => {
-  return <th className={clsx("py-2", className)} {...props} />;
+  return <th className={clsx("pt-2 pb-3", className)} {...props} />;
 };
 
 const Td = ({

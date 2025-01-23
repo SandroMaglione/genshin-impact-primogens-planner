@@ -7,6 +7,9 @@ import UpdateProgressForm from "../components/update-progress-form";
 import { useProgress } from "../lib/hooks/use-progress";
 import { RuntimeClient } from "../lib/services/runtime-client";
 
+import fateImgUrl from "../assets/images/fate.webp";
+import primogemImgUrl from "../assets/images/primogem.webp";
+
 export const Route = createFileRoute("/")({
   component: HomeComponent,
   loader: () => RuntimeClient.runPromise(DateTime.now),
@@ -40,10 +43,18 @@ function HomeComponent() {
 
       <table className="w-full">
         <thead>
-          <tr className="border-b border-grey">
+          <tr>
             <Th className="text-left">Days</Th>
-            <Th className="text-left">Primogems</Th>
-            <Th className="text-left">Fates</Th>
+            <Th className="text-left">
+              <img
+                src={primogemImgUrl}
+                alt="primogem-icon"
+                className="size-8"
+              />
+            </Th>
+            <Th className="text-left">
+              <img src={fateImgUrl} alt="fate-icon" className="size-8" />
+            </Th>
             <Th className="text-right">Date</Th>
           </tr>
         </thead>
@@ -69,8 +80,10 @@ function HomeComponent() {
               >
                 <Td className="font-light text-sm">{dayIndex}</Td>
                 <Td>
-                  <p className="text-xl">{totalPrimogems}</p>
-                  <p className="text-sm font-light">{collectedPrimogems}</p>
+                  <p className="text-xl">{totalPrimogems.toLocaleString()}</p>
+                  <p className="text-sm font-light">
+                    {collectedPrimogems.toLocaleString()}
+                  </p>
                 </Td>
                 <Td>
                   <p className="text-xl">{totalFates}</p>

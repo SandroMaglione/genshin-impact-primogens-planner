@@ -16,7 +16,8 @@
     // "exactOptionalPropertyTypes": true,
     "noImplicitOverride": true,
     "noEmit": true,
-    "lib": ["es2022", "dom", "dom.iterable"]
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "types": ["vite/client"]
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
