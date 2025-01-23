@@ -8,3 +8,13 @@ export class ProgressTable extends Schema.Class<ProgressTable>("ProgressTable")(
     primogems: Schema.Number.pipe(Schema.nonNegative()),
   }
 ) {}
+
+export class EventTable extends Schema.Class<EventTable>("EventTable")({
+  eventId: Schema.Number,
+  name: Schema.NullOr(Schema.String),
+  isApplied: Schema.Boolean,
+
+  // NOTE: An event can be also "spending", so negative values are allowed
+  fates: Schema.Number,
+  primogems: Schema.Number,
+}) {}

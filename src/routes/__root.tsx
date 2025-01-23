@@ -14,7 +14,7 @@ export const Route = createRootRoute({
       Effect.gen(function* () {
         const dexie = yield* Dexie;
         if (!(yield* dexie.progressExists)) {
-          yield* dexie.addProgress;
+          yield* dexie.initProgress;
         }
 
         yield* Console.log("Init DB completed");
