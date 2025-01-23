@@ -11,8 +11,14 @@ export class ProgressTable extends Schema.Class<ProgressTable>("ProgressTable")(
 
 export class EventTable extends Schema.Class<EventTable>("EventTable")({
   eventId: Schema.Number,
-  name: Schema.NullOr(Schema.String),
+  date: Schema.DateFromString,
   isApplied: Schema.Boolean,
+  name: Schema.String.pipe(
+    Schema.transform(Schema.NullOr(Schema.String), {
+      decode: (from) => (from.length === 0 ? null : from),
+      encode: (to) => to ?? "",
+    })
+  ),
 
   // NOTE: An event can be also "spending", so negative values are allowed
   fates: Schema.Number,

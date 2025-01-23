@@ -1,14 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import clsx from "clsx";
 import { DateTime, Duration } from "effect";
+import AddEventForm from "../components/add-event-form";
 import DaysBeforeFates from "../components/days-before-fates";
+import Fate from "../components/fate";
+import ListEvents from "../components/list-events";
+import Primogem from "../components/primogem";
 import { Td, Th } from "../components/table";
 import UpdateProgressForm from "../components/update-progress-form";
 import { useProgress } from "../lib/hooks/use-progress";
 import { RuntimeClient } from "../lib/services/runtime-client";
-
-import fateImgUrl from "../assets/images/fate.webp";
-import primogemImgUrl from "../assets/images/primogem.webp";
 
 export const Route = createFileRoute("/")({
   component: HomeComponent,
@@ -43,14 +44,10 @@ function HomeComponent() {
             <tr>
               <Th className="text-left">Days</Th>
               <Th className="text-left">
-                <img
-                  src={primogemImgUrl}
-                  alt="primogem-icon"
-                  className="size-8"
-                />
+                <Primogem className="size-8" />
               </Th>
               <Th className="text-left">
-                <img src={fateImgUrl} alt="fate-icon" className="size-8" />
+                <Fate className="size-8" />
               </Th>
               <Th className="text-right">Date</Th>
             </tr>
@@ -107,6 +104,12 @@ function HomeComponent() {
 
       <section className="flex flex-col gap-y-8 col-span-5">
         <UpdateProgressForm progress={currentProgress} />
+
+        <hr />
+
+        <AddEventForm />
+
+        <ListEvents />
 
         <hr />
 

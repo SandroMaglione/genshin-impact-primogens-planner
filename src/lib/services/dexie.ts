@@ -88,6 +88,7 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
           name: EventTable.fields.name,
           fates: EventTable.fields.fates,
           primogems: EventTable.fields.primogems,
+          date: EventTable.fields.date,
         }),
         (params) => db.event.add({ ...params, isApplied: true })
       ),
