@@ -3,6 +3,9 @@ import { useActionEffect } from "../lib/hooks/use-action-effect";
 import { Dexie } from "../lib/services/dexie";
 import Fate from "./fate";
 import Primogem from "./primogem";
+import Button from "./ui/button";
+import Label from "./ui/label";
+import SaveInput from "./ui/save-input";
 
 type FormName = "name" | "fates" | "primogems" | "date";
 
@@ -22,30 +25,54 @@ export default function AddEventForm() {
     })
   );
   return (
-    <form action={action}>
-      <div>
-        <label htmlFor="name">Name</label>
-        <input type="text" id="name" name="name" />
+    <form action={action} className="flex flex-col gap-y-4">
+      <div className="flex flex-col gap-y-2">
+        <div>
+          <Label htmlFor="date">Date</Label>
+          <SaveInput<FormName>
+            type="date"
+            id="date"
+            name="date"
+            defaultValue={new Date().toISOString().split("T")[0]}
+            className="w-full"
+          />
+        </div>
+
+        <div className="grid grid-cols-2 gap-x-8">
+          <div className="flex gap-x-4 items-center">
+            <div className="min-w-8">
+              <Label htmlFor="event-primogems">
+                <Primogem className="size-8" />
+              </Label>
+            </div>
+            <SaveInput<FormName>
+              type="number"
+              id="event-primogems"
+              name="primogems"
+              defaultValue={0}
+              className="w-full"
+            />
+          </div>
+          <div className="flex gap-x-4 items-center">
+            <div className="min-w-8">
+              <Label htmlFor="event-fates">
+                <Fate className="size-8" />
+              </Label>
+            </div>
+            <SaveInput<FormName>
+              type="number"
+              id="event-fates"
+              name="fates"
+              defaultValue={0}
+              className="w-full"
+            />
+          </div>
+        </div>
       </div>
-      <div>
-        <label htmlFor="date">Date</label>
-        <input type="date" id="date" name="date" />
-      </div>
-      <div>
-        <label htmlFor="primogems">
-          <Primogem className="size-8" />
-        </label>
-        <input type="number" id="primogems" name="primogems" />
-      </div>
-      <div>
-        <label htmlFor="fates">
-          <Fate className="size-8" />
-        </label>
-        <input type="number" id="fates" name="fates" />
-      </div>
-      <button type="submit" disabled={pending}>
+
+      <Button type="submit" disabled={pending}>
         Add
-      </button>
+      </Button>
     </form>
   );
 }

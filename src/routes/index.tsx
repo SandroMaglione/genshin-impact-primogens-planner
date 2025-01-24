@@ -30,7 +30,7 @@ function HomeComponent() {
   }
 
   return (
-    <main className="my-12 grid-cols-12 grid gap-x-12">
+    <main className="my-12 grid-cols-12 grid gap-x-20">
       <section className="flex flex-col gap-y-8 col-span-7">
         <DaysBeforeFates currentProgress={currentProgress} today={today} />
 

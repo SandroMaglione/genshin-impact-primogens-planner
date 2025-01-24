@@ -2,6 +2,7 @@ import { DateTime, Duration } from "effect";
 import { useState } from "react";
 import { useEvents } from "../lib/hooks/use-events";
 import type { EventTable, ProgressTable } from "../lib/schema";
+import SaveInput from "./ui/save-input";
 
 const daysBeforeFates = ({
   currentProgress,
@@ -63,9 +64,11 @@ export default function DaysBeforeFates({
     <div className="flex flex-col gap-y-2">
       <div>
         <label htmlFor="goal">Goal</label>
-        <input
+        <SaveInput<"goal">
           type="number"
           id="goal"
+          name="goal"
+          className="max-w-[5rem]"
           value={goal}
           onChange={(event) => setGoal(event.target.valueAsNumber)}
         />

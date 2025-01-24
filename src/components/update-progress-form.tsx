@@ -2,6 +2,9 @@ import { Effect, Schema } from "effect";
 import { useActionEffect } from "../lib/hooks/use-action-effect";
 import type { ProgressTable } from "../lib/schema";
 import { Dexie } from "../lib/services/dexie";
+import Button from "./ui/button";
+import Label from "./ui/label";
+import SaveInput from "./ui/save-input";
 
 type FormName = "progressId" | "dailyPrimogems" | "primogems" | "fates";
 
@@ -25,39 +28,44 @@ export default function UpdateProgressForm({
     })
   );
   return (
-    <form action={action}>
+    <form action={action} className="flex flex-col gap-y-4">
       <input type="hidden" name="progressId" value={progress.progressId} />
 
-      <div>
-        <label htmlFor="dailyPrimogems">Daily Primogems</label>
-        <input
-          type="number"
-          id="dailyPrimogems"
-          name="dailyPrimogems"
-          defaultValue={progress.dailyPrimogems}
-        />
+      <div className="flex flex-col gap-y-2">
+        <div>
+          <Label htmlFor="dailyPrimogems">Daily Primogems</Label>
+          <SaveInput<FormName>
+            type="number"
+            id="dailyPrimogems"
+            name="dailyPrimogems"
+            className="w-full"
+            defaultValue={progress.dailyPrimogems}
+          />
+        </div>
+        <div>
+          <Label htmlFor="primogems">Primogems</Label>
+          <SaveInput<FormName>
+            type="number"
+            id="primogems"
+            name="primogems"
+            className="w-full"
+            defaultValue={progress.primogems}
+          />
+        </div>
+        <div>
+          <Label htmlFor="fates">Fates</Label>
+          <SaveInput<FormName>
+            type="number"
+            id="fates"
+            name="fates"
+            className="w-full"
+            defaultValue={progress.fates}
+          />
+        </div>
       </div>
-      <div>
-        <label htmlFor="primogems">Primogems</label>
-        <input
-          type="number"
-          id="primogems"
-          name="primogems"
-          defaultValue={progress.primogems}
-        />
-      </div>
-      <div>
-        <label htmlFor="fates">Fates</label>
-        <input
-          type="number"
-          id="fates"
-          name="fates"
-          defaultValue={progress.fates}
-        />
-      </div>
-      <button type="submit" disabled={pending}>
+      <Button type="submit" disabled={pending}>
         Update
-      </button>
+      </Button>
     </form>
   );
 }

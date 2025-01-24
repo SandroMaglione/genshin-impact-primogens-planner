@@ -4,6 +4,8 @@ import { Console, Effect } from "effect";
 import { Dexie } from "../lib/services/dexie";
 import { RuntimeClient } from "../lib/services/runtime-client";
 
+import backgroundImgUrl from "../assets/images/background.jpg";
+
 import "../tailwind.css";
 
 export const Route = createRootRoute({
@@ -25,7 +27,12 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <>
-      <div className="mx-auto max-w-[60rem] my-12">
+      <div
+        className="inset-0 fixed h-dvh w-dvw bg-cover bg-center z-[-1]"
+        style={{ backgroundImage: `url(${backgroundImgUrl})` }}
+      />
+
+      <div className="mx-auto max-w-[70rem] py-12 px-20 backdrop-blur-[24px] bg-white/90">
         <nav>
           <ul>
             <li>
