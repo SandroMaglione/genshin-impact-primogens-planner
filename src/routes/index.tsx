@@ -34,8 +34,6 @@ function HomeComponent() {
       <section className="flex flex-col gap-y-8 col-span-7">
         <DaysBeforeFates currentProgress={currentProgress} today={today} />
 
-        <hr />
-
         <ProgressTablePrediction
           currentProgress={currentProgress}
           today={today}

@@ -2,6 +2,7 @@ import { DateTime, Duration } from "effect";
 import { useState } from "react";
 import { useEvents } from "../lib/hooks/use-events";
 import type { EventTable, ProgressTable } from "../lib/schema";
+import Primogem from "./primogem";
 import SaveInput from "./ui/save-input";
 
 const daysBeforeFates = ({
@@ -62,37 +63,34 @@ export default function DaysBeforeFates({
   );
   return (
     <div className="flex flex-col gap-y-2">
-      <div>
-        <label htmlFor="goal">Goal</label>
-        <SaveInput<"goal">
-          type="number"
-          id="goal"
-          name="goal"
-          className="max-w-[5rem]"
-          value={goal}
-          onChange={(event) => setGoal(event.target.valueAsNumber)}
-        />
-      </div>
-      <div className="flex items-center gap-x-4">
-        <div className="text-center">
-          <p className="text-5xl font-light">{daysToFates}</p>
-          <p className="text-sm font-light">Days</p>
+      <div className="flex items-center gap-x-4 text-xl font-light">
+        <label htmlFor="goal">Reaching</label>{" "}
+        <div className="inline-flex items-center gap-x-1">
+          <SaveInput<"goal">
+            type="number"
+            id="goal"
+            name="goal"
+            className="max-w-[6rem]"
+            value={goal}
+            onChange={(event) => setGoal(event.target.valueAsNumber)}
+          />{" "}
+          <Primogem className="size-6" />
         </div>
-        <div>
-          <p className="text-xl font-medium">
-            {dateForFates.toLocaleDateString("en-US", {
-              weekday: "long",
-            })}
-          </p>
-          <p className="text-sm font-light">
-            {dateForFates.toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "2-digit",
-            })}
-          </p>
+        <span>will take</span>
+        <div className="text-center inline-flex gap-x-2 items-center">
+          <p className="text-5xl font-bold">{daysToFates}</p>
+          <p className="text-sm font-bold">Days</p>
         </div>
       </div>
+      <p className="text-sm font-light">
+        on{" "}
+        {dateForFates.toLocaleDateString("en-US", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "2-digit",
+        })}
+      </p>
     </div>
   );
 }
