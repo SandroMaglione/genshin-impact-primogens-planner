@@ -27,16 +27,14 @@ export default function AddEventForm() {
   return (
     <form action={action} className="flex flex-col gap-y-4">
       <div className="flex flex-col gap-y-2">
-        <div>
-          <Label htmlFor="date">Date</Label>
-          <SaveInput<FormName>
-            type="date"
-            id="date"
-            name="date"
-            defaultValue={new Date().toISOString().split("T")[0]}
-            className="w-full"
-          />
-        </div>
+        <SaveInput<FormName>
+          type="date"
+          aria-label="Event date"
+          id="date"
+          name="date"
+          defaultValue={new Date().toISOString().split("T")[0]}
+          className="w-full"
+        />
 
         <div className="grid grid-cols-2 gap-x-8">
           <div className="flex gap-x-4 items-center">

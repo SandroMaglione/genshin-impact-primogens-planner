@@ -2,7 +2,7 @@ import { DateTime, Duration } from "effect";
 import { useState } from "react";
 import { useEvents } from "../lib/hooks/use-events";
 import type { EventTable, ProgressTable } from "../lib/schema";
-import Primogem from "./primogem";
+import Fate from "./fate";
 import SaveInput from "./ui/save-input";
 
 const daysBeforeFates = ({
@@ -31,8 +31,10 @@ const daysBeforeFates = ({
         return eventDate === currentDate;
       })
       .forEach((event) => {
-        accumulatedPrimogems += event.primogems;
-        accumulatedFates += event.fates;
+        if (event.isApplied) {
+          accumulatedPrimogems += event.primogems;
+          accumulatedFates += event.fates;
+        }
       });
 
     if (accumulatedFates + Math.floor(accumulatedPrimogems / 160) >= goal) {
@@ -74,7 +76,7 @@ export default function DaysBeforeFates({
             value={goal}
             onChange={(event) => setGoal(event.target.valueAsNumber)}
           />{" "}
-          <Primogem className="size-6" />
+          <Fate className="size-6" />
         </div>
         <span>will take</span>
         <div className="text-center inline-flex gap-x-2 items-center">

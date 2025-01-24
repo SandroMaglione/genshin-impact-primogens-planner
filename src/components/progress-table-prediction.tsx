@@ -41,11 +41,13 @@ const buildPrediction = ({
         return eventDate === currentDate;
       })
       .forEach((event) => {
-        accumulatedPrimogems += event.primogems;
-        accumulatedFates += event.fates;
+        if (event.isApplied) {
+          accumulatedPrimogems += event.primogems;
+          accumulatedFates += event.fates;
 
-        eventsPrimogems += event.primogems;
-        eventsFates += event.fates;
+          eventsPrimogems += event.primogems;
+          eventsFates += event.fates;
+        }
       });
 
     predictionList.push({

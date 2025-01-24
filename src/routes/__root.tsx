@@ -5,6 +5,7 @@ import { Dexie } from "../lib/services/dexie";
 import { RuntimeClient } from "../lib/services/runtime-client";
 
 import backgroundImgUrl from "../assets/images/background.jpg";
+import genshinImpactLogoImgUrl from "../assets/images/genshin-impact-logo.webp";
 
 import "../tailwind.css";
 
@@ -33,8 +34,24 @@ function RootComponent() {
       />
 
       <div className="mx-auto max-w-[70rem] py-12 px-20 backdrop-blur-[24px] bg-white/90">
-        <nav>
-          <ul>
+        <nav className="flex items-center justify-between">
+          <img
+            src={genshinImpactLogoImgUrl}
+            alt="genshin impact logo"
+            className="h-8"
+          />
+
+          <ul className="flex items-center justify-end gap-x-12">
+            <li>
+              <a href="https://www.youtube.com/@GenshinImpact" target="_blank">
+                Youtube
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/@Genshin_JP" target="_blank">
+                JP Youtube
+              </a>
+            </li>
             <li>
               <a
                 href="https://www.reddit.com/r/Genshin_Impact/?f=flair_name%3A%22%3Ahoyo1%3A%3Ahoyo2%3A%20Official%20Post%22"

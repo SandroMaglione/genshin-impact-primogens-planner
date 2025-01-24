@@ -2,6 +2,8 @@ import { Effect, Schema } from "effect";
 import { useActionEffect } from "../lib/hooks/use-action-effect";
 import type { ProgressTable } from "../lib/schema";
 import { Dexie } from "../lib/services/dexie";
+import Fate from "./fate";
+import Primogem from "./primogem";
 import Button from "./ui/button";
 import Label from "./ui/label";
 import SaveInput from "./ui/save-input";
@@ -32,35 +34,54 @@ export default function UpdateProgressForm({
       <input type="hidden" name="progressId" value={progress.progressId} />
 
       <div className="flex flex-col gap-y-2">
-        <div>
-          <Label htmlFor="dailyPrimogems">Daily Primogems</Label>
-          <SaveInput<FormName>
-            type="number"
-            id="dailyPrimogems"
-            name="dailyPrimogems"
-            className="w-full"
-            defaultValue={progress.dailyPrimogems}
-          />
+        <div className="grid grid-cols-2 gap-x-8">
+          <div className="flex gap-x-4 items-center">
+            <div className="min-w-8">
+              <Label htmlFor="event-primogems">
+                <Primogem className="size-8" />
+              </Label>
+            </div>
+            <SaveInput<FormName>
+              type="number"
+              id="current-primogems"
+              name="primogems"
+              defaultValue={progress.primogems}
+              className="w-full"
+            />
+          </div>
+          <div className="flex gap-x-4 items-center">
+            <div className="min-w-8">
+              <Label htmlFor="event-fates">
+                <Fate className="size-8" />
+              </Label>
+            </div>
+            <SaveInput<FormName>
+              type="number"
+              id="current-fates"
+              name="fates"
+              defaultValue={progress.fates}
+              className="w-full"
+            />
+          </div>
         </div>
-        <div>
-          <Label htmlFor="primogems">Primogems</Label>
-          <SaveInput<FormName>
-            type="number"
-            id="primogems"
-            name="primogems"
-            className="w-full"
-            defaultValue={progress.primogems}
-          />
-        </div>
-        <div>
-          <Label htmlFor="fates">Fates</Label>
-          <SaveInput<FormName>
-            type="number"
-            id="fates"
-            name="fates"
-            className="w-full"
-            defaultValue={progress.fates}
-          />
+
+        <div className="flex gap-x-4 items-center">
+          <Label
+            htmlFor="event-primogems"
+            className="flex items-center gap-x-1"
+          >
+            <Primogem className="size-8" />
+            <span className="text-sm block font-light">/ day</span>
+          </Label>
+          <div className="flex-1">
+            <SaveInput<FormName>
+              type="number"
+              id="dailyPrimogems"
+              name="dailyPrimogems"
+              className="w-full"
+              defaultValue={progress.dailyPrimogems}
+            />
+          </div>
         </div>
       </div>
       <Button type="submit" disabled={pending}>

@@ -43,29 +43,11 @@ function HomeComponent() {
       <section className="flex flex-col gap-y-8 col-span-5">
         <UpdateProgressForm progress={currentProgress} />
 
-        <hr />
+        <hr className="text-grey" />
 
         <AddEventForm />
 
         <ListEvents />
-
-        <hr />
-
-        <div className="flex flex-col gap-y-2">
-          <h2 className="text-2xl font-medium">About</h2>
-          <p className="font-light">
-            This is a simple tool to help you track your Primogems and Fates
-            progress in Genshin Impact.
-          </p>
-          <p className="font-light">
-            You can update your current progress by filling in the form on the
-            left.
-          </p>
-          <p className="font-light">
-            The table on the left shows you how many primogems and fates you
-            will have in the next 100 days.
-          </p>
-        </div>
       </section>
     </main>
   );
