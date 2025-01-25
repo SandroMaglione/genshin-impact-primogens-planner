@@ -43,7 +43,6 @@
   },
   "dependencies": {
     "@tanstack/react-router": "^1.97.14",
-    "@tanstack/router-devtools": "^1.97.14",
     "clsx": "^2.1.1",
     "dexie": "^4.0.11",
     "dexie-react-hooks": "^1.1.7",
