@@ -1,6 +1,5 @@
 import { DateTime, Duration } from "effect";
 import { useActionEffect } from "../lib/hooks/use-action-effect";
-import { useActionReactive } from "../lib/hooks/use-action-reactive";
 import { useEvents } from "../lib/hooks/use-events";
 import type { EventTable, ProgressTable } from "../lib/schema";
 import { Dexie } from "../lib/services/dexie";
@@ -61,8 +60,7 @@ export default function DaysBeforeFates({
   currentProgress: ProgressTable;
 }) {
   const { data } = useEvents();
-  const [_, action] = useActionEffect(Dexie.updateFatesGoal);
-  const [formRef, onChange] = useActionReactive(action);
+  const [_, onChange] = useActionEffect(Dexie.updateFatesGoal);
   const daysToFates = daysBeforeFates({
     today,
     goal: currentProgress.fatesGoal,
@@ -74,15 +72,7 @@ export default function DaysBeforeFates({
   );
   return (
     <div className="flex flex-col gap-y-2">
-      <form
-        ref={formRef}
-        className="flex items-center gap-x-4 text-xl font-light"
-      >
-        <SaveInput<FormName>
-          type="hidden"
-          name="progressId"
-          value={currentProgress.progressId}
-        />
+      <div className="flex items-center gap-x-4 text-xl font-light">
         <label htmlFor="goal">Reaching</label>{" "}
         <div className="inline-flex items-center gap-x-1">
           <SaveInput<FormName>
@@ -91,7 +81,12 @@ export default function DaysBeforeFates({
             name="fatesGoal"
             className="max-w-[6rem]"
             value={currentProgress.fatesGoal}
-            onChange={onChange}
+            onChange={(event) =>
+              onChange({
+                progressId: currentProgress.progressId,
+                fatesGoal: event.target.value,
+              })
+            }
           />{" "}
           <Fate className="size-6" />
         </div>
@@ -117,7 +112,8 @@ export default function DaysBeforeFates({
           </p>
           <p className="text-sm font-bold">Days</p>
         </div>
-      </form>
+      </div>
+
       <p className="font-light">
         {daysToFates === Infinity ? (
           "Never 🥲"

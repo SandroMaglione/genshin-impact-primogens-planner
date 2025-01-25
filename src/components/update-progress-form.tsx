@@ -16,12 +16,6 @@ export default function UpdateProgressForm({
   const [, onChange] = useActionEffect(Dexie.changeProgress);
   return (
     <form className="flex flex-col gap-y-4">
-      <SaveInput<FormName>
-        type="hidden"
-        name="progressId"
-        value={progress.progressId}
-      />
-
       <div className="flex flex-col gap-y-2">
         <div className="grid grid-cols-2 gap-x-8">
           <div className="flex gap-x-4 items-center">

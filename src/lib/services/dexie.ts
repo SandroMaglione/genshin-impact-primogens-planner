@@ -40,7 +40,7 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
       event: "++eventId",
     });
 
-    const execute =
+    const formAction =
       <const R extends string, I, T>(
         source: Schema.Schema<I, Record<R, string>>,
         exec: (values: Readonly<I>) => Promise<T>
@@ -56,7 +56,7 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
           )
         );
 
-    const change =
+    const changeAction =
       <A, I, T>(
         source: Schema.Schema<A, I>,
         exec: (values: Readonly<A>) => Promise<T>
@@ -92,9 +92,9 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
         catch: (error) => new WriteApiError({ cause: error }),
       }),
 
-      updateFatesGoal: execute(
+      updateFatesGoal: changeAction(
         Schema.Struct({
-          progressId: Schema.NumberFromString,
+          progressId: Schema.Number,
           fatesGoal: Schema.NumberFromString,
         }),
         ({
@@ -106,7 +106,7 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
         }) => db.progress.update(progressId, { fatesGoal })
       ),
 
-      changeProgress: change(
+      changeProgress: changeAction(
         Schema.Struct({
           progressId: Schema.Number,
           dailyPrimogems: Schema.optional(
@@ -144,7 +144,7 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
             })
       ),
 
-      addEvent: execute(
+      addEvent: formAction(
         Schema.Struct({
           fates: Schema.NumberFromString,
           primogems: Schema.NumberFromString,
@@ -154,29 +154,16 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
           db.event.add({ ...params, isApplied: true })
       ),
 
-      deleteEvent: execute(
-        Schema.Struct({
-          eventId: Schema.compose(
-            Schema.NumberFromString,
-            Schema.Number.pipe(Schema.nonNegative())
-          ),
-        }),
+      deleteEvent: changeAction(
+        Schema.Struct({ eventId: Schema.Number.pipe(Schema.nonNegative()) }),
         (params: { eventId: number }) =>
           db.event.where("eventId").equals(params.eventId).delete()
       ),
 
-      toggleEvent: execute(
-        Schema.Struct({
-          eventId: Schema.NumberFromString,
-          isApplied: Schema.String.pipe(
-            Schema.transform(Schema.Boolean, {
-              decode: (from) => from === "true",
-              encode: (to) => to.toString(),
-            })
-          ),
-        }),
-        (params: { eventId: number; isApplied: boolean }) =>
-          db.event.update(params.eventId, { isApplied: !params.isApplied })
+      toggleEvent: changeAction(
+        Schema.Struct({ eventId: Schema.Number, isApplied: Schema.Boolean }),
+        ({ eventId, isApplied }: { eventId: number; isApplied: boolean }) =>
+          db.event.update(eventId, { isApplied })
       ),
     };
   }),
