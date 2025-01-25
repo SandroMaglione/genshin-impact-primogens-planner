@@ -1,9 +1,9 @@
 import { DateTime, Duration } from "effect";
 import { useEvents } from "../lib/hooks/use-events";
 import type { EventTable, ProgressTable } from "../lib/schema";
-import Fate from "./fate";
-import Primogem from "./primogem";
-import { Td } from "./table";
+import Fate from "./ui/fate";
+import Primogem from "./ui/primogem";
+import { Td } from "./ui/table";
 
 interface Prediction {
   dayId: number;

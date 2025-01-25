@@ -1,4 +1,4 @@
-import primogemImgUrl from "../assets/images/primogem.webp";
+import primogemImgUrl from "../../assets/images/primogem.webp";
 
 export default function Primogem(
   props: Omit<

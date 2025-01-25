@@ -1,9 +1,9 @@
 import { useActionEffect } from "../lib/hooks/use-action-effect";
 import { Dexie } from "../lib/services/dexie";
-import Fate from "./fate";
-import Primogem from "./primogem";
 import Button from "./ui/button";
+import Fate from "./ui/fate";
 import Label from "./ui/label";
+import Primogem from "./ui/primogem";
 import SaveForm from "./ui/save-form";
 import SaveInput from "./ui/save-input";
 

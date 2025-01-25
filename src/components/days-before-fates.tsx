@@ -3,7 +3,7 @@ import { useActionEffect } from "../lib/hooks/use-action-effect";
 import { useEvents } from "../lib/hooks/use-events";
 import type { EventTable, ProgressTable } from "../lib/schema";
 import { Dexie } from "../lib/services/dexie";
-import Fate from "./fate";
+import Fate from "./ui/fate";
 import SaveInput from "./ui/save-input";
 
 const daysBeforeFates = ({

@@ -1,9 +1,9 @@
 import { useActionEffect } from "../lib/hooks/use-action-effect";
 import type { ProgressTable } from "../lib/schema";
 import { Dexie } from "../lib/services/dexie";
-import Fate from "./fate";
-import Primogem from "./primogem";
+import Fate from "./ui/fate";
 import Label from "./ui/label";
+import Primogem from "./ui/primogem";
 import SaveInput from "./ui/save-input";
 
 type FormName = "progressId" | "dailyPrimogems" | "primogems" | "fates";

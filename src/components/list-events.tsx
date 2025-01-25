@@ -3,10 +3,10 @@ import { DateTime } from "effect";
 import { useActionEffect } from "../lib/hooks/use-action-effect";
 import { useEvents } from "../lib/hooks/use-events";
 import { Dexie } from "../lib/services/dexie";
-import Fate from "./fate";
-import Primogem from "./primogem";
-import { Td } from "./table";
 import Button from "./ui/button";
+import Fate from "./ui/fate";
+import Primogem from "./ui/primogem";
+import { Td } from "./ui/table";
 
 export default function ListEvents() {
   const { data, error, loading } = useEvents();

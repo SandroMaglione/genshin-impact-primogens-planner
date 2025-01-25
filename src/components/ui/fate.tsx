@@ -1,4 +1,4 @@
-import fateImgUrl from "../assets/images/fate.webp";
+import fateImgUrl from "../../assets/images/fate.webp";
 
 export default function Fate(
   props: Omit<
