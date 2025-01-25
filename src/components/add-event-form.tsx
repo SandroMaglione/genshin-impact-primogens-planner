@@ -7,7 +7,7 @@ import Button from "./ui/button";
 import Label from "./ui/label";
 import SaveInput from "./ui/save-input";
 
-type FormName = "name" | "fates" | "primogems" | "date";
+type FormName = "fates" | "primogems" | "date";
 
 export default function AddEventForm() {
   const [_, action, pending] = useActionEffect((formData) =>
@@ -15,7 +15,6 @@ export default function AddEventForm() {
       const dexie = yield* Dexie;
       const query = dexie.addEvent<FormName>(
         Schema.Struct({
-          name: Schema.String,
           date: Schema.String,
           fates: Schema.NumberFromString,
           primogems: Schema.NumberFromString,

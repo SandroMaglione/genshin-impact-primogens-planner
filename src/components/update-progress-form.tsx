@@ -15,7 +15,7 @@ export default function UpdateProgressForm({
 }: {
   progress: ProgressTable;
 }) {
-  const [_, action, pending] = useActionEffect((formData) =>
+  const [_, action] = useActionEffect((formData) =>
     Effect.gen(function* () {
       const dexie = yield* Dexie;
       const query = dexie.updateProgress<FormName>(
@@ -32,7 +32,11 @@ export default function UpdateProgressForm({
   const [formRef, onChange] = useActionReactive(action);
   return (
     <form ref={formRef} action={action} className="flex flex-col gap-y-4">
-      <input type="hidden" name="progressId" value={progress.progressId} />
+      <SaveInput<FormName>
+        type="hidden"
+        name="progressId"
+        value={progress.progressId}
+      />
 
       <div className="flex flex-col gap-y-2">
         <div className="grid grid-cols-2 gap-x-8">

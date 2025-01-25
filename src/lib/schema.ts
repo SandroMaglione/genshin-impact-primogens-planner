@@ -6,6 +6,7 @@ export class ProgressTable extends Schema.Class<ProgressTable>("ProgressTable")(
     dailyPrimogems: Schema.Number.pipe(Schema.nonNegative()),
     fates: Schema.Number.pipe(Schema.nonNegative()),
     primogems: Schema.Number.pipe(Schema.nonNegative()),
+    fatesGoal: Schema.Number.pipe(Schema.nonNegative()),
   }
 ) {}
 
@@ -13,12 +14,6 @@ export class EventTable extends Schema.Class<EventTable>("EventTable")({
   eventId: Schema.Number,
   date: Schema.DateFromString,
   isApplied: Schema.Boolean,
-  name: Schema.String.pipe(
-    Schema.transform(Schema.NullOr(Schema.String), {
-      decode: (from) => (from.length === 0 ? null : from),
-      encode: (to) => to ?? "",
-    })
-  ),
 
   // NOTE: An event can be also "spending", so negative values are allowed
   fates: Schema.Number,

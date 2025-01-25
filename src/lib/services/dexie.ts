@@ -61,12 +61,22 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
       initProgress: Effect.tryPromise({
         try: () =>
           db.progress.add({
-            dailyPrimogems: 0,
+            dailyPrimogems: 60,
             fates: 0,
             primogems: 0,
+            fatesGoal: 90,
           }),
         catch: (error) => new WriteApiError({ cause: error }),
       }),
+
+      updateFatesGoal: execute(
+        Schema.Struct({
+          progressId: ProgressTable.fields.progressId,
+          fatesGoal: ProgressTable.fields.fatesGoal,
+        }),
+        ({ progressId, ...params }) =>
+          db.progress.update(progressId, { fatesGoal: params.fatesGoal })
+      ),
 
       updateProgress: execute(
         Schema.Struct({
@@ -85,7 +95,6 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
 
       addEvent: execute(
         Schema.Struct({
-          name: EventTable.fields.name,
           fates: EventTable.fields.fates,
           primogems: EventTable.fields.primogems,
           date: EventTable.fields.date,

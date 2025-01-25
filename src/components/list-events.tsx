@@ -5,6 +5,7 @@ import { Dexie } from "../lib/services/dexie";
 import Fate from "./fate";
 import Primogem from "./primogem";
 import { Td } from "./table";
+import SaveInput from "./ui/save-input";
 
 type FormNameDelete = "eventId";
 type FormNameToggle = "eventId" | "isApplied";
@@ -43,6 +44,8 @@ export default function ListEvents() {
   } else if (error) {
     return <div>Error: {error.reason}</div>;
   }
+
+  console.log(data);
 
   return (
     <table>
@@ -94,7 +97,11 @@ export default function ListEvents() {
             <Td>
               <div className="flex gap-x-2 items-center justify-end">
                 <form action={actionDelete}>
-                  <input type="hidden" name="eventId" value={event.eventId} />
+                  <SaveInput<FormNameDelete>
+                    type="hidden"
+                    name="eventId"
+                    value={event.eventId}
+                  />
                   <button
                     type="submit"
                     disabled={pendingDelete}
@@ -117,7 +124,11 @@ export default function ListEvents() {
                   </button>
                 </form>
                 <form action={actionToggle}>
-                  <input type="hidden" name="eventId" value={event.eventId} />
+                  <SaveInput<FormNameToggle>
+                    type="hidden"
+                    name="eventId"
+                    value={event.eventId}
+                  />
                   <button
                     type="submit"
                     disabled={pendingToggle}

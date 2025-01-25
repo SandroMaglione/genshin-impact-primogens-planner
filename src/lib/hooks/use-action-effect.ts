@@ -1,4 +1,4 @@
-import { Effect, Function, type ManagedRuntime } from "effect";
+import { Effect, type ManagedRuntime } from "effect";
 import { useActionState } from "react";
 import { RuntimeClient } from "../services/runtime-client";
 
@@ -16,8 +16,14 @@ export const useActionEffect = <A, E>(
       RuntimeClient.runPromise(
         effect(formData).pipe(
           Effect.match({
-            onFailure: Function.identity,
-            onSuccess: Function.constNull,
+            onFailure: (error) => {
+              console.error(error);
+              return error;
+            },
+            onSuccess: (value) => {
+              console.log(value);
+              return null;
+            },
           })
         )
       ),
