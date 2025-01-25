@@ -14,7 +14,10 @@ export default function SaveInput<Name extends string = never>({
 }) {
   return (
     <input
-      className={clsx("border border-grey bg-white px-3 py-2", className)}
+      className={clsx(
+        "border border-grey rounded-md bg-white px-3 py-2",
+        className
+      )}
       {...props}
     />
   );

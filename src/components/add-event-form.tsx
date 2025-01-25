@@ -67,8 +67,26 @@ export default function AddEventForm() {
         </div>
       </div>
 
-      <Button type="submit" disabled={pending}>
-        Add
+      <Button
+        type="submit"
+        disabled={pending}
+        className="w-full py-2 inline-flex items-center justify-center gap-x-2"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={2}
+          stroke="currentColor"
+          className="size-4"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 4.5v15m7.5-7.5h-15"
+          />
+        </svg>
+        <span>Add event</span>
       </Button>
     </form>
   );

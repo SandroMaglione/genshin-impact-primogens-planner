@@ -74,18 +74,6 @@ export default function ProgressTablePrediction({
   const events = data ?? [];
   return (
     <table className="w-full">
-      {/* <thead>
-        <tr>
-          <Th className="text-left">Days</Th>
-          <Th className="text-left">
-            <Primogem className="size-8" />
-          </Th>
-          <Th className="text-left">
-            <Fate className="size-8" />
-          </Th>
-          <Th className="text-right">Date</Th>
-        </tr>
-      </thead> */}
       <tbody>
         {buildPrediction({ today, currentProgress, events }).map(
           (
@@ -101,7 +89,6 @@ export default function ProgressTablePrediction({
           ) => {
             return (
               <tr key={dayId}>
-                {/* <Td className="font-light text-sm">{dayId}</Td> */}
                 <Td>
                   <p className="text-xl inline-flex items-center gap-x-0.5">
                     <span className="tabular-nums">
@@ -110,7 +97,8 @@ export default function ProgressTablePrediction({
                     <Primogem className="size-6" />
                     {eventsPrimogems !== 0 && (
                       <span className="text-xs font-light">
-                        (+{eventsPrimogems})
+                        ({eventsPrimogems >= 0 ? "+" : ""}
+                        {eventsPrimogems.toLocaleString()})
                       </span>
                     )}
                   </p>
@@ -121,7 +109,8 @@ export default function ProgressTablePrediction({
                     <Fate className="size-6" />
                     {eventsFates !== 0 && (
                       <span className="text-xs font-light">
-                        (+{eventsFates})
+                        ({eventsFates >= 0 ? "+" : ""}
+                        {eventsFates.toLocaleString()})
                       </span>
                     )}
                   </p>

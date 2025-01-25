@@ -37,12 +37,20 @@ function RootComponent() {
 
           <ul className="flex items-center justify-end gap-x-12">
             <li>
-              <a href="https://www.youtube.com/@GenshinImpact" target="_blank">
+              <a
+                href="https://www.youtube.com/@GenshinImpact"
+                target="_blank"
+                className="text-sm font-light hover:underline"
+              >
                 Youtube
               </a>
             </li>
             <li>
-              <a href="https://www.youtube.com/@Genshin_JP" target="_blank">
+              <a
+                href="https://www.youtube.com/@Genshin_JP"
+                target="_blank"
+                className="text-sm font-light hover:underline"
+              >
                 JP Youtube
               </a>
             </li>
@@ -50,6 +58,7 @@ function RootComponent() {
               <a
                 href="https://www.reddit.com/r/Genshin_Impact/?f=flair_name%3A%22%3Ahoyo1%3A%3Ahoyo2%3A%20Official%20Post%22"
                 target="_blank"
+                className="text-sm font-light hover:underline"
               >
                 Announcements
               </a>

@@ -1,6 +1,16 @@
+import { Array, Order, pipe } from "effect";
 import { EventTable } from "../schema";
 import { useDexieQuery } from "./use-dexie-query";
 
 export const useEvents = () => {
-  return useDexieQuery((_) => _.event.toArray(), EventTable);
+  return useDexieQuery(
+    async (_) =>
+      pipe(
+        await _.event.toArray(),
+        Array.sortBy(
+          Order.mapInput(Order.Date, (event) => new Date(event.date))
+        )
+      ),
+    EventTable
+  );
 };
