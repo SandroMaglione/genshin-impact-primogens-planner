@@ -36,6 +36,15 @@ function RootComponent() {
         <ul className="flex items-center justify-end gap-x-12">
           <li>
             <a
+              href="https://github.com/SandroMaglione/genshin-impact-primogens-planner"
+              target="_blank"
+              className="text-sm font-light hover:underline"
+            >
+              Github
+            </a>
+          </li>
+          <li>
+            <a
               href="https://www.youtube.com/@GenshinImpact"
               target="_blank"
               className="text-sm font-light hover:underline"
