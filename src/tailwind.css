@@ -18,14 +18,9 @@
   --text-xl: 1.25rem;
   --text-xl--line-height: calc(1.75 / 1.25);
 
-  --text-2xl: 1.5rem;
-  --text-2xl--line-height: calc(2 / 1.5);
-
   --text-5xl: 3rem;
   --text-5xl--line-height: 1;
 
-  --color-primary: #251e42;
-  --color-secondary: #c3c2ba;
   --color-grey: #e4e4e7;
   --color-white: #fff;
   --color-accent: #ffcc33;
