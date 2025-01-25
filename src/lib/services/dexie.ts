@@ -1,7 +1,7 @@
 import * as _Dexie from "dexie";
 import { Data, Effect, Schema } from "effect";
 import { EventTable, ProgressTable } from "../schema";
-import type { TypedFormData } from "../types";
+import type { TypedFormData, Writeable } from "../types";
 
 class ReadApiError extends Data.TaggedError("ReadApiError")<{
   cause: unknown;
@@ -25,8 +25,14 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
   accessors: true,
   effect: Effect.gen(function* () {
     const db = new _Dexie.Dexie("genshin-planner") as _Dexie.Dexie & {
-      progress: _Dexie.EntityTable<typeof ProgressTable.Encoded, "progressId">;
-      event: _Dexie.EntityTable<typeof EventTable.Encoded, "eventId">;
+      progress: _Dexie.EntityTable<
+        Writeable<typeof ProgressTable.Encoded>,
+        "progressId"
+      >;
+      event: _Dexie.EntityTable<
+        Writeable<typeof EventTable.Encoded>,
+        "eventId"
+      >;
     };
 
     db.version(1).stores({
@@ -41,6 +47,23 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
       ) =>
       (formData: TypedFormData<R>) =>
         Schema.decodeUnknown(source)(formDataToRecord(formData)).pipe(
+          Effect.mapError((error) => new WriteApiError({ cause: error })),
+          Effect.flatMap((values) =>
+            Effect.tryPromise({
+              try: () => exec(values),
+              catch: (error) => new WriteApiError({ cause: error }),
+            })
+          )
+        );
+
+    const change =
+      <A, I, T>(
+        source: Schema.Schema<A, I>,
+        exec: (values: Readonly<A>) => Promise<T>
+      ) =>
+      (params: I) =>
+        Schema.decode(source)(params).pipe(
+          Effect.tap(Effect.log),
           Effect.mapError((error) => new WriteApiError({ cause: error })),
           Effect.flatMap((values) =>
             Effect.tryPromise({
@@ -83,27 +106,42 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
         }) => db.progress.update(progressId, { fatesGoal })
       ),
 
-      updateProgress: execute(
+      changeProgress: change(
         Schema.Struct({
-          progressId: Schema.NumberFromString,
-          dailyPrimogems: Schema.NumberFromString,
-          fates: Schema.NumberFromString,
-          primogems: Schema.NumberFromString,
+          progressId: Schema.Number,
+          dailyPrimogems: Schema.optional(
+            Schema.compose(Schema.NumberFromString, Schema.Number)
+          ),
+          fates: Schema.optional(
+            Schema.compose(Schema.NumberFromString, Schema.Number)
+          ),
+          primogems: Schema.optional(
+            Schema.compose(Schema.NumberFromString, Schema.Number)
+          ),
         }),
         ({
           progressId,
           ...params
         }: {
           progressId: number;
-          dailyPrimogems: number;
-          fates: number;
-          primogems: number;
+          dailyPrimogems?: number;
+          fates?: number;
+          primogems?: number;
         }) =>
-          db.progress.update(progressId, {
-            fates: params.fates,
-            primogems: params.primogems,
-            dailyPrimogems: params.dailyPrimogems,
-          })
+          db.progress
+            .where("progressId")
+            .equals(progressId)
+            .modify((progress) => {
+              if (params.dailyPrimogems !== undefined) {
+                progress.dailyPrimogems = params.dailyPrimogems;
+              }
+              if (params.fates !== undefined) {
+                progress.fates = params.fates;
+              }
+              if (params.primogems !== undefined) {
+                progress.primogems = params.primogems;
+              }
+            })
       ),
 
       addEvent: execute(

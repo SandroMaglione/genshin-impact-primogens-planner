@@ -1,11 +1,9 @@
 import { useActionEffect } from "../lib/hooks/use-action-effect";
-import { useActionReactive } from "../lib/hooks/use-action-reactive";
 import type { ProgressTable } from "../lib/schema";
 import { Dexie } from "../lib/services/dexie";
 import Fate from "./fate";
 import Primogem from "./primogem";
 import Label from "./ui/label";
-import SaveForm from "./ui/save-form";
 import SaveInput from "./ui/save-input";
 
 type FormName = "progressId" | "dailyPrimogems" | "primogems" | "fates";
@@ -15,14 +13,9 @@ export default function UpdateProgressForm({
 }: {
   progress: ProgressTable;
 }) {
-  const [_, action] = useActionEffect(Dexie.updateProgress);
-  const [formRef, onChange] = useActionReactive(action);
+  const [, onChange] = useActionEffect(Dexie.changeProgress);
   return (
-    <SaveForm<FormName>
-      ref={formRef}
-      action={action}
-      className="flex flex-col gap-y-4"
-    >
+    <form className="flex flex-col gap-y-4">
       <SaveInput<FormName>
         type="hidden"
         name="progressId"
@@ -43,7 +36,12 @@ export default function UpdateProgressForm({
               name="primogems"
               className="w-full"
               defaultValue={progress.primogems}
-              onChange={onChange}
+              onChange={(event) =>
+                onChange({
+                  progressId: progress.progressId,
+                  primogems: event.target.value,
+                })
+              }
             />
           </div>
           <div className="flex gap-x-4 items-center">
@@ -58,7 +56,12 @@ export default function UpdateProgressForm({
               name="fates"
               className="w-full"
               defaultValue={progress.fates}
-              onChange={onChange}
+              onChange={(event) =>
+                onChange({
+                  progressId: progress.progressId,
+                  fates: event.target.value,
+                })
+              }
             />
           </div>
         </div>
@@ -78,11 +81,16 @@ export default function UpdateProgressForm({
               name="dailyPrimogems"
               className="w-full"
               defaultValue={progress.dailyPrimogems}
-              onChange={onChange}
+              onChange={(event) =>
+                onChange({
+                  progressId: progress.progressId,
+                  dailyPrimogems: event.target.value,
+                })
+              }
             />
           </div>
         </div>
       </div>
-    </SaveForm>
+    </form>
   );
 }

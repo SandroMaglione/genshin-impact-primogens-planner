@@ -1,21 +1,20 @@
 import { Effect, type ManagedRuntime } from "effect";
-import { useActionState } from "react";
+import { startTransition, useActionState } from "react";
 import { RuntimeClient } from "../services/runtime-client";
-import type { TypedFormData } from "../types";
 
-export const useActionEffect = <R extends string, A, E>(
+export const useActionEffect = <P, A, E>(
   effect: (
-    formData: TypedFormData<R>
+    params: P
   ) => Effect.Effect<
     A,
     E,
     ManagedRuntime.ManagedRuntime.Context<typeof RuntimeClient>
   >
 ) => {
-  return useActionState<E | null, TypedFormData<R>>(
-    (_, formData) =>
+  const [state, action, pending] = useActionState<E | null, P>(
+    (_, params) =>
       RuntimeClient.runPromise(
-        effect(formData).pipe(
+        effect(params).pipe(
           Effect.match({
             onFailure: (error) => {
               console.error(error);
@@ -30,4 +29,13 @@ export const useActionEffect = <R extends string, A, E>(
       ),
     null
   );
+
+  return [
+    state,
+    (payload: P) =>
+      startTransition(() => {
+        action(payload);
+      }),
+    pending,
+  ] as const;
 };
