@@ -1,18 +1,19 @@
 import { Effect, type ManagedRuntime } from "effect";
 import { useActionState } from "react";
 import { RuntimeClient } from "../services/runtime-client";
+import type { TypedFormData } from "../types";
 
-export const useActionEffect = <A, E>(
+export const useActionEffect = <R extends string, A, E>(
   effect: (
-    formData: FormData
+    formData: TypedFormData<R>
   ) => Effect.Effect<
     A,
     E,
     ManagedRuntime.ManagedRuntime.Context<typeof RuntimeClient>
   >
 ) => {
-  return useActionState(
-    (_: E | null, formData: FormData) =>
+  return useActionState<E | null, TypedFormData<R>>(
+    (_, formData) =>
       RuntimeClient.runPromise(
         effect(formData).pipe(
           Effect.match({

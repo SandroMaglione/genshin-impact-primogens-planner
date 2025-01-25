@@ -1,4 +1,4 @@
-import { DateTime, Duration, Effect, Schema } from "effect";
+import { DateTime, Duration } from "effect";
 import { useActionEffect } from "../lib/hooks/use-action-effect";
 import { useActionReactive } from "../lib/hooks/use-action-reactive";
 import { useEvents } from "../lib/hooks/use-events";
@@ -61,18 +61,7 @@ export default function DaysBeforeFates({
   currentProgress: ProgressTable;
 }) {
   const { data } = useEvents();
-  const [_, action] = useActionEffect((formData) =>
-    Effect.gen(function* () {
-      const dexie = yield* Dexie;
-      const query = dexie.updateFatesGoal<FormName>(
-        Schema.Struct({
-          progressId: Schema.NumberFromString,
-          fatesGoal: Schema.NumberFromString,
-        })
-      );
-      return yield* query(formData);
-    })
-  );
+  const [_, action] = useActionEffect(Dexie.updateFatesGoal);
   const [formRef, onChange] = useActionReactive(action);
   const daysToFates = daysBeforeFates({
     today,

@@ -1,6 +1,7 @@
 import * as _Dexie from "dexie";
 import { Data, Effect, Schema } from "effect";
 import { EventTable, ProgressTable } from "../schema";
+import type { TypedFormData } from "../types";
 
 class ReadApiError extends Data.TaggedError("ReadApiError")<{
   cause: unknown;
@@ -21,6 +22,7 @@ const formDataToRecord = (formData: FormData): Record<string, string> => {
 };
 
 export class Dexie extends Effect.Service<Dexie>()("Dexie", {
+  accessors: true,
   effect: Effect.gen(function* () {
     const db = new _Dexie.Dexie("genshin-planner") as _Dexie.Dexie & {
       progress: _Dexie.EntityTable<typeof ProgressTable.Encoded, "progressId">;
@@ -33,14 +35,12 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
     });
 
     const execute =
-      <I, A, T>(schema: Schema.Schema<A, I>, exec: (values: I) => Promise<T>) =>
-      <const R extends string = never>(
-        source: Schema.Schema<I, Record<NoInfer<R>, string>>
+      <const R extends string, I, T>(
+        source: Schema.Schema<I, Record<R, string>>,
+        exec: (values: Readonly<I>) => Promise<T>
       ) =>
-      (formData: FormData) =>
+      (formData: TypedFormData<R>) =>
         Schema.decodeUnknown(source)(formDataToRecord(formData)).pipe(
-          Effect.flatMap(Schema.decode(schema)),
-          Effect.flatMap(Schema.encode(schema)),
           Effect.mapError((error) => new WriteApiError({ cause: error })),
           Effect.flatMap((values) =>
             Effect.tryPromise({
@@ -71,21 +71,34 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
 
       updateFatesGoal: execute(
         Schema.Struct({
-          progressId: ProgressTable.fields.progressId,
-          fatesGoal: ProgressTable.fields.fatesGoal,
+          progressId: Schema.NumberFromString,
+          fatesGoal: Schema.NumberFromString,
         }),
-        ({ progressId, ...params }) =>
-          db.progress.update(progressId, { fatesGoal: params.fatesGoal })
+        ({
+          progressId,
+          fatesGoal,
+        }: {
+          progressId: number;
+          fatesGoal: number;
+        }) => db.progress.update(progressId, { fatesGoal })
       ),
 
       updateProgress: execute(
         Schema.Struct({
-          progressId: ProgressTable.fields.progressId,
-          dailyPrimogems: ProgressTable.fields.dailyPrimogems,
-          fates: ProgressTable.fields.fates,
-          primogems: ProgressTable.fields.primogems,
+          progressId: Schema.NumberFromString,
+          dailyPrimogems: Schema.NumberFromString,
+          fates: Schema.NumberFromString,
+          primogems: Schema.NumberFromString,
         }),
-        ({ progressId, ...params }) =>
+        ({
+          progressId,
+          ...params
+        }: {
+          progressId: number;
+          dailyPrimogems: number;
+          fates: number;
+          primogems: number;
+        }) =>
           db.progress.update(progressId, {
             fates: params.fates,
             primogems: params.primogems,
@@ -95,24 +108,36 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
 
       addEvent: execute(
         Schema.Struct({
-          fates: EventTable.fields.fates,
-          primogems: EventTable.fields.primogems,
-          date: EventTable.fields.date,
+          fates: Schema.NumberFromString,
+          primogems: Schema.NumberFromString,
+          date: Schema.String,
         }),
-        (params) => db.event.add({ ...params, isApplied: true })
+        (params: { fates: number; primogems: number; date: string }) =>
+          db.event.add({ ...params, isApplied: true })
       ),
 
       deleteEvent: execute(
-        Schema.Struct({ eventId: EventTable.fields.eventId }),
-        (params) => db.event.where("eventId").equals(params.eventId).delete()
+        Schema.Struct({
+          eventId: Schema.compose(
+            Schema.NumberFromString,
+            Schema.Number.pipe(Schema.nonNegative())
+          ),
+        }),
+        (params: { eventId: number }) =>
+          db.event.where("eventId").equals(params.eventId).delete()
       ),
 
       toggleEvent: execute(
         Schema.Struct({
-          eventId: EventTable.fields.eventId,
-          isApplied: EventTable.fields.isApplied,
+          eventId: Schema.NumberFromString,
+          isApplied: Schema.String.pipe(
+            Schema.transform(Schema.Boolean, {
+              decode: (from) => from === "true",
+              encode: (to) => to.toString(),
+            })
+          ),
         }),
-        (params) =>
+        (params: { eventId: number; isApplied: boolean }) =>
           db.event.update(params.eventId, { isApplied: !params.isApplied })
       ),
     };

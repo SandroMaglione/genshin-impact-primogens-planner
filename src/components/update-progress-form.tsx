@@ -1,4 +1,3 @@
-import { Effect, Schema } from "effect";
 import { useActionEffect } from "../lib/hooks/use-action-effect";
 import { useActionReactive } from "../lib/hooks/use-action-reactive";
 import type { ProgressTable } from "../lib/schema";
@@ -6,6 +5,7 @@ import { Dexie } from "../lib/services/dexie";
 import Fate from "./fate";
 import Primogem from "./primogem";
 import Label from "./ui/label";
+import SaveForm from "./ui/save-form";
 import SaveInput from "./ui/save-input";
 
 type FormName = "progressId" | "dailyPrimogems" | "primogems" | "fates";
@@ -15,23 +15,14 @@ export default function UpdateProgressForm({
 }: {
   progress: ProgressTable;
 }) {
-  const [_, action] = useActionEffect((formData) =>
-    Effect.gen(function* () {
-      const dexie = yield* Dexie;
-      const query = dexie.updateProgress<FormName>(
-        Schema.Struct({
-          progressId: Schema.NumberFromString,
-          dailyPrimogems: Schema.NumberFromString,
-          fates: Schema.NumberFromString,
-          primogems: Schema.NumberFromString,
-        })
-      );
-      return yield* query(formData);
-    })
-  );
+  const [_, action] = useActionEffect(Dexie.updateProgress);
   const [formRef, onChange] = useActionReactive(action);
   return (
-    <form ref={formRef} action={action} className="flex flex-col gap-y-4">
+    <SaveForm<FormName>
+      ref={formRef}
+      action={action}
+      className="flex flex-col gap-y-4"
+    >
       <SaveInput<FormName>
         type="hidden"
         name="progressId"
@@ -92,6 +83,6 @@ export default function UpdateProgressForm({
           </div>
         </div>
       </div>
-    </form>
+    </SaveForm>
   );
 }

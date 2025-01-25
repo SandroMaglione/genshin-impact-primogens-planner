@@ -1,30 +1,18 @@
-import { Effect, Schema } from "effect";
 import { useActionEffect } from "../lib/hooks/use-action-effect";
 import { Dexie } from "../lib/services/dexie";
 import Fate from "./fate";
 import Primogem from "./primogem";
 import Button from "./ui/button";
 import Label from "./ui/label";
+import SaveForm from "./ui/save-form";
 import SaveInput from "./ui/save-input";
 
 type FormName = "fates" | "primogems" | "date";
 
 export default function AddEventForm() {
-  const [_, action, pending] = useActionEffect((formData) =>
-    Effect.gen(function* () {
-      const dexie = yield* Dexie;
-      const query = dexie.addEvent<FormName>(
-        Schema.Struct({
-          date: Schema.String,
-          fates: Schema.NumberFromString,
-          primogems: Schema.NumberFromString,
-        })
-      );
-      return yield* query(formData);
-    })
-  );
+  const [_, action, pending] = useActionEffect(Dexie.addEvent);
   return (
-    <form action={action} className="flex flex-col gap-y-4">
+    <SaveForm<FormName> action={action} className="flex flex-col gap-y-4">
       <div className="flex flex-col gap-y-2">
         <SaveInput<FormName>
           type="date"
@@ -88,6 +76,6 @@ export default function AddEventForm() {
         </svg>
         <span>Add event</span>
       </Button>
-    </form>
+    </SaveForm>
   );
 }
