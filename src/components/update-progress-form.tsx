@@ -1,10 +1,10 @@
 import { Effect, Schema } from "effect";
 import { useActionEffect } from "../lib/hooks/use-action-effect";
+import { useActionReactive } from "../lib/hooks/use-action-reactive";
 import type { ProgressTable } from "../lib/schema";
 import { Dexie } from "../lib/services/dexie";
 import Fate from "./fate";
 import Primogem from "./primogem";
-import Button from "./ui/button";
 import Label from "./ui/label";
 import SaveInput from "./ui/save-input";
 
@@ -29,8 +29,9 @@ export default function UpdateProgressForm({
       return yield* query(formData);
     })
   );
+  const [formRef, onChange] = useActionReactive(action);
   return (
-    <form action={action} className="flex flex-col gap-y-4">
+    <form ref={formRef} action={action} className="flex flex-col gap-y-4">
       <input type="hidden" name="progressId" value={progress.progressId} />
 
       <div className="flex flex-col gap-y-2">
@@ -45,8 +46,9 @@ export default function UpdateProgressForm({
               type="number"
               id="current-primogems"
               name="primogems"
-              defaultValue={progress.primogems}
               className="w-full"
+              defaultValue={progress.primogems}
+              onChange={onChange}
             />
           </div>
           <div className="flex gap-x-4 items-center">
@@ -59,8 +61,9 @@ export default function UpdateProgressForm({
               type="number"
               id="current-fates"
               name="fates"
-              defaultValue={progress.fates}
               className="w-full"
+              defaultValue={progress.fates}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -80,13 +83,11 @@ export default function UpdateProgressForm({
               name="dailyPrimogems"
               className="w-full"
               defaultValue={progress.dailyPrimogems}
+              onChange={onChange}
             />
           </div>
         </div>
       </div>
-      <Button type="submit" disabled={pending}>
-        Update
-      </Button>
     </form>
   );
 }

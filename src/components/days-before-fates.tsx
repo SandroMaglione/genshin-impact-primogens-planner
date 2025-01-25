@@ -84,7 +84,7 @@ export default function DaysBeforeFates({
           <p className="text-sm font-bold">Days</p>
         </div>
       </div>
-      <p className="text-sm font-light">
+      <p className="font-light">
         on{" "}
         {dateForFates.toLocaleDateString("en-US", {
           weekday: "long",
