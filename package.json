@@ -1,6 +1,27 @@
 {
   "name": "genshin-impact-primogems-planner",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "A primogems planner for Genshin Impact",
+  "author": "Sandro Maglione",
+  "license": "MIT",
+  "keywords": [
+    "genshin impact",
+    "primogems",
+    "effect",
+    "dexiejs"
+  ],
+  "contributors": [
+    {
+      "name": "Sandro Maglione",
+      "email": "contact@sandromaglione.com",
+      "url": "https://github.com/SandroMaglione"
+    }
+  ],
+  "homepage": "https://genshin-impact-primogens-planner.pages.dev/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SandroMaglione/genshin-impact-primogens-planner.git"
+  },
   "private": true,
   "type": "module",
   "scripts": {
