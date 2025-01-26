@@ -26,6 +26,7 @@ export default function UpdateProgressForm({
             </div>
             <SaveInput<FormName>
               type="number"
+              min={0}
               id="current-primogems"
               name="primogems"
               className="w-full"
@@ -46,6 +47,7 @@ export default function UpdateProgressForm({
             </div>
             <SaveInput<FormName>
               type="number"
+              min={0}
               id="current-fates"
               name="fates"
               className="w-full"
@@ -71,6 +73,7 @@ export default function UpdateProgressForm({
           <div className="flex-1">
             <SaveInput<FormName>
               type="number"
+              min={0}
               id="dailyPrimogems"
               name="dailyPrimogems"
               className="w-full"

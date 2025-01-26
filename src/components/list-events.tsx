@@ -70,7 +70,7 @@ export default function ListEvents() {
                   <Button
                     type="submit"
                     title="Delete"
-                    className="size-8 inline-flex items-center justify-center"
+                    className="size-6 inline-flex items-center justify-center"
                     disabled={pendingDelete}
                     onClick={() => onDelete({ eventId: event.eventId })}
                   >
@@ -92,7 +92,7 @@ export default function ListEvents() {
                   {!expired && (
                     <Button
                       type="submit"
-                      className="size-8 inline-flex items-center justify-center"
+                      className="size-6 inline-flex items-center justify-center"
                       title={event.isApplied ? "Disable" : "Enable"}
                       disabled={pendingToggle}
                       onClick={() =>

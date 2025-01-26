@@ -1,5 +1,19 @@
 import { Schema } from "effect";
 
+export const StringFromDate = Schema.DateFromSelf.pipe(
+  Schema.transform(Schema.String, {
+    decode: (from) =>
+      new Intl.DateTimeFormat("ja-JP", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      })
+        .format(from)
+        .replace(/\//g, "-"),
+    encode: (to) => new Date(to),
+  })
+);
+
 export class ProgressTable extends Schema.Class<ProgressTable>("ProgressTable")(
   {
     progressId: Schema.Number,
@@ -18,4 +32,9 @@ export class EventTable extends Schema.Class<EventTable>("EventTable")({
   // NOTE: An event can be also "spending", so negative values are allowed
   fates: Schema.Number,
   primogems: Schema.Number,
+}) {}
+
+export class HistoryTable extends Schema.Class<HistoryTable>("HistoryTable")({
+  date: Schema.DateFromString,
+  primogems: Schema.Number.pipe(Schema.nonNegative()),
 }) {}

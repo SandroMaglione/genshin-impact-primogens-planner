@@ -1,6 +1,11 @@
 import * as _Dexie from "dexie";
 import { Data, Effect, Schema } from "effect";
-import { EventTable, ProgressTable } from "../schema";
+import {
+  EventTable,
+  ProgressTable,
+  StringFromDate,
+  type HistoryTable,
+} from "../schema";
 import type { TypedFormData, Writeable } from "../types";
 
 class ReadApiError extends Data.TaggedError("ReadApiError")<{
@@ -33,11 +38,16 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
         Writeable<typeof EventTable.Encoded>,
         "eventId"
       >;
+      history: _Dexie.EntityTable<
+        Writeable<typeof HistoryTable.Encoded>,
+        "date"
+      >;
     };
 
     db.version(1).stores({
       progress: "++progressId",
       event: "++eventId",
+      history: "date",
     });
 
     const formAction =
@@ -144,6 +154,14 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
             })
       ),
 
+      addHistory: formAction(
+        Schema.Struct({
+          date: Schema.String,
+          primogems: Schema.NumberFromString.pipe(Schema.nonNegative()),
+        }),
+        (params: { primogems: number; date: string }) => db.history.add(params)
+      ),
+
       addEvent: formAction(
         Schema.Struct({
           fates: Schema.NumberFromString,
@@ -158,6 +176,21 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
         Schema.Struct({ eventId: Schema.Number.pipe(Schema.nonNegative()) }),
         (params: { eventId: number }) =>
           db.event.where("eventId").equals(params.eventId).delete()
+      ),
+
+      deleteHistory: changeAction(
+        Schema.Struct({ date: StringFromDate }),
+        (params: { date: string }) =>
+          db.history.where("date").equals(params.date).delete()
+      ),
+
+      updateHistory: changeAction(
+        Schema.Struct({
+          date: StringFromDate,
+          primogems: Schema.NumberFromString.pipe(Schema.nonNegative()),
+        }),
+        (params: { primogems: number; date: string }) =>
+          db.history.update(params.date, { primogems: params.primogems })
       ),
 
       toggleEvent: changeAction(

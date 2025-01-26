@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DateTime } from "effect";
 import AddEventForm from "../components/add-event-form";
+import AddHistoryForm from "../components/add-history-form";
 import DaysBeforeFates from "../components/days-before-fates";
 import ListEvents from "../components/list-events";
+import ListHistory from "../components/list-history";
 import ProgressTablePrediction from "../components/progress-table-prediction";
 import UpdateProgressForm from "../components/update-progress-form";
 import { useProgress } from "../lib/hooks/use-progress";
@@ -45,8 +47,12 @@ function HomeComponent() {
 
         <hr className="text-grey" />
 
-        <AddEventForm />
+        <AddHistoryForm currentProgress={currentProgress} />
+        <ListHistory />
 
+        <hr className="text-grey" />
+
+        <AddEventForm />
         <ListEvents />
       </section>
     </main>

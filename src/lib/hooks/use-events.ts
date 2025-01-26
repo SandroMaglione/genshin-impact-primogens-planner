@@ -7,9 +7,7 @@ export const useEvents = () => {
     async (_) =>
       pipe(
         await _.event.toArray(),
-        Array.sortBy(
-          Order.mapInput(Order.Date, (event) => new Date(event.date))
-        )
+        Array.sortBy(Order.mapInput(Order.Date, (_) => new Date(_.date)))
       ),
     EventTable
   );
