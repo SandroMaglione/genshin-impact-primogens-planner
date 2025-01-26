@@ -1,5 +1,6 @@
+import { DateTime, Schema } from "effect";
 import { useActionEffect } from "../lib/hooks/use-action-effect";
-import type { ProgressTable } from "../lib/schema";
+import { StringFromDate, type ProgressTable } from "../lib/schema";
 import { Dexie } from "../lib/services/dexie";
 import Button from "./ui/button";
 import Label from "./ui/label";
@@ -23,8 +24,12 @@ export default function AddHistoryForm({
           aria-label="Date"
           id="date"
           name="date"
-          defaultValue={new Date().toISOString().split("T")[0]}
           className="w-full"
+          defaultValue={DateTime.unsafeNow().pipe(
+            DateTime.subtract({ days: 1 }),
+            DateTime.toDate,
+            Schema.decodeSync(StringFromDate)
+          )}
         />
 
         <div className="flex gap-x-4 items-center">
