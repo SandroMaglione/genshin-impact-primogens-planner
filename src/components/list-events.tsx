@@ -24,7 +24,7 @@ export default function ListEvents() {
       <tbody>
         {data.map((event) => {
           const expired = DateTime.unsafeIsPast(
-            DateTime.unsafeFromDate(event.date)
+            DateTime.add({ days: 1 })(DateTime.unsafeFromDate(event.date))
           );
           const disabled = !event.isApplied || expired;
           return (
