@@ -18,7 +18,7 @@ export default function AddHistoryForm({
   const [error, action, pending] = useActionEffect(Dexie.addHistory);
   return (
     <SaveForm<FormName> action={action} className="flex flex-col gap-y-4">
-      <div className="grid grid-cols-2 items-center gap-x-8">
+      <div id="tut-history" className="grid grid-cols-2 items-center gap-x-8">
         <SaveInput<FormName>
           type="date"
           aria-label="Date"

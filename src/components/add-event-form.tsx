@@ -13,7 +13,7 @@ export default function AddEventForm() {
   const [_, action, pending] = useActionEffect(Dexie.addEvent);
   return (
     <SaveForm<FormName> action={action} className="flex flex-col gap-y-4">
-      <div className="flex flex-col gap-y-2">
+      <div id="tut-events" className="flex flex-col gap-y-2">
         <SaveInput<FormName>
           type="date"
           aria-label="Event date"

@@ -18,7 +18,7 @@ export default function UpdateProgressForm({
     <form className="flex flex-col gap-y-4">
       <div className="flex flex-col gap-y-2">
         <div className="grid grid-cols-2 gap-x-8">
-          <div className="flex gap-x-4 items-center">
+          <div id="tut-current-primogems" className="flex gap-x-4 items-center">
             <div className="min-w-8">
               <Label htmlFor="event-primogems">
                 <Primogem className="size-8" />
@@ -39,7 +39,8 @@ export default function UpdateProgressForm({
               }
             />
           </div>
-          <div className="flex gap-x-4 items-center">
+
+          <div id="tut-current-fates" className="flex gap-x-4 items-center">
             <div className="min-w-8">
               <Label htmlFor="event-fates">
                 <Fate className="size-8" />
@@ -62,7 +63,7 @@ export default function UpdateProgressForm({
           </div>
         </div>
 
-        <div className="flex gap-x-4 items-center">
+        <div id="tut-primogems-day" className="flex gap-x-4 items-center">
           <Label
             htmlFor="event-primogems"
             className="flex items-center gap-x-1"

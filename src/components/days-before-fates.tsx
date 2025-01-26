@@ -74,7 +74,7 @@ export default function DaysBeforeFates({
     <div className="flex flex-col gap-y-2">
       <div className="flex items-center gap-x-4 text-xl font-light">
         <label htmlFor="goal">Reaching</label>{" "}
-        <div className="inline-flex items-center gap-x-1">
+        <div id="tut-target-fates" className="inline-flex items-center gap-x-1">
           <SaveInput<FormName>
             type="number"
             id="goal"

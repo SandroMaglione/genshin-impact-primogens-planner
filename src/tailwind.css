@@ -18,6 +18,9 @@
   --text-xl: 1.25rem;
   --text-xl--line-height: calc(1.75 / 1.25);
 
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: calc(2.25 / 1.875);
+
   --text-5xl: 3rem;
   --text-5xl--line-height: 1;
 

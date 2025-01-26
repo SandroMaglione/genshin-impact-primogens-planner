@@ -24,6 +24,12 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
+  const navigate = Route.useNavigate();
+  const restartTutorial = () => {
+    window.localStorage.clear();
+    navigate({ resetScroll: true, reloadDocument: true });
+  };
+
   return (
     <div className="mx-auto max-w-[75rem] py-12 px-20">
       <nav className="flex items-center justify-between">
@@ -69,6 +75,14 @@ function RootComponent() {
             >
               Announcements
             </a>
+          </li>
+          <li>
+            <button
+              onClick={restartTutorial}
+              className="text-sm font-medium border border-grey rounded-md px-4 py-1 hover:cursor-pointer hover:bg-grey/10 transition-colors duration-150"
+            >
+              Tutorial
+            </button>
           </li>
         </ul>
       </nav>
