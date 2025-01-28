@@ -107,13 +107,8 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
           progressId: Schema.Number,
           fatesGoal: Schema.NumberFromString,
         }),
-        ({
-          progressId,
-          fatesGoal,
-        }: {
-          progressId: number;
-          fatesGoal: number;
-        }) => db.progress.update(progressId, { fatesGoal })
+        ({ progressId, fatesGoal }) =>
+          db.progress.update(progressId, { fatesGoal })
       ),
 
       changeProgress: changeAction(
@@ -129,15 +124,7 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
             Schema.compose(Schema.NumberFromString, Schema.Number)
           ),
         }),
-        ({
-          progressId,
-          ...params
-        }: {
-          progressId: number;
-          dailyPrimogems?: number;
-          fates?: number;
-          primogems?: number;
-        }) =>
+        ({ progressId, ...params }) =>
           db.progress
             .where("progressId")
             .equals(progressId)
@@ -159,7 +146,7 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
           date: Schema.String,
           primogems: Schema.NumberFromString.pipe(Schema.nonNegative()),
         }),
-        (params: { primogems: number; date: string }) => db.history.add(params)
+        (params) => db.history.add(params)
       ),
 
       addEvent: formAction(
@@ -168,20 +155,17 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
           primogems: Schema.NumberFromString,
           date: Schema.String,
         }),
-        (params: { fates: number; primogems: number; date: string }) =>
-          db.event.add({ ...params, isApplied: true })
+        (params) => db.event.add({ ...params, isApplied: true })
       ),
 
       deleteEvent: changeAction(
         Schema.Struct({ eventId: Schema.Number.pipe(Schema.nonNegative()) }),
-        (params: { eventId: number }) =>
-          db.event.where("eventId").equals(params.eventId).delete()
+        (params) => db.event.where("eventId").equals(params.eventId).delete()
       ),
 
       deleteHistory: changeAction(
         Schema.Struct({ date: StringFromDate }),
-        (params: { date: string }) =>
-          db.history.where("date").equals(params.date).delete()
+        (params) => db.history.where("date").equals(params.date).delete()
       ),
 
       updateHistory: changeAction(
@@ -189,14 +173,13 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
           date: StringFromDate,
           primogems: Schema.NumberFromString.pipe(Schema.nonNegative()),
         }),
-        (params: { primogems: number; date: string }) =>
+        (params) =>
           db.history.update(params.date, { primogems: params.primogems })
       ),
 
       toggleEvent: changeAction(
         Schema.Struct({ eventId: Schema.Number, isApplied: Schema.Boolean }),
-        ({ eventId, isApplied }: { eventId: number; isApplied: boolean }) =>
-          db.event.update(eventId, { isApplied })
+        ({ eventId, isApplied }) => db.event.update(eventId, { isApplied })
       ),
     };
   }),
