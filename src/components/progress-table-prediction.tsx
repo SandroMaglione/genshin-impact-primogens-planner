@@ -27,7 +27,7 @@ const buildPrediction = ({
   let accumulatedFates = currentProgress.fates;
   let accumulatedPrimogems = currentProgress.primogems;
 
-  for (let day = 0; day < 100; day++) {
+  for (let day = 0; day < 200; day++) {
     let eventsPrimogems = 0;
     let eventsFates = 0;
 
