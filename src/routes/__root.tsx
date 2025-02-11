@@ -51,11 +51,11 @@ function RootComponent() {
           </li>
           <li>
             <a
-              href="https://www.youtube.com/@GenshinImpact"
+              href="https://kamigame.jp/genshin/index.html"
               target="_blank"
               className="text-sm font-light hover:underline"
             >
-              Youtube
+              Kamigame
             </a>
           </li>
           <li>
@@ -64,7 +64,7 @@ function RootComponent() {
               target="_blank"
               className="text-sm font-light hover:underline"
             >
-              JP Youtube
+              Youtube
             </a>
           </li>
           <li>
