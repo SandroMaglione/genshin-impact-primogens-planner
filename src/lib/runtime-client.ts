@@ -1,5 +1,5 @@
 import { Layer, ManagedRuntime } from "effect";
-import { Dexie } from "./dexie";
+import { Dexie } from "./services/dexie";
 
 const MainLayer = Layer.mergeAll(Dexie.Default);
 

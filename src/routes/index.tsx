@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { DateTime } from "effect";
 import AddEventForm from "../components/add-event-form";
 import AddHistoryForm from "../components/add-history-form";
+import CharactersList from "../components/characters-list";
 import DaysBeforeFates from "../components/days-before-fates";
 import ListEvents from "../components/list-events";
 import ListHistory from "../components/list-history";
@@ -11,7 +12,7 @@ import Primogem from "../components/ui/primogem";
 import Tutorial from "../components/ui/tutorial";
 import UpdateProgressForm from "../components/update-progress-form";
 import { useProgress } from "../lib/hooks/use-progress";
-import { RuntimeClient } from "../lib/services/runtime-client";
+import { RuntimeClient } from "../lib/runtime-client";
 
 export const Route = createFileRoute("/")({
   component: HomeComponent,
@@ -58,6 +59,10 @@ function HomeComponent() {
 
           <AddEventForm />
           <ListEvents />
+
+          <hr className="text-grey" />
+
+          <CharactersList />
         </section>
       </main>
 

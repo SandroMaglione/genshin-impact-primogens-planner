@@ -1,7 +1,7 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { Data, Effect, Either, flow, Match, pipe, Schema } from "effect";
+import { RuntimeClient } from "../runtime-client";
 import { Dexie } from "../services/dexie";
-import { RuntimeClient } from "../services/runtime-client";
 
 class DexieError extends Data.TaggedError("DexieError")<{
   reason: "invalid-data" | "query-error";

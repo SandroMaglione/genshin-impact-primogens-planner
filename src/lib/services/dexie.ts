@@ -4,6 +4,7 @@ import {
   EventTable,
   ProgressTable,
   StringFromDate,
+  type CharacterTable,
   type HistoryTable,
 } from "../schema";
 import type { TypedFormData, Writeable } from "../types";
@@ -42,12 +43,17 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
         Writeable<typeof HistoryTable.Encoded>,
         "date"
       >;
+      character: _Dexie.EntityTable<
+        Writeable<typeof CharacterTable.Encoded>,
+        "name"
+      >;
     };
 
     db.version(1).stores({
       progress: "++progressId",
       event: "++eventId",
       history: "date",
+      character: "name",
     });
 
     const formAction =
@@ -180,6 +186,18 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
       toggleEvent: changeAction(
         Schema.Struct({ eventId: Schema.Number, isApplied: Schema.Boolean }),
         ({ eventId, isApplied }) => db.event.update(eventId, { isApplied })
+      ),
+
+      toggleCharacter: changeAction(
+        Schema.Struct({ name: Schema.String }),
+        ({ name }) =>
+          db.character.get(name).then((character) => {
+            if (character === undefined) {
+              db.character.add({ name });
+            } else {
+              db.character.where("name").equals(name).delete();
+            }
+          })
       ),
     };
   }),

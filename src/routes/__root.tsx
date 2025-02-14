@@ -1,7 +1,7 @@
 import { Outlet, createRootRoute } from "@tanstack/react-router";
 import { Console, Effect } from "effect";
+import { RuntimeClient } from "../lib/runtime-client";
 import { Dexie } from "../lib/services/dexie";
-import { RuntimeClient } from "../lib/services/runtime-client";
 
 import genshinImpactLogoImgUrl from "../assets/images/genshin-impact-logo.webp";
 

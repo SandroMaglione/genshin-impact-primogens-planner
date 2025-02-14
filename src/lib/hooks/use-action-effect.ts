@@ -1,6 +1,6 @@
 import { Effect, type ManagedRuntime } from "effect";
 import { startTransition, useActionState } from "react";
-import { RuntimeClient } from "../services/runtime-client";
+import { RuntimeClient } from "../runtime-client";
 
 export const useActionEffect = <P, A, E>(
   effect: (

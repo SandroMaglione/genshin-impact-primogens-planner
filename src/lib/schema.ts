@@ -38,3 +38,9 @@ export class HistoryTable extends Schema.Class<HistoryTable>("HistoryTable")({
   date: Schema.DateFromString,
   primogems: Schema.Number.pipe(Schema.nonNegative()),
 }) {}
+
+export class CharacterTable extends Schema.Class<CharacterTable>(
+  "CharacterTable"
+)({
+  name: Schema.String,
+}) {}
