@@ -2,26 +2,44 @@ import { useActionEffect } from "../lib/hooks/use-action-effect";
 import { Dexie } from "../lib/services/dexie";
 import Button from "./ui/button";
 import Fate from "./ui/fate";
+import GenesisCrystal from "./ui/genesis-crystal";
 import Label from "./ui/label";
 import Primogem from "./ui/primogem";
 import SaveForm from "./ui/save-form";
 import SaveInput from "./ui/save-input";
 
-type FormName = "fates" | "primogems" | "date";
+type FormName = "fates" | "primogems" | "date" | "genesisCrystals";
 
 export default function AddEventForm() {
   const [_, action, pending] = useActionEffect(Dexie.addEvent);
   return (
     <SaveForm<FormName> action={action} className="flex flex-col gap-y-4">
       <div id="tut-events" className="flex flex-col gap-y-2">
-        <SaveInput<FormName>
-          type="date"
-          aria-label="Event date"
-          id="date"
-          name="date"
-          defaultValue={new Date().toISOString().split("T")[0]}
-          className="w-full"
-        />
+        <div className="grid grid-cols-2 gap-x-8">
+          <SaveInput<FormName>
+            type="date"
+            aria-label="Event date"
+            id="date"
+            name="date"
+            defaultValue={new Date().toISOString().split("T")[0]}
+            className="w-full"
+          />
+
+          <div className="flex gap-x-4 items-center">
+            <div className="min-w-8">
+              <Label htmlFor="event-genesis-crystals">
+                <GenesisCrystal className="size-8" />
+              </Label>
+            </div>
+            <SaveInput<FormName>
+              type="number"
+              id="event-genesis-crystals"
+              name="genesisCrystals"
+              defaultValue={0}
+              className="w-full"
+            />
+          </div>
+        </div>
 
         <div className="grid grid-cols-2 gap-x-8">
           <div className="flex gap-x-4 items-center">
@@ -38,6 +56,7 @@ export default function AddEventForm() {
               className="w-full"
             />
           </div>
+
           <div className="flex gap-x-4 items-center">
             <div className="min-w-8">
               <Label htmlFor="event-fates">

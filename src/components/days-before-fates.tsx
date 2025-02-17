@@ -18,7 +18,8 @@ const daysBeforeFates = ({
   today: DateTime.Utc;
 }) => {
   let accumulatedFates = currentProgress.fates;
-  let accumulatedPrimogems = currentProgress.primogems;
+  let accumulatedPrimogems =
+    currentProgress.primogems + currentProgress.genesisCrystals;
   let day = 0;
 
   while (true) {
@@ -33,7 +34,7 @@ const daysBeforeFates = ({
       })
       .forEach((event) => {
         if (event.isApplied) {
-          accumulatedPrimogems += event.primogems;
+          accumulatedPrimogems += event.primogems + event.genesisCrystals;
           accumulatedFates += event.fates;
         }
       });

@@ -2,11 +2,17 @@ import { useActionEffect } from "../lib/hooks/use-action-effect";
 import type { ProgressTable } from "../lib/schema";
 import { Dexie } from "../lib/services/dexie";
 import Fate from "./ui/fate";
+import GenesisCrystal from "./ui/genesis-crystal";
 import Label from "./ui/label";
 import Primogem from "./ui/primogem";
 import SaveInput from "./ui/save-input";
 
-type FormName = "progressId" | "dailyPrimogems" | "primogems" | "fates";
+type FormName =
+  | "progressId"
+  | "dailyPrimogems"
+  | "primogems"
+  | "fates"
+  | "genesisCrystals";
 
 export default function UpdateProgressForm({
   progress,
@@ -20,7 +26,7 @@ export default function UpdateProgressForm({
         <div className="grid grid-cols-2 gap-x-8">
           <div id="tut-current-primogems" className="flex gap-x-4 items-center">
             <div className="min-w-8">
-              <Label htmlFor="event-primogems">
+              <Label htmlFor="current-primogems">
                 <Primogem className="size-8" />
               </Label>
             </div>
@@ -42,7 +48,7 @@ export default function UpdateProgressForm({
 
           <div id="tut-current-fates" className="flex gap-x-4 items-center">
             <div className="min-w-8">
-              <Label htmlFor="event-fates">
+              <Label htmlFor="current-fates">
                 <Fate className="size-8" />
               </Label>
             </div>
@@ -63,26 +69,53 @@ export default function UpdateProgressForm({
           </div>
         </div>
 
-        <div id="tut-primogems-day" className="flex gap-x-4 items-center">
-          <Label
-            htmlFor="event-primogems"
-            className="flex items-center gap-x-1"
+        <div className="grid grid-cols-2 gap-x-8">
+          <div id="tut-primogems-day" className="flex gap-x-4 items-center">
+            <Label
+              htmlFor="event-primogems"
+              className="flex items-center gap-x-1"
+            >
+              <Primogem className="size-8" />
+              <span className="text-sm block font-light">/ day</span>
+            </Label>
+            <div className="flex-1">
+              <SaveInput<FormName>
+                type="number"
+                min={0}
+                id="dailyPrimogems"
+                name="dailyPrimogems"
+                className="w-full"
+                defaultValue={progress.dailyPrimogems}
+                onChange={(event) =>
+                  onChange({
+                    progressId: progress.progressId,
+                    dailyPrimogems: event.target.value,
+                  })
+                }
+              />
+            </div>
+          </div>
+
+          <div
+            id="tut-current-genesis-crystals"
+            className="flex gap-x-4 items-center"
           >
-            <Primogem className="size-8" />
-            <span className="text-sm block font-light">/ day</span>
-          </Label>
-          <div className="flex-1">
+            <div className="min-w-8">
+              <Label htmlFor="current-genesis-crystals">
+                <GenesisCrystal className="size-8" />
+              </Label>
+            </div>
             <SaveInput<FormName>
               type="number"
               min={0}
-              id="dailyPrimogems"
-              name="dailyPrimogems"
+              id="current-genesis-crystals"
+              name="fates"
               className="w-full"
-              defaultValue={progress.dailyPrimogems}
+              defaultValue={progress.genesisCrystals}
               onChange={(event) =>
                 onChange({
                   progressId: progress.progressId,
-                  dailyPrimogems: event.target.value,
+                  genesisCrystals: event.target.value,
                 })
               }
             />

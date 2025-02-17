@@ -129,6 +129,9 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
           primogems: Schema.optional(
             Schema.compose(Schema.NumberFromString, Schema.Number)
           ),
+          genesisCrystals: Schema.optional(
+            Schema.compose(Schema.NumberFromString, Schema.Number)
+          ),
         }),
         ({ progressId, ...params }) =>
           db.progress
@@ -143,6 +146,9 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
               }
               if (params.primogems !== undefined) {
                 progress.primogems = params.primogems;
+              }
+              if (params.genesisCrystals !== undefined) {
+                progress.genesisCrystals = params.genesisCrystals;
               }
             })
       ),
@@ -159,6 +165,7 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
         Schema.Struct({
           fates: Schema.NumberFromString,
           primogems: Schema.NumberFromString,
+          genesisCrystals: Schema.NumberFromString,
           date: Schema.String,
         }),
         (params) => db.event.add({ ...params, isApplied: true })

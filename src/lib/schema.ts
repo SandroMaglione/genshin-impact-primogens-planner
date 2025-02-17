@@ -21,6 +21,11 @@ export class ProgressTable extends Schema.Class<ProgressTable>("ProgressTable")(
     fates: Schema.Number.pipe(Schema.nonNegative()),
     primogems: Schema.Number.pipe(Schema.nonNegative()),
     fatesGoal: Schema.Number.pipe(Schema.nonNegative()),
+
+    genesisCrystals: Schema.optionalWith(
+      Schema.Number.pipe(Schema.nonNegative()),
+      { default: () => 0 }
+    ),
   }
 ) {}
 
@@ -32,6 +37,8 @@ export class EventTable extends Schema.Class<EventTable>("EventTable")({
   // NOTE: An event can be also "spending", so negative values are allowed
   fates: Schema.Number,
   primogems: Schema.Number,
+
+  genesisCrystals: Schema.optionalWith(Schema.Number, { default: () => 0 }),
 }) {}
 
 export class HistoryTable extends Schema.Class<HistoryTable>("HistoryTable")({

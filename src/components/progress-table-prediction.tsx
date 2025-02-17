@@ -11,6 +11,7 @@ interface Prediction {
   totalFates: number;
   date: DateTime.Utc;
   eventsPrimogems: number;
+  eventsGenesisCrystals: number;
   eventsFates: number;
 }
 
@@ -25,11 +26,13 @@ const buildPrediction = ({
 }) => {
   const predictionList: Prediction[] = [];
   let accumulatedFates = currentProgress.fates;
-  let accumulatedPrimogems = currentProgress.primogems;
+  let accumulatedPrimogems =
+    currentProgress.primogems + currentProgress.genesisCrystals;
 
   for (let day = 0; day < 200; day++) {
     let eventsPrimogems = 0;
     let eventsFates = 0;
+    let eventsGenesisCrystals = 0;
 
     accumulatedPrimogems += currentProgress.dailyPrimogems;
     const date = DateTime.addDuration(Duration.days(day))(today);
@@ -45,6 +48,7 @@ const buildPrediction = ({
           accumulatedPrimogems += event.primogems;
           accumulatedFates += event.fates;
 
+          eventsGenesisCrystals += event.genesisCrystals;
           eventsPrimogems += event.primogems;
           eventsFates += event.fates;
         }
@@ -54,6 +58,7 @@ const buildPrediction = ({
       dayId: day,
       eventsPrimogems,
       eventsFates,
+      eventsGenesisCrystals,
       date,
       totalPrimogems: accumulatedPrimogems,
       totalFates: accumulatedFates + Math.floor(accumulatedPrimogems / 160),
@@ -80,6 +85,7 @@ export default function ProgressTablePrediction({
             {
               eventsFates,
               eventsPrimogems,
+              eventsGenesisCrystals,
               date,
               dayId,
               totalFates,
@@ -95,10 +101,16 @@ export default function ProgressTablePrediction({
                       {totalPrimogems.toLocaleString()}
                     </span>
                     <Primogem className="size-6" />
-                    {eventsPrimogems !== 0 && (
+                    {(eventsPrimogems !== 0 || eventsGenesisCrystals !== 0) && (
                       <span className="text-xs font-light">
-                        ({eventsPrimogems >= 0 ? "+" : ""}
-                        {eventsPrimogems.toLocaleString()})
+                        (
+                        {eventsPrimogems + eventsGenesisCrystals >= 0
+                          ? "+"
+                          : ""}
+                        {(
+                          eventsPrimogems + eventsGenesisCrystals
+                        ).toLocaleString()}
+                        )
                       </span>
                     )}
                   </p>

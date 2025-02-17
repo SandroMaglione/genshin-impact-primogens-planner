@@ -5,6 +5,7 @@ import { useEvents } from "../lib/hooks/use-events";
 import { Dexie } from "../lib/services/dexie";
 import Button from "./ui/button";
 import Fate from "./ui/fate";
+import GenesisCrystal from "./ui/genesis-crystal";
 import Primogem from "./ui/primogem";
 import { Td } from "./ui/table";
 
@@ -49,20 +50,25 @@ export default function ListEvents() {
                   "text-right font-light"
                 )}
               >
-                <div className="inline-flex items-center justify-end gap-x-0.5">
-                  <span className="tabular-nums">{event.primogems}</span>
-                  <Primogem className="size-4" />
-                </div>
-              </Td>
-              <Td
-                className={clsx(
-                  disabled && "opacity-30",
-                  "text-right font-light"
-                )}
-              >
-                <div className="inline-flex items-center justify-end gap-x-0.5">
-                  <span className="tabular-nums">{event.fates}</span>
-                  <Fate className="size-4" />
+                <div className="inline-flex items-center gap-x-2">
+                  <div className="inline-flex items-center justify-end gap-x-0.5">
+                    <span className="tabular-nums text-sm">
+                      {event.primogems}
+                    </span>
+                    <Primogem className="size-4" />
+                  </div>
+
+                  <div className="inline-flex items-center justify-end gap-x-0.5">
+                    <span className="tabular-nums text-sm">
+                      {event.genesisCrystals}
+                    </span>
+                    <GenesisCrystal className="size-4" />
+                  </div>
+
+                  <div className="inline-flex items-center justify-end gap-x-0.5">
+                    <span className="tabular-nums text-sm">{event.fates}</span>
+                    <Fate className="size-4" />
+                  </div>
                 </div>
               </Td>
               <Td>
