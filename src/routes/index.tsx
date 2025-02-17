@@ -8,6 +8,7 @@ import ListEvents from "../components/list-events";
 import ListHistory from "../components/list-history";
 import ProgressTablePrediction from "../components/progress-table-prediction";
 import Fate from "../components/ui/fate";
+import GenesisCrystal from "../components/ui/genesis-crystal";
 import Primogem from "../components/ui/primogem";
 import Tutorial from "../components/ui/tutorial";
 import UpdateProgressForm from "../components/update-progress-form";
@@ -90,6 +91,13 @@ function HomeComponent() {
             </span>,
           ],
           [
+            "tut-current-genesis-crystals",
+            <span>
+              Enter the current amount of{" "}
+              <GenesisCrystal className="size-8 inline" /> you have
+            </span>,
+          ],
+          [
             "tut-target-fates",
             <span>
               Enter your target amount of <Fate className="size-8 inline" />
@@ -106,8 +114,11 @@ function HomeComponent() {
             "tut-events",
             <span>
               You can enter events that will guarantee you{" "}
-              <Primogem className="size-8 inline" /> or{" "}
-              <Fate className="size-8 inline" /> in the future
+              <Primogem className="size-8 inline" />
+              {", "}
+              <Fate className="size-8 inline" />
+              {" or "}
+              <GenesisCrystal className="size-8 inline" /> in the future
             </span>,
           ],
         ]}
