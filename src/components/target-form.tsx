@@ -176,7 +176,7 @@ export default function TargetForm({
         </div>
       </div>
 
-      <div className="flex gap-x-4 items-center font-light">
+      <div id="tut-before-day" className="flex gap-x-4 items-center font-light">
         <span>Before</span>
 
         <SaveInput<FormName>

@@ -72,13 +72,6 @@ function HomeComponent() {
       <Tutorial
         contentList={[
           [
-            "tut-current-primogems",
-            <span>
-              Enter the current amount of <Primogem className="size-8 inline" />{" "}
-              you have
-            </span>,
-          ],
-          [
             "tut-current-fates",
             <span>
               Enter the current amount of <Fate className="size-8 inline" /> you
@@ -86,10 +79,10 @@ function HomeComponent() {
             </span>,
           ],
           [
-            "tut-primogems-day",
+            "tut-current-primogems",
             <span>
-              Enter the average <Primogem className="size-8 inline" /> you
-              expect to earn per day
+              Enter the current amount of <Primogem className="size-8 inline" />{" "}
+              you have
             </span>,
           ],
           [
@@ -103,6 +96,20 @@ function HomeComponent() {
             "tut-target-fates",
             <span>
               Enter your target amount of <Fate className="size-8 inline" />
+            </span>,
+          ],
+          [
+            "tut-primogems-day",
+            <span>
+              Enter the average <Primogem className="size-8 inline" /> you
+              expect to earn per day...
+            </span>,
+          ],
+          [
+            "tut-before-day",
+            <span>
+              ...or the day you would like to reach your{" "}
+              <Fate className="size-8 inline" /> goal
             </span>,
           ],
           [
