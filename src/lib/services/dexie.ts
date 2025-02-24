@@ -132,6 +132,7 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
           genesisCrystals: Schema.optional(
             Schema.compose(Schema.NumberFromString, Schema.Number)
           ),
+          targetDate: Schema.optional(Schema.String),
         }),
         ({ progressId, ...params }) =>
           db.progress
@@ -149,6 +150,9 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
               }
               if (params.genesisCrystals !== undefined) {
                 progress.genesisCrystals = params.genesisCrystals;
+              }
+              if (params.targetDate !== undefined) {
+                progress.targetDate = params.targetDate;
               }
             })
       ),

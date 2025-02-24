@@ -70,32 +70,6 @@ export default function UpdateProgressForm({
         </div>
 
         <div className="grid grid-cols-2 gap-x-8">
-          <div id="tut-primogems-day" className="flex gap-x-4 items-center">
-            <Label
-              htmlFor="event-primogems"
-              className="flex items-center gap-x-1"
-            >
-              <Primogem className="size-8" />
-              <span className="text-sm block font-light">/ day</span>
-            </Label>
-            <div className="flex-1">
-              <SaveInput<FormName>
-                type="number"
-                min={0}
-                id="dailyPrimogems"
-                name="dailyPrimogems"
-                className="w-full"
-                defaultValue={progress.dailyPrimogems}
-                onChange={(event) =>
-                  onChange({
-                    progressId: progress.progressId,
-                    dailyPrimogems: event.target.value,
-                  })
-                }
-              />
-            </div>
-          </div>
-
           <div
             id="tut-current-genesis-crystals"
             className="flex gap-x-4 items-center"
