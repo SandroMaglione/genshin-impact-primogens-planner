@@ -22,6 +22,9 @@ export class ProgressTable extends Schema.Class<ProgressTable>("ProgressTable")(
     primogems: Schema.Number.pipe(Schema.nonNegative()),
     fatesGoal: Schema.Number.pipe(Schema.nonNegative()),
 
+    targetDate: Schema.optionalWith(Schema.DateFromString, {
+      default: () => new Date(),
+    }),
     genesisCrystals: Schema.optionalWith(
       Schema.Number.pipe(Schema.nonNegative()),
       { default: () => 0 }

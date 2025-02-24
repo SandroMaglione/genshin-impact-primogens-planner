@@ -3,10 +3,10 @@ import { DateTime } from "effect";
 import AddEventForm from "../components/add-event-form";
 import AddHistoryForm from "../components/add-history-form";
 import CharactersList from "../components/characters-list";
-import DaysBeforeFates from "../components/days-before-fates";
 import ListEvents from "../components/list-events";
 import ListHistory from "../components/list-history";
 import ProgressTablePrediction from "../components/progress-table-prediction";
+import TargetForm from "../components/target-form";
 import Fate from "../components/ui/fate";
 import GenesisCrystal from "../components/ui/genesis-crystal";
 import Primogem from "../components/ui/primogem";
@@ -40,7 +40,9 @@ function HomeComponent() {
     <>
       <main className="my-12 grid-cols-12 grid gap-x-20">
         <section className="flex flex-col gap-y-8 col-span-7">
-          <DaysBeforeFates currentProgress={currentProgress} today={today} />
+          <TargetForm currentProgress={currentProgress} today={today} />
+
+          <hr className="text-grey" />
 
           <ProgressTablePrediction
             currentProgress={currentProgress}
