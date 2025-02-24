@@ -167,7 +167,6 @@ export default function TargetForm({
             {daysToFates === Infinity
               ? "Never 🥲"
               : dateForFates.toLocaleDateString("en-US", {
-                  weekday: "long",
                   year: "numeric",
                   month: "long",
                   day: "numeric",

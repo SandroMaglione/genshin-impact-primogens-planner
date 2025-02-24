@@ -1,4 +1,6 @@
 import { DateTime, Duration } from "effect";
+import React from "react";
+import iconWishUrl from "../assets/images/icon-wish.webp";
 import { useEvents } from "../lib/hooks/use-events";
 import type { EventTable, ProgressTable } from "../lib/schema";
 import Fate from "./ui/fate";
@@ -68,6 +70,13 @@ const buildPrediction = ({
   return predictionList;
 };
 
+const isThreeWeekInterval = (targetDate: DateTime.Utc): boolean => {
+  const startDate = DateTime.unsafeMake("2025-02-11T00:00:00Z");
+  const duration = DateTime.distanceDuration(startDate, targetDate);
+  const daysDifference = Math.floor(Duration.toDays(duration));
+  return daysDifference % 21 === 0;
+};
+
 export default function ProgressTablePrediction({
   currentProgress,
   today,
@@ -93,75 +102,96 @@ export default function ProgressTablePrediction({
             },
             index
           ) => {
+            const isNewBanner = isThreeWeekInterval(date);
             return (
-              <tr key={dayId}>
-                <Td>
-                  <p className="text-xl inline-flex items-center gap-x-0.5">
-                    <span className="tabular-nums">
-                      {totalPrimogems.toLocaleString()}
-                    </span>
-                    <Primogem className="size-6" />
-                    {(eventsPrimogems !== 0 || eventsGenesisCrystals !== 0) && (
-                      <span className="text-xs font-light">
-                        (
-                        {eventsPrimogems + eventsGenesisCrystals >= 0
-                          ? "+"
-                          : ""}
-                        {(
-                          eventsPrimogems + eventsGenesisCrystals
-                        ).toLocaleString()}
-                        )
-                      </span>
-                    )}
-                  </p>
-                </Td>
-                <Td>
-                  <p className="text-xl inline-flex items-center gap-x-0.5">
-                    <span className="tabular-nums">{totalFates}</span>
-                    <Fate className="size-6" />
-                    {eventsFates !== 0 && (
-                      <span className="text-xs font-light">
-                        ({eventsFates >= 0 ? "+" : ""}
-                        {eventsFates.toLocaleString()})
-                      </span>
-                    )}
-                  </p>
-                </Td>
-                <Td className="text-right">
-                  <p className="text-xl font-light">
-                    {DateTime.toDate(date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </p>
-
-                  <div className="inline-flex items-center gap-x-2">
-                    {totalFates >= 90 && (
-                      <p className="text-sm font-light inline-flex items-center gap-x-0.5">
-                        <span>{Math.floor(totalFates / 90)}</span>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          className="size-4 text-accent"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
+              <React.Fragment key={dayId}>
+                {isNewBanner && (
+                  <tr>
+                    <td colSpan={3} className="text-center py-4">
+                      <p className="bg-[#D2A366] text-white py-1 flex gap-x-2 items-center justify-center rounded-md">
+                        <img
+                          src={iconWishUrl}
+                          alt="new-banner-icon"
+                          className="size-6 inline-block"
+                        />
+                        <span className="font-bold text-sm">
+                          Character Event Wish
+                        </span>
                       </p>
-                    )}
-                    <p className="text-sm font-medium">
+                    </td>
+                  </tr>
+                )}
+
+                <tr>
+                  <Td>
+                    <p className="text-xl inline-flex items-center gap-x-0.5">
+                      <span className="tabular-nums">
+                        {totalPrimogems.toLocaleString()}
+                      </span>
+                      <Primogem className="size-6" />
+                      {(eventsPrimogems !== 0 ||
+                        eventsGenesisCrystals !== 0) && (
+                        <span className="text-xs font-light">
+                          (
+                          {eventsPrimogems + eventsGenesisCrystals >= 0
+                            ? "+"
+                            : ""}
+                          {(
+                            eventsPrimogems + eventsGenesisCrystals
+                          ).toLocaleString()}
+                          )
+                        </span>
+                      )}
+                    </p>
+                  </Td>
+                  <Td>
+                    <p className="text-xl inline-flex items-center gap-x-0.5">
+                      <span className="tabular-nums">{totalFates}</span>
+                      <Fate className="size-6" />
+                      {eventsFates !== 0 && (
+                        <span className="text-xs font-light">
+                          ({eventsFates >= 0 ? "+" : ""}
+                          {eventsFates.toLocaleString()})
+                        </span>
+                      )}
+                    </p>
+                  </Td>
+                  <Td className="text-right">
+                    <p className="text-xl font-light">
                       {DateTime.toDate(date).toLocaleDateString("en-US", {
-                        weekday: "long",
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
                       })}
                     </p>
-                  </div>
-                </Td>
-              </tr>
+
+                    <div className="inline-flex items-center gap-x-2">
+                      {totalFates >= 90 && (
+                        <p className="text-sm font-light inline-flex items-center gap-x-0.5">
+                          <span>{Math.floor(totalFates / 90)}</span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            className="size-4 text-accent"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </p>
+                      )}
+                      <p className="text-sm font-medium">
+                        {DateTime.toDate(date).toLocaleDateString("en-US", {
+                          weekday: "long",
+                        })}
+                      </p>
+                    </div>
+                  </Td>
+                </tr>
+              </React.Fragment>
             );
           }
         )}
