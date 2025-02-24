@@ -128,6 +128,14 @@ export default function ProgressTablePrediction({
                   </p>
                 </Td>
                 <Td className="text-right">
+                  <p className="text-xl font-light">
+                    {DateTime.toDate(date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </p>
+
                   <div className="inline-flex items-center gap-x-2">
                     {totalFates >= 90 && (
                       <p className="text-sm font-light inline-flex items-center gap-x-0.5">
@@ -146,19 +154,12 @@ export default function ProgressTablePrediction({
                         </svg>
                       </p>
                     )}
-                    <p className="text-xl font-medium">
+                    <p className="text-sm font-medium">
                       {DateTime.toDate(date).toLocaleDateString("en-US", {
                         weekday: "long",
                       })}
                     </p>
                   </div>
-                  <p className="text-sm font-light">
-                    {DateTime.toDate(date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "2-digit",
-                    })}
-                  </p>
                 </Td>
               </tr>
             );
