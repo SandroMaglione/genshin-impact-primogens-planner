@@ -11,9 +11,9 @@ const daysBeforeFates = ({
   currentProgress,
   events,
   today,
-  goal,
+  fatesGoal,
 }: {
-  goal: number;
+  fatesGoal: number;
   currentProgress: ProgressTable;
   events: readonly EventTable[];
   today: DateTime.Utc;
@@ -40,7 +40,10 @@ const daysBeforeFates = ({
         }
       });
 
-    if (accumulatedFates + Math.floor(accumulatedPrimogems / 160) >= goal) {
+    if (
+      accumulatedFates + Math.floor(accumulatedPrimogems / 160) >=
+      fatesGoal
+    ) {
       return day;
     } else {
       if (day > 10000) {
@@ -50,6 +53,57 @@ const daysBeforeFates = ({
       day += 1;
     }
   }
+};
+
+const dailyPrimogemsForTargetDate = ({
+  currentProgress,
+  targetDate,
+  events,
+  today,
+  fatesGoal,
+}: {
+  fatesGoal: number;
+  currentProgress: ProgressTable;
+  events: readonly EventTable[];
+  targetDate: Date;
+  today: DateTime.Utc;
+}) => {
+  let accumulatedFates = currentProgress.fates;
+  let accumulatedPrimogems =
+    currentProgress.primogems + currentProgress.genesisCrystals;
+  let day = 0;
+  let distanceInDays = Duration.toDays(
+    DateTime.distanceDuration(today, DateTime.unsafeFromDate(targetDate))
+  );
+
+  while (day < distanceInDays) {
+    const date = DateTime.addDuration(Duration.days(day))(today);
+    events
+      .filter((event) => {
+        const eventDate = new Date(event.date).setHours(0, 0, 0, 0);
+        const currentDate = DateTime.toDate(date).setHours(0, 0, 0, 0);
+        return eventDate === currentDate;
+      })
+      .forEach((event) => {
+        if (event.isApplied) {
+          accumulatedPrimogems += event.primogems + event.genesisCrystals;
+          accumulatedFates += event.fates;
+        }
+      });
+
+    if (day > 10000) {
+      return Infinity;
+    }
+
+    day += 1;
+  }
+
+  const totalPrimogems = accumulatedPrimogems + accumulatedFates * 160;
+  const goalPrimogems = fatesGoal * 160;
+
+  return totalPrimogems > goalPrimogems
+    ? 0
+    : Math.ceil((goalPrimogems - totalPrimogems) / distanceInDays);
 };
 
 type FormName = "dailyPrimogems" | "targetDate";
@@ -65,9 +119,16 @@ export default function TargetForm({
   const [, onChange] = useActionEffect(Dexie.changeProgress);
   const daysToFates = daysBeforeFates({
     today,
-    goal: currentProgress.fatesGoal,
     currentProgress,
     events: data ?? [],
+    fatesGoal: currentProgress.fatesGoal,
+  });
+  const primogemsEachDay = dailyPrimogemsForTargetDate({
+    today,
+    currentProgress,
+    events: data ?? [],
+    fatesGoal: currentProgress.fatesGoal,
+    targetDate: currentProgress.targetDate,
   });
   const dateForFates = DateTime.toDate(
     DateTime.addDuration(Duration.days(daysToFates))(today)
@@ -78,7 +139,7 @@ export default function TargetForm({
         id="tut-primogems-day"
         className="flex gap-x-4 items-center font-light"
       >
-        <span>with</span>
+        <span>With</span>
 
         <div className="flex gap-x-2 items-center">
           <SaveInput<FormName>
@@ -102,14 +163,14 @@ export default function TargetForm({
         </div>
 
         <div className="flex flex-col justify-end items-end flex-1">
-          <p className="text-xl">
+          <p className="text-xl font-medium">
             {daysToFates === Infinity
               ? "Never 🥲"
               : dateForFates.toLocaleDateString("en-US", {
                   weekday: "long",
                   year: "numeric",
                   month: "long",
-                  day: "2-digit",
+                  day: "numeric",
                 })}
           </p>
           <span className="text-sm font-light">{`${daysToFates} days`}</span>
@@ -117,7 +178,7 @@ export default function TargetForm({
       </div>
 
       <div className="flex gap-x-4 items-center font-light">
-        <span>before</span>
+        <span>Before</span>
 
         <SaveInput<FormName>
           type="date"
@@ -135,7 +196,7 @@ export default function TargetForm({
         />
 
         <div className="flex-1 flex gap-x-2 items-center justify-end">
-          <span className="text-xl">190</span>
+          <span className="text-xl font-medium">{primogemsEachDay}</span>
           <Label htmlFor="dailyPrimogems" className="flex items-center gap-x-1">
             <Primogem className="size-8" />
             <span className="text-sm block font-light">/ day</span>

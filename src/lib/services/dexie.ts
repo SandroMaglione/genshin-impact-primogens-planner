@@ -108,15 +108,6 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
         catch: (error) => new WriteApiError({ cause: error }),
       }),
 
-      updateFatesGoal: changeAction(
-        Schema.Struct({
-          progressId: Schema.Number,
-          fatesGoal: Schema.NumberFromString,
-        }),
-        ({ progressId, fatesGoal }) =>
-          db.progress.update(progressId, { fatesGoal })
-      ),
-
       changeProgress: changeAction(
         Schema.Struct({
           progressId: Schema.Number,
@@ -132,6 +123,9 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
           genesisCrystals: Schema.optional(
             Schema.compose(Schema.NumberFromString, Schema.Number)
           ),
+          fatesGoal: Schema.optional(
+            Schema.compose(Schema.NumberFromString, Schema.Number)
+          ),
           targetDate: Schema.optional(Schema.String),
         }),
         ({ progressId, ...params }) =>
@@ -139,6 +133,9 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
             .where("progressId")
             .equals(progressId)
             .modify((progress) => {
+              if (params.fatesGoal !== undefined) {
+                progress.fatesGoal = params.fatesGoal;
+              }
               if (params.dailyPrimogems !== undefined) {
                 progress.dailyPrimogems = params.dailyPrimogems;
               }
