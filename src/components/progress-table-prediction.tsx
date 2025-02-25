@@ -4,6 +4,7 @@ import iconWishUrl from "../assets/images/icon-wish.webp";
 import { useEvents } from "../lib/hooks/use-events";
 import type { EventTable, ProgressTable } from "../lib/schema";
 import Fate from "./ui/fate";
+import GenesisCrystal from "./ui/genesis-crystal";
 import Primogem from "./ui/primogem";
 import { Td } from "./ui/table";
 
@@ -141,6 +142,44 @@ export default function ProgressTablePrediction({
                   </tr>
                 )}
 
+                {(eventsPrimogems !== 0 ||
+                  eventsGenesisCrystals !== 0 ||
+                  eventsFates !== 0) && (
+                  <tr>
+                    <td colSpan={3} className="text-center py-4">
+                      <div className="flex gap-x-4 items-center justify-center">
+                        {eventsPrimogems !== 0 && (
+                          <p className="inline-flex items-center gap-x-1 font-light">
+                            <span>
+                              {eventsPrimogems >= 0 ? "+" : ""}
+                              {eventsPrimogems.toLocaleString()}
+                            </span>
+                            <Primogem className="size-6" />
+                          </p>
+                        )}
+                        {eventsGenesisCrystals !== 0 && (
+                          <p className="inline-flex items-center gap-x-1 font-light">
+                            <span>
+                              {eventsGenesisCrystals >= 0 ? "+" : ""}
+                              {eventsGenesisCrystals.toLocaleString()}
+                            </span>
+                            <GenesisCrystal className="size-6" />
+                          </p>
+                        )}
+                        {eventsFates !== 0 && (
+                          <p className="inline-flex items-center gap-x-1 font-light">
+                            <span>
+                              {eventsFates >= 0 ? "+" : ""}
+                              {eventsFates.toLocaleString()}
+                            </span>
+                            <Fate className="size-6" />
+                          </p>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                )}
+
                 <tr>
                   <Td>
                     <p className="text-xl inline-flex items-center gap-x-0.5">
@@ -148,31 +187,12 @@ export default function ProgressTablePrediction({
                         {totalPrimogems.toLocaleString()}
                       </span>
                       <Primogem className="size-6" />
-                      {(eventsPrimogems !== 0 ||
-                        eventsGenesisCrystals !== 0) && (
-                        <span className="text-xs font-light">
-                          (
-                          {eventsPrimogems + eventsGenesisCrystals >= 0
-                            ? "+"
-                            : ""}
-                          {(
-                            eventsPrimogems + eventsGenesisCrystals
-                          ).toLocaleString()}
-                          )
-                        </span>
-                      )}
                     </p>
                   </Td>
                   <Td>
                     <p className="text-xl inline-flex items-center gap-x-0.5">
                       <span className="tabular-nums">{totalFates}</span>
                       <Fate className="size-6" />
-                      {eventsFates !== 0 && (
-                        <span className="text-xs font-light">
-                          ({eventsFates >= 0 ? "+" : ""}
-                          {eventsFates.toLocaleString()})
-                        </span>
-                      )}
                     </p>
                   </Td>
                   <Td className="text-right">
