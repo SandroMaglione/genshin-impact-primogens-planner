@@ -9,6 +9,28 @@ import { useTeams } from "../lib/hooks/use-teams";
 import { RuntimeClient } from "../lib/runtime-client";
 import { Dexie } from "../lib/services/dexie";
 
+import fullCharacters from "../assets/characters.json";
+
+const elementColors: Record<string, string> = {
+  氷: "#4A9DA3",
+  岩: "#D4A017",
+  炎: "#E67E22",
+  雷: "#9B59B6",
+  草: "#27AE60",
+  水: "#3498DB",
+  風: "#2ECC71",
+};
+
+const mapElementToImage: Record<string, string> = {
+  氷: "cryo",
+  岩: "geo",
+  炎: "pyro",
+  雷: "electro",
+  草: "dendro",
+  水: "hydro",
+  風: "anemo",
+};
+
 const machine = setup({
   types: {
     context: {} as {
@@ -116,18 +138,36 @@ function RouteComponent() {
       <div className="col-span-4 px-6 flex flex-col gap-y-4">
         {teams.data?.map((team) => (
           <div key={team.teamId} className="grid grid-cols-4 gap-x-1">
-            {team.characters.map((character) => (
-              <img
-                src={`/images/${character}.png`}
-                alt={character}
-                className="w-full h-full object-cover rounded-md border border-grey"
-              />
-            ))}
+            {team.characters.map((id) => {
+              const character = fullCharacters.find(
+                (character) => character.id === id
+              );
+              return (
+                <div className="relative">
+                  <img
+                    src={`/images/${id}.png`}
+                    alt={character?.english_name ?? ""}
+                    style={{
+                      borderColor: character
+                        ? elementColors[character.element]
+                        : "#F0EDE6",
+                    }}
+                    className="w-full h-full border object-cover rounded-md bg-grey"
+                  />
+
+                  <img
+                    src={`/elements/${mapElementToImage[character?.element ?? ""]}.webp`}
+                    alt={character?.element ?? ""}
+                    className="absolute top-1 right-1 size-4 object-cover bg-white rounded-full p-1"
+                  />
+                </div>
+              );
+            })}
           </div>
         ))}
       </div>
       <div className="col-span-8 divide-y divide-grey">
-        <div className="flex flex-col gap-y-8 px-12 pb-12">
+        <div className="flex flex-col gap-y-6 px-12 pb-12">
           <div className="flex items-center justify-end">
             <Button
               className="px-4 py-1"
@@ -138,27 +178,42 @@ function RouteComponent() {
           </div>
 
           <div className="grid grid-cols-4 gap-x-4 items-center justify-center">
-            {([1, 2, 3, 4] as const).map((index) => (
-              <button
-                key={index}
-                className={clsx(
-                  snapshot.context.currentIndex === index &&
-                    "shadow -translate-y-2",
-                  "aspect-[0.8/1] bg-[#F0EDE6] rounded-md flex items-center justify-center transition-transform duration-150 hover:cursor-pointer"
-                )}
-                onClick={() => send({ type: "selection.update", index })}
-              >
-                {snapshot.context.team[index - 1] ? (
+            {([1, 2, 3, 4] as const).map((index) => {
+              const character = fullCharacters.find(
+                (character) => character.id === snapshot.context.team[index - 1]
+              );
+              return (
+                <button
+                  key={index}
+                  style={{
+                    borderColor: character
+                      ? elementColors[character.element]
+                      : "#F0EDE6",
+                  }}
+                  className={clsx(
+                    snapshot.context.currentIndex === index &&
+                      "shadow -translate-y-2",
+                    "aspect-[0.8/1] bg-grey rounded-md border flex items-center justify-center transition-transform duration-150 hover:cursor-pointer relative"
+                  )}
+                  onClick={() => send({ type: "selection.update", index })}
+                >
+                  {snapshot.context.team[index - 1] ? (
+                    <img
+                      src={`/images/${snapshot.context.team[index - 1]}.png`}
+                      alt={snapshot.context.team[index - 1] ?? ""}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <span className="text-3xl font-light">+</span>
+                  )}
                   <img
-                    src={`/images/${snapshot.context.team[index - 1]}.png`}
-                    alt={snapshot.context.team[index - 1] ?? ""}
-                    className="w-full h-full object-cover"
+                    src={`/elements/${mapElementToImage[character?.element ?? ""]}.webp`}
+                    alt={character?.element ?? ""}
+                    className="absolute top-2 right-2 size-6 object-cover bg-white rounded-full p-1"
                   />
-                ) : (
-                  <span className="text-3xl font-light">+</span>
-                )}
-              </button>
-            ))}
+                </button>
+              );
+            })}
           </div>
         </div>
 
