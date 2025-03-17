@@ -31,7 +31,7 @@ function RootComponent() {
   };
 
   return (
-    <div className="mx-auto max-w-[75rem] py-12 px-20">
+    <div className="mx-auto max-w-[80rem] py-12 px-20">
       <nav className="flex items-center justify-between">
         <img
           src={genshinImpactLogoImgUrl}

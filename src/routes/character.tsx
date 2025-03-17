@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMachine } from "@xstate/react";
 import clsx from "clsx";
 import { Array, Effect, pipe } from "effect";
-import { assign, fromPromise, setup } from "xstate";
+import { assertEvent, assign, fromPromise, setup } from "xstate";
 import CharactersList from "../components/characters-list";
 import Button from "../components/ui/button";
 import { useTeams } from "../lib/hooks/use-teams";
@@ -41,7 +41,8 @@ const machine = setup({
     events: {} as
       | { type: "selection.update"; index: 1 | 2 | 3 | 4 }
       | { type: "team.update"; id: string }
-      | { type: "team.confirm" },
+      | { type: "team.confirm" }
+      | { type: "team.remove"; id: number },
   },
   guards: {
     canConfirm: ({ context }) => context.team.every((id) => id !== null),
@@ -74,6 +75,9 @@ const machine = setup({
             return yield* Dexie.addTeam({ team: [team1, team2, team3, team4] });
           })
         )
+    ),
+    removeTeam: fromPromise(({ input }: { input: { teamId: number } }) =>
+      RuntimeClient.runPromise(Dexie.deleteTeam({ teamId: input.teamId }))
     ),
   },
 }).createMachine({
@@ -108,6 +112,9 @@ const machine = setup({
           guard: "canConfirm",
           target: "Confirmation",
         },
+        "team.remove": {
+          target: "Removing",
+        },
       },
     },
     Confirmation: {
@@ -124,6 +131,17 @@ const machine = setup({
         },
       },
     },
+    Removing: {
+      invoke: {
+        src: "removeTeam",
+        input: ({ event }) => {
+          assertEvent(event, "team.remove");
+          return { teamId: event.id };
+        },
+        onError: { target: "Selection" },
+        onDone: { target: "Selection" },
+      },
+    },
   },
 });
 
@@ -135,23 +153,64 @@ function RouteComponent() {
   const [snapshot, send] = useMachine(machine);
   const teams = useTeams();
   return (
-    <section className="grid grid-cols-12 my-12">
+    <section className="grid grid-cols-12 my-12 gap-x-12">
       <div className="col-span-4">
         <Tabs.Root defaultValue="teams">
           <Tabs.List className="grid grid-cols-2 mb-3">
             <Tabs.Trigger
               value="teams"
-              className="px-4 py-2 border-b-2 border-b-transparent data-[state=active]:border-grey focus:outline-none data-[state=active]:font-bold"
+              className="px-4 py-2 border-b-2 border-b-transparent data-[state=active]:border-grey focus:outline-none data-[state=active]:font-bold hover:cursor-pointer"
             >
               Teams
             </Tabs.Trigger>
             <Tabs.Trigger
               value="characters"
-              className="px-4 py-2 border-b-2 border-b-transparent data-[state=active]:border-grey focus:outline-none data-[state=active]:font-bold"
+              className="px-4 py-2 border-b-2 border-b-transparent data-[state=active]:border-grey focus:outline-none data-[state=active]:font-bold hover:cursor-pointer"
             >
               Characters
             </Tabs.Trigger>
           </Tabs.List>
+
+          <Tabs.Content value="teams" className="flex flex-col gap-y-4">
+            {teams.data?.map((team) => (
+              <div key={team.teamId}>
+                <div className="grid grid-cols-4 rounded-md bg-grey overflow-hidden">
+                  {team.characters.map((id) => {
+                    const character = fullCharacters.find(
+                      (character) => character.id === id
+                    );
+                    return (
+                      <div key={id} className="relative">
+                        <img
+                          src={`/images/${id}.png`}
+                          alt={character?.english_name ?? ""}
+                          style={{
+                            borderColor: character
+                              ? elementColors[character.element]
+                              : "#F0EDE6",
+                          }}
+                          className="w-full h-full object-cover"
+                        />
+
+                        <img
+                          src={`/elements/${mapElementToImage[character?.element ?? ""]}.webp`}
+                          alt={character?.element ?? ""}
+                          className="absolute top-1 right-1 size-6 object-cover bg-white rounded-full p-1"
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <button
+                  className="text-xs text-error/80 hover:text-error font-light w-full hover:cursor-pointer"
+                  onClick={() => send({ type: "team.remove", id: team.teamId })}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+          </Tabs.Content>
 
           <Tabs.Content value="characters" className="grid grid-cols-4 gap-3">
             {pipe(
@@ -183,45 +242,11 @@ function RouteComponent() {
               ))
             )}
           </Tabs.Content>
-          <Tabs.Content value="teams" className="flex flex-col gap-y-4">
-            {teams.data?.map((team) => (
-              <div
-                key={team.teamId}
-                className="grid grid-cols-4 rounded-md bg-grey overflow-hidden"
-              >
-                {team.characters.map((id) => {
-                  const character = fullCharacters.find(
-                    (character) => character.id === id
-                  );
-                  return (
-                    <div className="relative">
-                      <img
-                        src={`/images/${id}.png`}
-                        alt={character?.english_name ?? ""}
-                        style={{
-                          borderColor: character
-                            ? elementColors[character.element]
-                            : "#F0EDE6",
-                        }}
-                        className="w-full h-full object-cover"
-                      />
-
-                      <img
-                        src={`/elements/${mapElementToImage[character?.element ?? ""]}.webp`}
-                        alt={character?.element ?? ""}
-                        className="absolute top-1 right-1 size-6 object-cover bg-white rounded-full p-1"
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
-          </Tabs.Content>
         </Tabs.Root>
       </div>
 
       <div className="col-span-8">
-        <div className="flex flex-col gap-y-6 px-12">
+        <div className="flex flex-col gap-y-6">
           <div className="flex items-center justify-end">
             <Button
               className="px-4 py-1"
@@ -271,7 +296,7 @@ function RouteComponent() {
           </div>
         </div>
 
-        <div className="p-12">
+        <div className="mt-12">
           <CharactersList
             onSelect={(id) => send({ type: "team.update", id })}
           />

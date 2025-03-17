@@ -187,6 +187,11 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
         (params) => db.event.where("eventId").equals(params.eventId).delete()
       ),
 
+      deleteTeam: changeAction(
+        Schema.Struct({ teamId: Schema.Number.pipe(Schema.nonNegative()) }),
+        (params) => db.team.where("teamId").equals(params.teamId).delete()
+      ),
+
       deleteHistory: changeAction(
         Schema.Struct({ date: StringFromDate }),
         (params) => db.history.where("date").equals(params.date).delete()
