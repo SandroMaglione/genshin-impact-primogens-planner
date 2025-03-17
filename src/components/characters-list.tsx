@@ -1,14 +1,15 @@
 import clsx from "clsx";
 import { useState } from "react";
 import fullCharacters from "../assets/characters.json";
-import { useActionEffect } from "../lib/hooks/use-action-effect";
 import { useCharacter } from "../lib/hooks/use-character";
-import { Dexie } from "../lib/services/dexie";
 
-export default function CharactersList() {
+export default function CharactersList({
+  onSelect,
+}: {
+  onSelect: (id: string) => void;
+}) {
   const { data } = useCharacter();
   const [search, setSearch] = useState("");
-  const [, onToggle] = useActionEffect(Dexie.toggleCharacter);
   return (
     <div className="flex flex-col gap-y-4">
       <div className="flex items-center justify-between gap-x-12">
@@ -21,7 +22,7 @@ export default function CharactersList() {
         />
         <p className="font-light text-sm text-right">{`${data?.length ?? 0}/${fullCharacters.length} characters`}</p>
       </div>
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-6 gap-2">
         {fullCharacters
           .filter(({ english_name }) =>
             english_name.toLowerCase().includes(search.toLowerCase())
@@ -30,8 +31,8 @@ export default function CharactersList() {
             <button
               key={id}
               type="button"
-              onClick={() => onToggle({ name })}
-              className="group hover:cursor-pointer"
+              onClick={() => onSelect(id)}
+              className="group hover:cursor-pointer rounded-md overflow-hidden"
             >
               <img
                 src={`/images/${id}.png`}

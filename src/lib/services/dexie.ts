@@ -4,9 +4,9 @@ import {
   EventTable,
   ProgressTable,
   StringFromDate,
+  TeamTable,
   type CharacterTable,
   type HistoryTable,
-  type TeamTable,
 } from "../schema";
 import type { TypedFormData, Writeable } from "../types";
 
@@ -155,6 +155,13 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
                 progress.targetDate = params.targetDate;
               }
             })
+      ),
+
+      addTeam: changeAction(
+        Schema.Struct({
+          team: TeamTable.fields.characters,
+        }),
+        (params) => db.team.add({ characters: params.team })
       ),
 
       addHistory: formAction(
