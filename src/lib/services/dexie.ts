@@ -6,6 +6,7 @@ import {
   StringFromDate,
   type CharacterTable,
   type HistoryTable,
+  type TeamTable,
 } from "../schema";
 import type { TypedFormData, Writeable } from "../types";
 
@@ -47,11 +48,13 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
         Writeable<typeof CharacterTable.Encoded>,
         "name"
       >;
+      team: _Dexie.EntityTable<Writeable<typeof TeamTable.Encoded>, "teamId">;
     };
 
     db.version(1).stores({
       progress: "++progressId",
       event: "++eventId",
+      team: "++teamId",
       history: "date",
       character: "name",
     });
