@@ -1,0 +1,952 @@
+[
+  {
+    "id": "116692701637771271",
+    "name": "ディルック",
+    "english_name": "Diluc",
+    "element": "炎",
+    "weapon": "両手剣",
+    "image": "https://lh3.googleusercontent.com/mYKm-t5RyzZW0Q686QDO8uOh41QcTsHGw_dGYYdR-088bQSjHhHGng396efqzDHkCBS7JJd7ORET4Xz7yMWND2oDkvyuH8suMDfMjqH5gkOJ",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/116692701637771271.html"
+  },
+  {
+    "id": "116692701587439623",
+    "name": "クレー",
+    "english_name": "Klee",
+    "element": "炎",
+    "weapon": "法器",
+    "image": "https://lh3.googleusercontent.com/Xs75omyoBSMCL6H3lXEPo0JtjvHdMOjTeQPc4Utw8mMq2iJ4xjcDRicYpHJhsoijekHeLENtRpRrlrfLUtqYczv2LVZIMaGPqFJUOU-nMMdikw",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/116692701587439623.html"
+  },
+  {
+    "id": "131664269178586090",
+    "name": "胡桃",
+    "english_name": "Hu Tao",
+    "element": "炎",
+    "weapon": "長柄武器",
+    "image": "https://lh3.googleusercontent.com/pB_3keabureJE48JEimWtn6AWakM9IYpOT9-ASxhAwTwK58MTnMSOUbtXwo7rZTYVXA76HbZLtvhCLrLkGiCw2injR2D_sVaoShLmMP72WW5qw",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/131664269178586090.html"
+  },
+  {
+    "id": "158600049704620954",
+    "name": "宵宮",
+    "english_name": "Yoimiya",
+    "element": "炎",
+    "weapon": "弓",
+    "image": "https://lh3.googleusercontent.com/Le1jt7ZLDqpLgqKBBvTXMg1IQvRKwb9wLvCaIl_IJtJy4DBHGvZn5RHzLqs6w0zU9B2Ck9vpyff5R8rLwJQY4QPnn_ruo9kYXd7zr2M9Pa8",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/158600049704620954.html"
+  },
+  {
+    "id": "221508705013728464",
+    "name": "ディシア",
+    "english_name": "Dehya",
+    "element": "炎",
+    "weapon": "両手剣",
+    "image": "https://lh3.googleusercontent.com/y7PRsieo1Up7LhePmOdGaVFJWldPTLF_hw7O8JDkea4uBbye-f8pOPL5vYUkvJ58AIKLz2oLqXxXss8FouK1dzg5TQ-unZ7vxhcoOqGceHC1",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/221508705013728464.html"
+  },
+  {
+    "id": "128172295326819303",
+    "name": "リネ",
+    "english_name": "Lyney",
+    "element": "炎",
+    "weapon": "弓",
+    "image": "https://lh3.googleusercontent.com/MQvy17k6os-R64xk-ADDAtlsmwnJptWjgxKC9xgtysUsCEO7VMAQedxFoHbXJlVege1R4Mm1Eg7vzI_0TcnZY9ZqgQ0zL_JL1jP7cMUtiRE",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/128172295326819303.html"
+  },
+  {
+    "id": "277902641118354113",
+    "name": "アルレッキーノ",
+    "english_name": "Arlecchino",
+    "element": "炎",
+    "weapon": "長柄武器",
+    "image": "https://lh3.googleusercontent.com/l1BckIeU7cyENmrpno7YFhMPZYrSjHt2j0w3STzu9CbLnZfIjnY12SXA1-_uEZ9K3VX8js9AvvQ7CDJrs8eprlSctgeo__0ofqcSwz5ShiS1",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/277902641118354113.html"
+  },
+  {
+    "id": "325003518953924176",
+    "name": "マーヴィカ",
+    "english_name": "Marvica",
+    "element": "炎",
+    "weapon": "両手剣",
+    "image": "https://lh3.googleusercontent.com/wf3nxFH4aJtNfGmfYqwCywfCBPkBmBwf-zDR7sHagUSrxJVYXD5HhVki-UF66WlIzrW5i8Mq8UXyYiYkSA9AIHgd2Apq-rSLMO2lGRSFtlcfDA",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/325003518953924176.html"
+  },
+  {
+    "id": "330111762298847427",
+    "name": "主人公",
+    "english_name": "Traveler",
+    "element": "炎",
+    "weapon": "片手剣",
+    "image": "https://lh3.googleusercontent.com/D8gp-4-lX6vu7aInMjzCfMH9XFSlwNn6lwtKgX34_Pzi9RrsMUrmcbZCXjN42Ldw01E0-X2mbWhonVFNtM2dgQDw5R0kp6Cbkw_RjrAmWEQ",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/330111762298847427.html"
+  },
+  {
+    "id": "124510941403458584",
+    "name": "モナ",
+    "english_name": "Mona",
+    "element": "水",
+    "weapon": "法器",
+    "image": "https://lh3.googleusercontent.com/zYN7F81d40twYJ4i3LjmltucMUx4NPpJUTxiNZji6_wh-Hn5cYQLH6n_UgN2Y36zsXi5sCOUChDlNQ0ZqEv12LTT28y9_oOoJprKT1iV8or2",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/124510941403458584.html"
+  },
+  {
+    "id": "128160052908450666",
+    "name": "タルタリヤ",
+    "english_name": "Tartaglia",
+    "element": "水",
+    "weapon": "弓",
+    "image": "https://lh3.googleusercontent.com/7ErJLy-CGsCDiZwVZEKhyGhAbtisAsq3OmbqRaFVTTIpStJ3uNHOgtAQFuipL8UMnxOOkGbBxmjNdi24L9NyKfCiotm9IeyeQgYrX3Lk8qdl",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/128160052908450666.html"
+  },
+  {
+    "id": "210794793616311736",
+    "name": "夜蘭",
+    "english_name": "Yelan",
+    "element": "水",
+    "weapon": "弓",
+    "image": "https://lh3.googleusercontent.com/3kXPpKFe2V5vce6M3B2OdUqbFm1HwDU0IJsSHykCckDQMWfIFKsIP8pONNJ1ctD6_gN7p3UCaSUC6ObvtHgW6VvEK3ZTVOPm2J00bciTcPZy3g",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/210794793616311736.html"
+  },
+  {
+    "id": "204089051144294488",
+    "name": "神里綾人",
+    "english_name": "Kamisato Ayato",
+    "element": "水",
+    "weapon": "片手剣",
+    "image": "https://lh3.googleusercontent.com/xZjq35f2vkH_4ba_8nU0WvBCxFxpL5TxyUSEa8SLtSUcYLvud4G5xNrZnJwiloK9DhxsDtOVmAbEK5UyDHzPNTKU7Monr0kodQaHNwO58PJFqw",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/204089051144294488.html"
+  },
+  {
+    "id": "221510279303818594",
+    "name": "ニィロウ",
+    "english_name": "Nilou",
+    "element": "水",
+    "weapon": "片手剣",
+    "image": "https://lh3.googleusercontent.com/FxPORD7S0CyF_bx6tGyKH7tnv_C9tJQvf1Jfdrf3kknypoOA8ZPQNVOpf5xZb9dNmfhe818l56mxjQrTjzFA25JQdhBjI1m3iRCVk-yXm2U",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/221510279303818594.html"
+  },
+  {
+    "id": "270661114864348208",
+    "name": "ヌヴィレット",
+    "english_name": "Neuvillette",
+    "element": "水",
+    "weapon": "法器",
+    "image": "https://lh3.googleusercontent.com/zeNH1qMDy1zzOvsmkuP44PV5ddGeZjvGKPUWf3guuf4UHniNYZWZHESqnNfo754MezYLKyUfQ1U6Z23QKIGzGQZcStwhLmhPQNEEdFsRONkMEw",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/270661114864348208.html"
+  },
+  {
+    "id": "270094241307303469",
+    "name": "フリーナ",
+    "english_name": "Furina",
+    "element": "水",
+    "weapon": "片手剣",
+    "image": "https://lh3.googleusercontent.com/aeeEXbMQh4BZRcvJ5uGb2ohqunE04Zj7LLucsJWvSMDXnotcwGi9fHNCKVrk0qbW9CSlNlBx_ZB-vEd9qwBobH6TGbGW2bUSk-WZ9fT7kCn5xw",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/270094241307303469.html"
+  },
+  {
+    "id": "270667167161180466",
+    "name": "シグウィン",
+    "english_name": "Sigewin",
+    "element": "水",
+    "weapon": "弓",
+    "image": "https://lh3.googleusercontent.com/P2LzLEvWASZClp-bDg--_em810bS5sQZ_ScZQGbj5FQWDqlW8Z0nk_jHW3L1ATny65YaoQJRQmT8GSTqVAZeLyotLSmmukz_JGs5EjLu45_78w",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/270667167161180466.html"
+  },
+  {
+    "id": "325002935559818275",
+    "name": "ムアラニ",
+    "english_name": "Muarani",
+    "element": "水",
+    "weapon": "法器",
+    "image": "https://lh3.googleusercontent.com/3kYxozKqOZFfx1kTF9Dn4AoDKp4Y0yu0xb7P10Vkp1y95iLkI4MRV3zCxgSXLmHf4EFD_goayRCPkhipiH_tbjYqd-tu_JxfiJvkuhc5GH6ILg",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/325002935559818275.html"
+  },
+  {
+    "id": "197894001070725206",
+    "name": "八重神子",
+    "english_name": "Yae Miko",
+    "element": "雷",
+    "weapon": "法器",
+    "image": "https://lh3.googleusercontent.com/_uKHVCZFPmPDRKFcDXiaxv0yBO24RXruTgqO5xZ3r4gz3sX7vCH1ap5NSA71r0rvJBjD-3NaS9qXO0pw5-TZErSNrhSbe_FZyQ83OH7kv8wl",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/197894001070725206.html"
+  },
+  {
+    "id": "160353158114099897",
+    "name": "雷電将軍",
+    "english_name": "Raiden Shogun",
+    "element": "雷",
+    "weapon": "長柄武器",
+    "image": "https://lh3.googleusercontent.com/wAIYRFEewD2qhznEOj6DGs9VBWOsDIOwZqUMqYSZKyFuIez03B_3LmbwbvYn2JrpXwakxnxfiaJJWF_HBfZLGNOOA34WXLuOERF_bX50uA_p",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/160353158114099897.html"
+  },
+  {
+    "id": "128168237421603001",
+    "name": "セノ",
+    "english_name": "Cyno",
+    "element": "雷",
+    "weapon": "長柄武器",
+    "image": "https://lh3.googleusercontent.com/3NpOe1QjFCIxx-cdel_4tor1VEsJnNmoRUcN-rutkTtnjZ_dA3ERLtWkodfdpbMGK6qEy5JOifPrSx3mC0J1YUEu27r8fkV3izzYE1jXeQPvIQ",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/128168237421603001.html"
+  },
+  {
+    "id": "270655152191483195",
+    "name": "クロリンデ",
+    "english_name": "Clorinde",
+    "element": "雷",
+    "weapon": "片手剣",
+    "image": "https://lh3.googleusercontent.com/fue82eqezYHT0TJfegMWmU0pnFYQMOATCwfVIrPtIFMgu6NrxRt7lUlmpTX8sHt6f4cIzREooH9j7g2hzYck0O98YO6l9oerRKdLcLAvPFWc",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/270655152191483195.html"
+  },
+  {
+    "id": "153567273364255831",
+    "name": "エウルア",
+    "english_name": "Eula",
+    "element": "氷",
+    "weapon": "両手剣",
+    "image": "https://lh3.googleusercontent.com/FbLo0_JTIlKTM-WGZ0p8iVV70lEhDD-DTBBaEPVGzVDLfS50pQDE6bRd3rWm90MK2L0wKpwRA_L_D1tyoZ6MZhiB6acGuQAHAsK_tG39xm1Wtg",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/153567273364255831.html"
+  },
+  {
+    "id": "124510941571230744",
+    "name": "七七",
+    "english_name": "Qiqi",
+    "element": "氷",
+    "weapon": "片手剣",
+    "image": "https://lh3.googleusercontent.com/Oh2LOY1RC5BxPjj7JVCr20RTDndZM8FAB8GwXbPpxse8jJ5cF_k9qLIg3DV5sNVaZbzkJ4cLLAVHF_6uvByRZINGjvTLGyNCuSQmSVM4kMjl",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/124510941571230744.html"
+  },
+  {
+    "id": "128146922824297427",
+    "name": "甘雨",
+    "english_name": "Ganyu",
+    "element": "氷",
+    "weapon": "弓",
+    "image": "https://lh3.googleusercontent.com/KqwQ86fp0jfOaCHLxylFtH0iZD4dXcQ4_LWD7-o-XgQjaE9o331UmEbIhren-fCaMVxq_WWPtesEQJEe9Lwa9hzXUle372p5Wu5Wd8CC0l4r",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/128146922824297427.html"
+  },
+  {
+    "id": "185458140328790541",
+    "name": "申鶴",
+    "english_name": "Shenhe",
+    "element": "氷",
+    "weapon": "長柄武器",
+    "image": "https://lh3.googleusercontent.com/mo1aHl-SCtlV_KDOPnEjv8KNXT-6efjWcR0GdsDPMwE5QJS821ZDN_CONmo9pXVuC-i35smNoaaQiTu4gaALbvOx0SC23fQ4kYuFBTOusjEj",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/185458140328790541.html"
+  },
+  {
+    "id": "128164395388828487",
+    "name": "神里綾華",
+    "english_name": "Kamisato Ayaka",
+    "element": "氷",
+    "weapon": "片手剣",
+    "image": "https://lh3.googleusercontent.com/Fg1MdvBRoqsOOk5vUSzCDmMRryfO-UQzEEgbZIMTNSeHw_Oryop_l3dfb9Z0zp9DTAgWp08szPuUvalidolVzAxOXLyZm5z338TB_BmRA4k",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/128164395388828487.html"
+  },
+  {
+    "id": "270670713881406779",
+    "name": "リオセスリ",
+    "english_name": "Wriothesley",
+    "element": "氷",
+    "weapon": "法器",
+    "image": "https://lh3.googleusercontent.com/0jVVXinWX85SPdaKpqrZSqTq3ZppNTeg85F4VCQBHaxvttcmk7RbmbfCoYVmYVnYE8WEv6XYJnd40zzovHnHu5JFBbRVI_By26A58hn0WSncZw",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/270670713881406779.html"
+  },
+  {
+    "id": "325006466207472118",
+    "name": "シトラリ",
+    "english_name": "Chiori",
+    "element": "氷",
+    "weapon": "法器",
+    "image": "https://lh3.googleusercontent.com/NDtqji9UlDQvb_FOftOFpqhPHVhZ9zoaNMM2jmdA2cY7Lkpoyn3TX1qV9b2o1DOcRm9ZV9jHpk0SfaZCVEkrk49aN508zR5nJDfKlpqyc6jLSA",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/325006466207472118.html"
+  },
+  {
+    "id": "116691920339599367",
+    "name": "ジン",
+    "english_name": "Jean",
+    "element": "風",
+    "weapon": "片手剣",
+    "image": "https://lh3.googleusercontent.com/pDdUbm4qHqDHpmkfeEE3_LnMR0EIbmm0_cebl8f3avgPqBzh_PjnBkcjks6dTwDQQbPTrrFEALINabNZBriTrakrwB2z3PWr-HVW8dukpqTL",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/116691920339599367.html"
+  },
+  {
+    "id": "116692701537107975",
+    "name": "ウェンティ",
+    "english_name": "Venti",
+    "element": "風",
+    "weapon": "弓",
+    "image": "https://lh3.googleusercontent.com/M48x4HHZKonQTywK4LBTAxHfetmm0FIvDH5kEmwS72p3DNk3vvcyEY8c5TvrfQ91O4yvCuPRN9V4tOv2i9CCZQX4k1-cyR-MmQpOVACB_2Sx",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/116692701537107975.html"
+  },
+  {
+    "id": "116693699798237191",
+    "name": "魈",
+    "english_name": "Xiao",
+    "element": "風",
+    "weapon": "長柄武器",
+    "image": "https://lh3.googleusercontent.com/mqQpaTKFHYmkE9q-cI4ikP8SmEZWc3yxDfjHIev7boLv6IToR5IpToomjYbpDFWyGii39uoacKoztTSftNF5pBPB8WxTSOz05CdKlk0XVoJY",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/116693699798237191.html"
+  },
+  {
+    "id": "295033530226899600",
+    "name": "閑雲",
+    "english_name": "Xianyun",
+    "element": "風",
+    "weapon": "法器",
+    "image": "https://lh3.googleusercontent.com/srNoZ5rIkulskaKb1MMbQwC_5v6qiS1xEP8GNzNjmWkMXYbVkKiKDLbIvqat8nu302cHTTJMcbgYEl6rZwPV3fmnoeLjTW1iM_fEza0shB4",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/295033530226899600.html"
+  },
+  {
+    "id": "157434563822417483",
+    "name": "楓原万葉",
+    "english_name": "Kaedehara Kazuha",
+    "element": "風",
+    "weapon": "片手剣",
+    "image": "https://lh3.googleusercontent.com/5KVmC11mT6M5-eIMTIuyiyOEypGjc1_4YJcwAWv4PwxUj7-WSZ2jqPnvUjZb6aGP9_K4uRLBFLY-c0AqEwkWhD88X462Qs4OS1fca69hI8Mr",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/157434563822417483.html"
+  },
+  {
+    "id": "132205936948325572",
+    "name": "放浪者",
+    "english_name": "Wanderer",
+    "element": "風",
+    "weapon": "法器",
+    "image": "https://lh3.googleusercontent.com/8yAnOEK-LXemX4g-ZOkUgGwUkhHi1-ts1YcZcgYrr_xf8rV_jxBvy4vJiDK25m1WNvoX5nHJ5IIBFnMD3BWgFOVQrR5f5AWsqu4elX1jFno",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/132205936948325572.html"
+  },
+  {
+    "id": "325004611503043596",
+    "name": "チャスカ",
+    "english_name": "Chasca",
+    "element": "風",
+    "weapon": "弓",
+    "image": "https://lh3.googleusercontent.com/j6UODCsLBb_1SzPRI2GZLdYMt1iey4VsqcIoYOzumIxKXRgOytxvZzoLxXxRKucMDrlYruDTakjr9yTwDz0OTkrVS6kXToozIbTn5Z8-S_1D",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/325004611503043596.html"
+  },
+  {
+    "id": "350830878697501833",
+    "name": "夢見月瑞希",
+    "english_name": "Yumemiru Mizuki",
+    "element": "風",
+    "weapon": "法器",
+    "image": "https://lh3.googleusercontent.com/BO-Lm0TtTv9nnP-q76E6fedFw-NqAtzRON4w4rb0W8qlGhBot7hD5dHvlTgSHFYiCEaiUZy2ZUjlJQFTGOnGe1MN3x3g7wuPPDYDilgBeTYm",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/350830878697501833.html"
+  },
+  {
+    "id": "131191386803276549",
+    "name": "アルベド",
+    "english_name": "Albedo",
+    "element": "岩",
+    "weapon": "片手剣",
+    "image": "https://lh3.googleusercontent.com/CHCtyuhvGlKnXuytFoop6aajNjFR3eV5zMvwA3Gld__2xTnr4ze_riEmypi6-hc3-4lcpG4zwRYpHhD-X8zIWW6E2uR5F91L1hhPTXXlLLk",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/131191386803276549.html"
+  },
+  {
+    "id": "128000278967367192",
+    "name": "鍾離",
+    "english_name": "Zhongli",
+    "element": "岩",
+    "weapon": "長柄武器",
+    "image": "https://lh3.googleusercontent.com/7GaQ9rRYXVmMX1s5-2xslSmyJLOBPfwCnKmgJRjh669gSiDZ6Ft27krIUFoJKj7QH0fbs6YH1UUMK2H_uQR3Tak9N7reTN4hMYnMde2F5vIK8g",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/128000278967367192.html"
+  },
+  {
+    "id": "179499036062039039",
+    "name": "荒瀧一斗",
+    "english_name": "Arataki Itto",
+    "element": "岩",
+    "weapon": "両手剣",
+    "image": "https://lh3.googleusercontent.com/cukDLlxsXjjmihkDerrh7AjeXEMEK4et4adCbcpcHfIjcX72Q_TwDPkrdtkXLZPkV4pGvAGLoXUNpFbnQZgw_SFl7VG47Le5S6k5Tj5zWNFl4A",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/179499036062039039.html"
+  },
+  {
+    "id": "265144355956724892",
+    "name": "千織",
+    "english_name": "Chiori",
+    "element": "岩",
+    "weapon": "片手剣",
+    "image": "https://lh3.googleusercontent.com/O7o4BxcK6Aa-PxIzIfK4q2MoUvKwIv9p1E7kVAyFFMvDasbery4AXGFEDgyO9vQKicywSYPwBR1OCT2wx_S-qU9_uFNa6MuRrlqP-O2y-p8",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/265144355956724892.html"
+  },
+  {
+    "id": "270651728616022305",
+    "name": "ナヴィア",
+    "english_name": "Navia",
+    "element": "岩",
+    "weapon": "両手剣",
+    "image": "https://lh3.googleusercontent.com/Lc4aHYHPaTDzKbk2S2xokIwqwvAEJ7ZDpmH9baBLLr8HRKqDdGNIzA3Wv1ROuqBqTwBqs45_-SSW1pZyyKPewEDHT5yWbY1uIUyhO9lHRpg5bA",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/270651728616022305.html"
+  },
+  {
+    "id": "325006795812659623",
+    "name": "シロネン",
+    "english_name": "Chevreuse",
+    "element": "岩",
+    "weapon": "片手剣",
+    "image": "https://lh3.googleusercontent.com/wyaoiQD5Nde_k6-GyV-k1YP5_nRjfezDHRV_U28CNTThGgm_nvsf_9ChI74aQsIpXbpUr323tqUHLJPZoB0zn19hGTapXOuJyXh5tzhVGgE",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/325006795812659623.html"
+  },
+  {
+    "id": "128149225044196941",
+    "name": "白朮",
+    "english_name": "Baizhu",
+    "element": "草",
+    "weapon": "法器",
+    "image": "https://lh3.googleusercontent.com/Y98qnkyt801Op7QNLe75-NuKfy1sYwpcueSENllkzLcItcWPlpUxLiGaQmHwcsG0L0xlj_RhMPGgNBFX0vWLVSzIQkbU70IWHVSjsZrstigXsg",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/128149225044196941.html"
+  },
+  {
+    "id": "218927553199514850",
+    "name": "ティナリ",
+    "english_name": "Tighnari",
+    "element": "草",
+    "weapon": "弓",
+    "image": "https://lh3.googleusercontent.com/DfIPJJVAOvi4f0P1KQpNaRaebbcdnHw1jVvoWPcBn0XSM1H3AMXMNzX4nK3FGMMXQpn0sfHLF6DDAt-ARALUnyP8OHpG4NpxRY5a2hNfhjOkkQ",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/218927553199514850.html"
+  },
+  {
+    "id": "221504527923214152",
+    "name": "アルハイゼン",
+    "english_name": "Alhaitham",
+    "element": "草",
+    "weapon": "片手剣",
+    "image": "https://lh3.googleusercontent.com/uOrCM9DSoXPkijD9RTrdgzTdSSl8pAu7jizyVLzMBZKijgLYnEpw7RFA-jMeAaO9Q9lscOKyLkVjocDNKxG-xMAseXU2u6VPkvTNTtRMGH3L",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/221504527923214152.html"
+  },
+  {
+    "id": "221512400749213337",
+    "name": "ナヒーダ",
+    "english_name": "Nahida",
+    "element": "草",
+    "weapon": "法器",
+    "image": "https://lh3.googleusercontent.com/W7KJyCj5Sz9yKL8E8ZKkhBKBn2HLY-AtGadSNiYhmlV74RLpVsPeNDXorEU5k7LQjPwPQMBqHMseJx-j3iDSPhlxSCUnd6RSmCschd126BLK",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/221512400749213337.html"
+  },
+  {
+    "id": "305280409346788263",
+    "name": "エミリエ",
+    "english_name": "Emilie",
+    "element": "草",
+    "weapon": "長柄武器",
+    "image": "https://lh3.googleusercontent.com/QCyAWtkhfkh709899UXXXV2UnggW5iBvWynFwzqy_RhIPlyrsuhyK4-NQRpMU5KiiyT2LQRE6PygpCrLf5_9WJGMZPvVMn7F6pGJ-VASTPx-",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/305280409346788263.html"
+  },
+  {
+    "id": "325005946281567591",
+    "name": "キィニチ",
+    "english_name": "Gaming",
+    "element": "草",
+    "weapon": "両手剣",
+    "image": "https://lh3.googleusercontent.com/t2nW43EPbA-q6thFCMYt-JUoDHoEDQKSL6XSY4fO2jBnq7-MF5c9DzAUSpU-4SW7dJJJl2HOIRqDJARMZY7aTjxA2TvZ8uWdBNA97lzAtRj-",
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/325005946281567591.html"
+  },
+  {
+    "id": "116692701721657351",
+    "name": "ベネット",
+    "english_name": "Bennett",
+    "element": "炎",
+    "weapon": "片手剣",
+    "image": "https://lh3.googleusercontent.com/tBCIo9NDUeysHjWDVu6FgXIErUGM9loiqCvVQCicsBwcatMpIYcqJwoVLIru5MVREHYbN8dNjVWatz18Fe-xLq7oKSiRh0uDVZoMiszLags",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/116692701721657351.html"
+  },
+  {
+    "id": "116693699731128327",
+    "name": "香菱",
+    "english_name": "Xiangling",
+    "element": "炎",
+    "weapon": "長柄武器",
+    "image": "https://lh3.googleusercontent.com/kZOnVbUU4ja5Lh5rqIFXrwHxH5Y2KOCmzYFo2j8gLZq4drKZjU7Qhs2tzzS_bwW37xjbyQOOMy3-wXAPbrt_SPEohXmnSgzyMt2eWP4cBvUKUA",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/116693699731128327.html"
+  },
+  {
+    "id": "129218545719483980",
+    "name": "辛炎",
+    "english_name": "Xinyan",
+    "element": "炎",
+    "weapon": "両手剣",
+    "image": "https://lh3.googleusercontent.com/U_w7d7a0nvobzSJls2zbZHxV7mRJq-ayDEWTOn0sTiAdRXETJUE3BJ_U1UJXD_A2ZUlDXbAGSEJ6oFHTMBVHQfoCzl9VAjyP5iy-aRQzBaI",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/129218545719483980.html"
+  },
+  {
+    "id": "153570856340090728",
+    "name": "煙緋",
+    "english_name": "Yanfei",
+    "element": "炎",
+    "weapon": "法器",
+    "image": "https://lh3.googleusercontent.com/a8rkanm-w3beYxD-RM9OUqaTb00ytH12tdnuXI9AdhAd04MLVayHZIe_UGtNCbMZA8bWOsuWsUKC_GBpOHeNLQG0tU2xWFwGbQyl6Hx-4bg8",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/153570856340090728.html"
+  },
+  {
+    "id": "295033010351281765",
+    "name": "嘉明",
+    "english_name": "Gaming",
+    "element": "炎",
+    "weapon": "両手剣",
+    "image": "https://lh3.googleusercontent.com/f8mEB0GCEeKuo04TvhiKacs-FSFaxdPPp0GlhPS7w3Dg3-7fxK7xq19CVmAhdHLL5xw1t2qY_6rGOZkb4x0uoBjjylVqBjnzrx798YmXdZ4",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/295033010351281765.html"
+  },
+  {
+    "id": "165753222491816616",
+    "name": "トーマ",
+    "english_name": "Thoma",
+    "element": "炎",
+    "weapon": "長柄武器",
+    "image": "https://lh3.googleusercontent.com/uY4fQBCGW2KnXoKFvabEkqNtflxWqBFBWa9U5wkwltlvEjjK25jv0L8eAflz941MlTAaUs7Pcbv8709u3aVWmBcYHU9TGPREfSkArIf648jJ",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/165753222491816616.html"
+  },
+  {
+    "id": "288951714097158860",
+    "name": "シュヴルーズ",
+    "english_name": "Chevreuse",
+    "element": "炎",
+    "weapon": "長柄武器",
+    "image": "https://lh3.googleusercontent.com/LDFeSRaAY_I0jX1vfHA2SyfKEhPGkoujzOXsPv9Q2bi5T2zK5Sj1JyJ-NxeurLE0jcJ9L1H8KAFi4nP6UAz4fMX3L5zmWQXqJ5e-48GQU28",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/288951714097158860.html"
+  },
+  {
+    "id": "116693699697573895",
+    "name": "行秋",
+    "english_name": "Xingqiu",
+    "element": "水",
+    "weapon": "片手剣",
+    "image": "https://lh3.googleusercontent.com/NzDdkl1Xpv7cA6_S19p_DUU7a-j29dmJ6R1sIXEAcgNbzC0AOHKNtY6_VmG_UqNfz_ggpvT1Pyq9ilev2EEWSr_Mvv3hpazxFqb1f4XbYBE-",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/116693699697573895.html"
+  },
+  {
+    "id": "225157974174256697",
+    "name": "キャンディス",
+    "english_name": "Candace",
+    "element": "水",
+    "weapon": "長柄武器",
+    "image": "https://lh3.googleusercontent.com/3IhNPLwKitSU9-dXydMUDocxcvkngLKvTAI4pPKCnfjsjDEOuK6WviIznsw10sHPAcs1RNtJhDINPfCQKpRC8PaQrCJaxqMSz9vZBBzKRqeh",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/225157974174256697.html"
+  },
+  {
+    "id": "116692701839097863",
+    "name": "レザー",
+    "english_name": "Razor",
+    "element": "雷",
+    "weapon": "両手剣",
+    "image": "https://lh3.googleusercontent.com/en_hA62S8d463ULdukyLvVCUasWmckfMgD8ZkzqkIduwVewC2sGHD2iH9aaDco0uabmFk4bLsC5AQItnHv-Uy4_52hahcNF7_0cdByGc1u_Z",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/116692701839097863.html"
+  },
+  {
+    "id": "116693699781459975",
+    "name": "北斗",
+    "english_name": "Beidou",
+    "element": "雷",
+    "weapon": "両手剣",
+    "image": "https://lh3.googleusercontent.com/larcEVDP7o659DIV_dRXqcnALyd71O-7AGGLr18mzo05PGlrk4905C0FPl5wrjKLe75QmHHUwD-jsLPWclsrIAt18yuB6SB8r372Gs54-5Y",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/116693699781459975.html"
+  },
+  {
+    "id": "165753765436064599",
+    "name": "九条裟羅",
+    "english_name": "Kujou Sara",
+    "element": "雷",
+    "weapon": "弓",
+    "image": "https://lh3.googleusercontent.com/hc7VOMxIvtlzeWrM1W_KukX1LWnXDQl1_fIRoxGhiOsRtlBbgHQX73kITyVQD9ZMdcdJ9dubLUzh5sfSNLJKH_GHMLQ6kigOdg70gFjvle1KSg",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/165753765436064599.html"
+  },
+  {
+    "id": "203943765369433268",
+    "name": "久岐忍",
+    "english_name": "Kuki Shinobu",
+    "element": "雷",
+    "weapon": "片手剣",
+    "image": "https://lh3.googleusercontent.com/0gWUn0zlcjqoB8wC66KvG85cbEdkqQFCh0C78c8lKB8bBHahxhonIVs8Na2Ak4o_UJHjns4O3kHxpVZoreZ-TPvhbnOXZX12WkM-EyTGOUrkxw",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/203943765369433268.html"
+  },
+  {
+    "id": "218920625417225948",
+    "name": "ドリー",
+    "english_name": "Dori",
+    "element": "雷",
+    "weapon": "両手剣",
+    "image": "https://lh3.googleusercontent.com/e2YqgLLohvUtlh_kzenXuIoJ7NFIjIfJeXf01Ep4jbpRR4xhqd95NPPcKnJBMqrKZbCCK3LR0cyKIJwoByXo3aQhM-9dA9-usgOaZrhGfCE",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/218920625417225948.html"
+  },
+  {
+    "id": "311863208900086190",
+    "name": "セトス",
+    "english_name": "Setos",
+    "element": "雷",
+    "weapon": "弓",
+    "image": "https://lh3.googleusercontent.com/ZDv2OEKfDoIdYpZol_w6u2jOzCEa__0wgyp05grSFXU8UYNxp8Lum6yAz1s7RqRz_QSfxhre64KdVnpDIRjNpzuPnjD84CoAehHd4359mTW9",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/311863208900086190.html"
+  },
+  {
+    "id": "325005442327557132",
+    "name": "オロルン",
+    "english_name": "Orolun",
+    "element": "雷",
+    "weapon": "弓",
+    "image": "https://lh3.googleusercontent.com/z7_nEJrtAMw3CtIcTuyyjT2tPPUC8Jz7mtDndQindcLxbKFKYBVMO03Y4nTW6MEGIn_yxWd8yDIv40rYDlci5EcuyEeTJXnpxlGSaBFfJnkS",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/325005442327557132.html"
+  },
+  {
+    "id": "116692701553885191",
+    "name": "ガイア",
+    "english_name": "Kaeya",
+    "element": "氷",
+    "weapon": "片手剣",
+    "image": "https://lh3.googleusercontent.com/y--8nWqddosmsE1SBOEPGxInfWviQPWkn4Ho7z5XPMeiq7MWy-zucEcSW7yo4Zn7iHrRY3o2tdDzkQy-E0tDTggkoiPaAvi1DyPn1HHAIyG4",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/116692701553885191.html"
+  },
+  {
+    "id": "129217933585984983",
+    "name": "ディオナ",
+    "english_name": "Diona",
+    "element": "氷",
+    "weapon": "弓",
+    "image": "https://lh3.googleusercontent.com/vFH3EjkyiXytmW2L_cjHBz84OBuf0K8BB4sqNuFZclF1F6b3gl8qD5hOAIzZMGiYltAoLoAurwTwyG89Cd4y2kIzQGAarfhy9uDxXoeTGjE",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/129217933585984983.html"
+  },
+  {
+    "id": "134988251541861162",
+    "name": "ロサリア",
+    "english_name": "Rosaria",
+    "element": "氷",
+    "weapon": "長柄武器",
+    "image": "https://lh3.googleusercontent.com/1GaTtllIomnxduVEqs0xmS88wmSqa-9I76rvotIi-L4_1dOSWJyxZJbURZjjZBg2InOZVMuN74B00gy_lfMMDD9P_17MQ5meJk_mf0ZYTm2G6A",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/134988251541861162.html"
+  },
+  {
+    "id": "230195860552585720",
+    "name": "レイラ",
+    "english_name": "Layla",
+    "element": "氷",
+    "weapon": "片手剣",
+    "image": "https://lh3.googleusercontent.com/c5fFPz6BJ1Py3wG2ZlsziaFSnBy_rIXKGlWKtngAu3V_Itnh8dXzNwmqrF5svYB_gM5UQ62GBipC5hD0ndijU11wPtaI5MiB2ycmLllqxhnf",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/230195860552585720.html"
+  },
+  {
+    "id": "263306686620543407",
+    "name": "シャルロット",
+    "english_name": "Charlotte",
+    "element": "氷",
+    "weapon": "法器",
+    "image": "https://lh3.googleusercontent.com/3q2B0-4LwUEAFprP05uNpfxfUsKAnsdGJUhGW_S0peo5VOuU73ouk1pqrSDs0TqqdP7DfdlUrywXfraloXgnlzKd2B0kg5p3Old_xTNBPAz5",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/263306686620543407.html"
+  },
+  {
+    "id": "270647579660806166",
+    "name": "フレミネ",
+    "english_name": "Freminet",
+    "element": "氷",
+    "weapon": "両手剣",
+    "image": "https://lh3.googleusercontent.com/lqpxip6LZvaf08ykOIDHXJu6-mANlZ7YMJVJl7iwtMvKuWjg9K5pOUSHEcR4DInFrVinM3KtUwrFrE46-ByV3wk85iiL16yiO_8L4NoPjHU",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/270647579660806166.html"
+  },
+  {
+    "id": "161193548358658903",
+    "name": "早柚",
+    "english_name": "Sayu",
+    "element": "風",
+    "weapon": "両手剣",
+    "image": "https://lh3.googleusercontent.com/HaT5K1_UvroiYj4p0FeDYYIdwj1PaT41vKummJ9RRNjkjJ9HqLCvRp-mbcD1IPZaC1dlhD2t9xxdAnArzgckXJ8OjDHnLj09kRZ2h_ESvMiZQw",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/161193548358658903.html"
+  },
+  {
+    "id": "235167409181356038",
+    "name": "ファルザン",
+    "english_name": "Faruzan",
+    "element": "風",
+    "weapon": "弓",
+    "image": "https://lh3.googleusercontent.com/OCytgTHrILmKe8Y1t1AZxBvZe-2sBlCbQn4eKMt5KaIbNba6kXuiC188c7wnV5UDsky1xIY_2wuWlz_41FXMivN05xasJWb-2UGqe2ePhz8g",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/235167409181356038.html"
+  },
+  {
+    "id": "344861608259901718",
+    "name": "藍硯",
+    "english_name": "Lan Yan",
+    "element": "風",
+    "weapon": "法器",
+    "image": "https://lh3.googleusercontent.com/BWa6w2z5u0iKO4K_AVbiP7i_XAiLAIaZ5n1yX_UbDsGPXQUefH73LhtsrJzOEhKZ-VJfOEj8K7MnmNnuChnjcoWTwXU69h56NkFK9IWWh-KxXA",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/344861608259901718.html"
+  },
+  {
+    "id": "116692701654548487",
+    "name": "ノエル",
+    "english_name": "Noelle",
+    "element": "岩",
+    "weapon": "両手剣",
+    "image": "https://lh3.googleusercontent.com/7eiIUOwLVfLng3NqIKyS36OBC1X9unwUuxO-X_kvLaoh0DwP2-JlplRorbh5gyGKkWC0aaVgViMjNK8rjPXW2fFQFiT9tue6_qVCILTC22Jd",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/116692701654548487.html"
+  },
+  {
+    "id": "116693522345623559",
+    "name": "凝光",
+    "english_name": "Ningguang",
+    "element": "岩",
+    "weapon": "法器",
+    "image": "https://lh3.googleusercontent.com/MZJzfPCAWiuhxA6x94UWOJ_9Yphq9P0Z6GsTQX3SsQg5Ys3XBF9KRF_Mjk4Ehwa92mH6NLudHq9rDpe-0U1dGuU-d1RIwSSS3NJJNVLH8kS6jg",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/116693522345623559.html"
+  },
+  {
+    "id": "325004257587650983",
+    "name": "カチーナ",
+    "english_name": "Katrina",
+    "element": "岩",
+    "weapon": "長柄武器",
+    "image": "https://lh3.googleusercontent.com/b-gUFo_IIZwpOxHGCSv2Gpenuv8H7G64r4asxDONwtf_exenTdaSyZbtOI9rzy8toLDf8uIk-ECKSU5MIVn9tFY2jj5GewEnhKzWXyMwm0yqIw",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/325004257587650983.html"
+  },
+  {
+    "id": "240794873471453711",
+    "name": "ヨォーヨ",
+    "english_name": "Yaoyao",
+    "element": "草",
+    "weapon": "長柄武器",
+    "image": "https://lh3.googleusercontent.com/AvzZESFpuWFGBj_1gsfjUED5QqARcVGhlUEur5ZLurtfcRUu7Abn6mXBtj4NYg8FUht01LCCqJ4JkG2HcMEjg3ywU7ehvcLilHAMZwiEz38",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/240794873471453711.html"
+  },
+  {
+    "id": "258482725281895770",
+    "name": "綺良々",
+    "english_name": "Kirara",
+    "element": "草",
+    "weapon": "片手剣",
+    "image": "https://lh3.googleusercontent.com/H-vHboQq21WgA5BdD-vdk9nNKE2q17Q4hRK9Asmvf6QKOH4MPkbNHldZ2JUQt1la5pc_EM8GETMmrSYcVPJs0CYiD1Zs9wuLl7xB80HXPAoi",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/258482725281895770.html"
+  },
+  {
+    "id": "218921365963588994",
+    "name": "コレイ",
+    "english_name": "Collei",
+    "element": "草",
+    "weapon": "弓",
+    "image": "https://lh3.googleusercontent.com/wKSgJxnboGYJcwPEX8Nok-Rqppb1uTL3S6-8qeHgx2MhKsMO_Od9USKS3q3f8vDeVudLQVjNYBmbV3s2qlqUVqmJ9KUTPScZckgsKP9G7o9O",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/218921365963588994.html"
+  },
+  {
+    "id": "235283674684248203",
+    "name": "カーヴェ",
+    "english_name": "Kaveh",
+    "element": "草",
+    "weapon": "両手剣",
+    "image": "https://lh3.googleusercontent.com/YGQMx_WJoVMDGL4Ub-wKA7ieU3pzkFjbr05r28v8bDs55M3gTZHjdZHgSxyQOWRvX1Uq0piV_ctKb6KLbOoXN3PVHrYTpyzmOCHa1LCiy-3G",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/235283674684248203.html"
+  },
+  {
+    "id": "165752928437577412",
+    "name": "珊瑚宮心海",
+    "english_name": "Sangonomiya Kokomi",
+    "element": "水",
+    "weapon": "法器",
+    "image": null,
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/165752928437577412.html"
+  },
+  {
+    "id": "124510941437013016",
+    "name": "刻晴",
+    "english_name": "Keqing",
+    "element": "雷",
+    "weapon": "片手剣",
+    "image": null,
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/124510941437013016.html"
+  },
+  {
+    "id": "167722576213186392",
+    "name": "アーロイ",
+    "english_name": "Aloy",
+    "element": "氷",
+    "weapon": "弓",
+    "image": null,
+    "rarity": 5,
+    "url": "https://kamigame.jp/genshin/page/167722576213186392.html"
+  },
+  {
+    "id": "116692701503553543",
+    "name": "アンバー",
+    "english_name": "Amber",
+    "element": "炎",
+    "weapon": "弓",
+    "image": null,
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/116692701503553543.html"
+  },
+  {
+    "id": "116692701688102919",
+    "name": "バーバラ",
+    "english_name": "Barbara",
+    "element": "水",
+    "weapon": "法器",
+    "image": null,
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/116692701688102919.html"
+  },
+  {
+    "id": "116692701822320647",
+    "name": "リサ",
+    "english_name": "Lisa",
+    "element": "雷",
+    "weapon": "法器",
+    "image": null,
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/116692701822320647.html"
+  },
+  {
+    "id": "116692701704880135",
+    "name": "フィッシュル",
+    "english_name": "Fischl",
+    "element": "雷",
+    "weapon": "弓",
+    "image": null,
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/116692701704880135.html"
+  },
+  {
+    "id": "228669499337886269",
+    "name": "ミカ",
+    "english_name": "Mika",
+    "element": "氷",
+    "weapon": "長柄武器",
+    "image": null,
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/228669499337886269.html"
+  },
+  {
+    "id": "116692701604216839",
+    "name": "スクロース",
+    "english_name": "Sucrose",
+    "element": "風",
+    "weapon": "法器",
+    "image": null,
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/116692701604216839.html"
+  },
+  {
+    "id": "210814711409721327",
+    "name": "鹿野院平蔵",
+    "english_name": "Shikanoin Heizou",
+    "element": "風",
+    "weapon": "法器",
+    "image": null,
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/210814711409721327.html"
+  },
+  {
+    "id": "270665744990141562",
+    "name": "リネット",
+    "english_name": "Lynette",
+    "element": "風",
+    "weapon": "片手剣",
+    "image": null,
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/270665744990141562.html"
+  },
+  {
+    "id": "185457576496865977",
+    "name": "雲菫",
+    "english_name": "Yun Jin",
+    "element": "岩",
+    "weapon": "長柄武器",
+    "image": null,
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/185457576496865977.html"
+  },
+  {
+    "id": "165564670156001440",
+    "name": "ゴロー",
+    "english_name": "Gorou",
+    "element": "岩",
+    "weapon": "弓",
+    "image": null,
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/165564670156001440.html"
+  },
+  {
+    "id": "116693699747905543",
+    "name": "重雲",
+    "english_name": "Chongyun",
+    "element": "氷",
+    "weapon": "両手剣",
+    "image": "https://lh3.googleusercontent.com/GlZz3_2qYwfjozPr24_aha2oQsMoV2LCXO0eA7VhIioWNyGIuA1VKizMl8dytjmm9Gej-A3MTTaMBCnFDb49k-ErUVB7osb34Fl3-qtIPqI5",
+    "rarity": 4,
+    "url": "https://kamigame.jp/genshin/page/116693699747905543.html"
+  }
+]
