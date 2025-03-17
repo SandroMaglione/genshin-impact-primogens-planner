@@ -54,3 +54,13 @@ export class CharacterTable extends Schema.Class<CharacterTable>(
 )({
   name: Schema.String,
 }) {}
+
+export class TeamTable extends Schema.Class<TeamTable>("TeamTable")({
+  teamId: Schema.Number,
+  characters: Schema.Tuple(
+    Schema.String,
+    Schema.String,
+    Schema.String,
+    Schema.String
+  ),
+}) {}

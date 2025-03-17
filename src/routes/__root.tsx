@@ -1,4 +1,4 @@
-import { Outlet, createRootRoute } from "@tanstack/react-router";
+import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
 import { Console, Effect } from "effect";
 import { RuntimeClient } from "../lib/runtime-client";
 import { Dexie } from "../lib/services/dexie";
@@ -31,15 +31,25 @@ function RootComponent() {
   };
 
   return (
-    <div className="mx-auto max-w-[75rem] py-12 px-20">
+    <div className="mx-auto max-w-[80rem] py-12 px-20">
       <nav className="flex items-center justify-between">
-        <img
-          src={genshinImpactLogoImgUrl}
-          alt="genshin impact logo"
-          className="h-8"
-        />
+        <Link to="/">
+          <img
+            src={genshinImpactLogoImgUrl}
+            alt="genshin impact logo"
+            className="h-8"
+          />
+        </Link>
 
         <ul className="flex items-center justify-end gap-x-12">
+          <li>
+            <Link
+              to="/character"
+              className="text-sm font-light hover:underline"
+            >
+              Teams
+            </Link>
+          </li>
           <li>
             <a
               href="https://github.com/SandroMaglione/genshin-impact-primogens-planner"

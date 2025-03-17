@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { DateTime } from "effect";
 import AddEventForm from "../components/add-event-form";
 import AddHistoryForm from "../components/add-history-form";
-import CharactersList from "../components/characters-list";
 import ListEvents from "../components/list-events";
 import ListHistory from "../components/list-history";
 import ProgressTablePrediction from "../components/progress-table-prediction";
@@ -62,10 +61,6 @@ function HomeComponent() {
 
           <AddEventForm />
           <ListEvents />
-
-          <hr className="text-grey" />
-
-          <CharactersList />
         </section>
       </main>
 

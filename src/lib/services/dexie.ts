@@ -4,6 +4,7 @@ import {
   EventTable,
   ProgressTable,
   StringFromDate,
+  TeamTable,
   type CharacterTable,
   type HistoryTable,
 } from "../schema";
@@ -47,11 +48,13 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
         Writeable<typeof CharacterTable.Encoded>,
         "name"
       >;
+      team: _Dexie.EntityTable<Writeable<typeof TeamTable.Encoded>, "teamId">;
     };
 
     db.version(1).stores({
       progress: "++progressId",
       event: "++eventId",
+      team: "++teamId",
       history: "date",
       character: "name",
     });
@@ -154,6 +157,13 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
             })
       ),
 
+      addTeam: changeAction(
+        Schema.Struct({
+          team: TeamTable.fields.characters,
+        }),
+        (params) => db.team.add({ characters: params.team })
+      ),
+
       addHistory: formAction(
         Schema.Struct({
           date: Schema.String,
@@ -175,6 +185,11 @@ export class Dexie extends Effect.Service<Dexie>()("Dexie", {
       deleteEvent: changeAction(
         Schema.Struct({ eventId: Schema.Number.pipe(Schema.nonNegative()) }),
         (params) => db.event.where("eventId").equals(params.eventId).delete()
+      ),
+
+      deleteTeam: changeAction(
+        Schema.Struct({ teamId: Schema.Number.pipe(Schema.nonNegative()) }),
+        (params) => db.team.where("teamId").equals(params.teamId).delete()
       ),
 
       deleteHistory: changeAction(
