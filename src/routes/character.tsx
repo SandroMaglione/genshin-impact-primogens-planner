@@ -1,7 +1,8 @@
+import * as Tabs from "@radix-ui/react-tabs";
 import { createFileRoute } from "@tanstack/react-router";
 import { useMachine } from "@xstate/react";
 import clsx from "clsx";
-import { Effect } from "effect";
+import { Array, Effect, pipe } from "effect";
 import { assign, fromPromise, setup } from "xstate";
 import CharactersList from "../components/characters-list";
 import Button from "../components/ui/button";
@@ -134,40 +135,93 @@ function RouteComponent() {
   const [snapshot, send] = useMachine(machine);
   const teams = useTeams();
   return (
-    <section className="grid grid-cols-12 my-12 divide-x divide-grey">
-      <div className="col-span-4 px-6 flex flex-col gap-y-4">
-        {teams.data?.map((team) => (
-          <div key={team.teamId} className="grid grid-cols-4 gap-x-1">
-            {team.characters.map((id) => {
-              const character = fullCharacters.find(
-                (character) => character.id === id
-              );
-              return (
-                <div className="relative">
+    <section className="grid grid-cols-12 my-12">
+      <div className="col-span-4">
+        <Tabs.Root defaultValue="teams">
+          <Tabs.List className="grid grid-cols-2 mb-3">
+            <Tabs.Trigger
+              value="teams"
+              className="px-4 py-2 border-b-2 border-b-transparent data-[state=active]:border-grey focus:outline-none data-[state=active]:font-bold"
+            >
+              Teams
+            </Tabs.Trigger>
+            <Tabs.Trigger
+              value="characters"
+              className="px-4 py-2 border-b-2 border-b-transparent data-[state=active]:border-grey focus:outline-none data-[state=active]:font-bold"
+            >
+              Characters
+            </Tabs.Trigger>
+          </Tabs.List>
+
+          <Tabs.Content value="characters" className="grid grid-cols-4 gap-3">
+            {pipe(
+              teams.data ?? [],
+              Array.flatMap((team) => team.characters),
+              Array.dedupe,
+              Array.filterMap((id) =>
+                Array.findFirst(fullCharacters, (c) => c.id === id)
+              ),
+              Array.map((character) => (
+                <div className="relative rounded-md overflow-hidden">
                   <img
-                    src={`/images/${id}.png`}
+                    src={`/images/${character.id}.png`}
                     alt={character?.english_name ?? ""}
                     style={{
                       borderColor: character
                         ? elementColors[character.element]
                         : "#F0EDE6",
                     }}
-                    className="w-full h-full border object-cover rounded-md bg-grey"
+                    className="w-full h-full object-cover bg-grey"
                   />
 
                   <img
                     src={`/elements/${mapElementToImage[character?.element ?? ""]}.webp`}
                     alt={character?.element ?? ""}
-                    className="absolute top-1 right-1 size-4 object-cover bg-white rounded-full p-1"
+                    className="absolute top-1 right-1 size-6 object-cover bg-white rounded-full p-1"
                   />
                 </div>
-              );
-            })}
-          </div>
-        ))}
+              ))
+            )}
+          </Tabs.Content>
+          <Tabs.Content value="teams" className="flex flex-col gap-y-4">
+            {teams.data?.map((team) => (
+              <div
+                key={team.teamId}
+                className="grid grid-cols-4 rounded-md bg-grey overflow-hidden"
+              >
+                {team.characters.map((id) => {
+                  const character = fullCharacters.find(
+                    (character) => character.id === id
+                  );
+                  return (
+                    <div className="relative">
+                      <img
+                        src={`/images/${id}.png`}
+                        alt={character?.english_name ?? ""}
+                        style={{
+                          borderColor: character
+                            ? elementColors[character.element]
+                            : "#F0EDE6",
+                        }}
+                        className="w-full h-full object-cover"
+                      />
+
+                      <img
+                        src={`/elements/${mapElementToImage[character?.element ?? ""]}.webp`}
+                        alt={character?.element ?? ""}
+                        className="absolute top-1 right-1 size-6 object-cover bg-white rounded-full p-1"
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+          </Tabs.Content>
+        </Tabs.Root>
       </div>
-      <div className="col-span-8 divide-y divide-grey">
-        <div className="flex flex-col gap-y-6 px-12 pb-12">
+
+      <div className="col-span-8">
+        <div className="flex flex-col gap-y-6 px-12">
           <div className="flex items-center justify-end">
             <Button
               className="px-4 py-1"
@@ -197,20 +251,20 @@ function RouteComponent() {
                   )}
                   onClick={() => send({ type: "selection.update", index })}
                 >
-                  {snapshot.context.team[index - 1] ? (
+                  {snapshot.context.team[index - 1] && (
                     <img
                       src={`/images/${snapshot.context.team[index - 1]}.png`}
                       alt={snapshot.context.team[index - 1] ?? ""}
                       className="w-full h-full object-cover"
                     />
-                  ) : (
-                    <span className="text-3xl font-light">+</span>
                   )}
-                  <img
-                    src={`/elements/${mapElementToImage[character?.element ?? ""]}.webp`}
-                    alt={character?.element ?? ""}
-                    className="absolute top-2 right-2 size-6 object-cover bg-white rounded-full p-1"
-                  />
+                  {character && (
+                    <img
+                      src={`/elements/${mapElementToImage[character?.element ?? ""]}.webp`}
+                      alt={character?.element ?? ""}
+                      className="absolute top-2 right-2 size-6 object-cover bg-white rounded-full p-1"
+                    />
+                  )}
                 </button>
               );
             })}
