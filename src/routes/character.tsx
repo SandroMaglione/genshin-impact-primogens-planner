@@ -2,7 +2,7 @@ import * as Tabs from "@radix-ui/react-tabs";
 import { createFileRoute } from "@tanstack/react-router";
 import { useMachine } from "@xstate/react";
 import clsx from "clsx";
-import { Array, Effect, pipe } from "effect";
+import { Array, Effect, Encoding, pipe } from "effect";
 import { assertEvent, assign, fromPromise, setup } from "xstate";
 import CharactersList from "../components/characters-list";
 import Button from "../components/ui/button";
@@ -82,7 +82,7 @@ const machine = setup({
   },
 }).createMachine({
   id: "character-selection",
-  context: { currentIndex: 1, team: [null, null, null, null] },
+  context: { currentIndex: 1, team: ["330111762298847427", null, null, null] },
   initial: "Selection",
   states: {
     Selection: {
@@ -174,7 +174,7 @@ function RouteComponent() {
           <Tabs.Content value="teams" className="flex flex-col gap-y-4">
             {teams.data?.map((team) => (
               <div key={team.teamId}>
-                <div className="grid grid-cols-4 rounded-md bg-grey overflow-hidden">
+                <div className="grid grid-cols-4 gap-x-2">
                   {team.characters.map((id) => {
                     const character = fullCharacters.find(
                       (character) => character.id === id
@@ -182,20 +182,21 @@ function RouteComponent() {
                     return (
                       <div key={id} className="relative">
                         <img
-                          src={`/images/${id}.png`}
+                          src={`/original/${Encoding.encodeBase64Url(
+                            character?.name ?? ""
+                          )}.webp`}
                           alt={character?.english_name ?? ""}
-                          style={{
-                            borderColor: character
-                              ? elementColors[character.element]
-                              : "#F0EDE6",
-                          }}
-                          className="w-full h-full object-cover"
+                          className={clsx(
+                            character?.rarity === 5 && "bg-[#B47A49]",
+                            character?.rarity === 4 && "bg-[#7A66A9]",
+                            "w-full h-full object-cover rounded-md"
+                          )}
                         />
 
                         <img
                           src={`/elements/${mapElementToImage[character?.element ?? ""]}.webp`}
                           alt={character?.element ?? ""}
-                          className="absolute top-1 right-1 size-6 object-cover bg-white rounded-full p-1"
+                          className="absolute top-1 left-1 size-6 object-cover"
                         />
                       </div>
                     );
@@ -212,7 +213,7 @@ function RouteComponent() {
             ))}
           </Tabs.Content>
 
-          <Tabs.Content value="characters" className="grid grid-cols-4 gap-3">
+          <Tabs.Content value="characters" className="grid grid-cols-4 gap-2">
             {pipe(
               teams.data ?? [],
               Array.flatMap((team) => team.characters),
@@ -223,20 +224,21 @@ function RouteComponent() {
               Array.map((character) => (
                 <div className="relative rounded-md overflow-hidden">
                   <img
-                    src={`/images/${character.id}.png`}
+                    src={`/original/${Encoding.encodeBase64Url(
+                      character.name
+                    )}.webp`}
                     alt={character?.english_name ?? ""}
-                    style={{
-                      borderColor: character
-                        ? elementColors[character.element]
-                        : "#F0EDE6",
-                    }}
-                    className="w-full h-full object-cover bg-grey"
+                    className={clsx(
+                      character?.rarity === 5 && "bg-[#B47A49]",
+                      character?.rarity === 4 && "bg-[#7A66A9]",
+                      "w-full h-full object-cover rounded-md"
+                    )}
                   />
 
                   <img
                     src={`/elements/${mapElementToImage[character?.element ?? ""]}.webp`}
                     alt={character?.element ?? ""}
-                    className="absolute top-1 right-1 size-6 object-cover bg-white rounded-full p-1"
+                    className="absolute top-1 left-1 size-6 object-cover"
                   />
                 </div>
               ))
@@ -264,22 +266,24 @@ function RouteComponent() {
               return (
                 <button
                   key={index}
-                  style={{
-                    borderColor: character
-                      ? elementColors[character.element]
-                      : "#F0EDE6",
-                  }}
                   className={clsx(
+                    character?.rarity === 5 && "bg-[#B47A49]",
+                    character?.rarity === 4 && "bg-[#7A66A9]",
+                    character?.rarity !== 5 &&
+                      character?.rarity !== 4 &&
+                      "bg-grey opacity-75 hover:opacity-100",
                     snapshot.context.currentIndex === index &&
-                      "shadow -translate-y-2",
-                    "aspect-[0.8/1] bg-grey rounded-md border flex items-center justify-center transition-transform duration-150 hover:cursor-pointer relative"
+                      "shadow -translate-y-2 opacity-100",
+                    "rounded-md flex items-center justify-center transition-transform duration-150 hover:cursor-pointer relative aspect-square"
                   )}
                   onClick={() => send({ type: "selection.update", index })}
                 >
                   {snapshot.context.team[index - 1] && (
                     <img
-                      src={`/images/${snapshot.context.team[index - 1]}.png`}
-                      alt={snapshot.context.team[index - 1] ?? ""}
+                      src={`/original/${Encoding.encodeBase64Url(
+                        character?.name ?? ""
+                      )}.webp`}
+                      alt={character?.name ?? ""}
                       className="w-full h-full object-cover"
                     />
                   )}
@@ -287,7 +291,7 @@ function RouteComponent() {
                     <img
                       src={`/elements/${mapElementToImage[character?.element ?? ""]}.webp`}
                       alt={character?.element ?? ""}
-                      className="absolute top-2 right-2 size-6 object-cover bg-white rounded-full p-1"
+                      className="absolute top-2 left-2 size-10 object-cover"
                     />
                   )}
                 </button>

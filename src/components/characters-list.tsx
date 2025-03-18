@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { Encoding } from "effect";
 import { useState } from "react";
 import fullCharacters from "../assets/characters.json";
 import { useCharacter } from "../lib/hooks/use-character";
@@ -27,22 +28,21 @@ export default function CharactersList({
           .filter(({ english_name }) =>
             english_name.toLowerCase().includes(search.toLowerCase())
           )
-          .map(({ id, name }) => (
+          .map(({ id, name, english_name, rarity }) => (
             <button
-              key={id}
+              key={name}
               type="button"
               onClick={() => onSelect(id)}
               className="group hover:cursor-pointer rounded-md overflow-hidden"
             >
               <img
-                src={`/images/${id}.png`}
-                alt={name}
-                title={name}
+                src={`/original/${Encoding.encodeBase64Url(name)}.webp`}
+                alt={english_name}
+                title={english_name}
                 className={clsx(
-                  "transition-transform duration-150 ease-in-out",
-                  data?.some((character) => character.name === name)
-                    ? "scale-110 group-hover:grayscale-90 group-hover:opacity-90"
-                    : "grayscale opacity-25 group-hover:grayscale-0 group-hover:opacity-100"
+                  "transition-transform duration-150 ease-in-out group-hover:scale-110",
+                  rarity === 5 && "bg-[#B47A49]",
+                  rarity === 4 && "bg-[#7A66A9]"
                 )}
               />
             </button>
