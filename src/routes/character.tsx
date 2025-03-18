@@ -2,35 +2,15 @@ import * as Tabs from "@radix-ui/react-tabs";
 import { createFileRoute } from "@tanstack/react-router";
 import { useMachine } from "@xstate/react";
 import clsx from "clsx";
-import { Array, Effect, Encoding, pipe } from "effect";
+import { Array, Effect, Encoding, Order, pipe } from "effect";
 import { assertEvent, assign, fromPromise, setup } from "xstate";
+import fullCharacters from "../assets/characters.json";
 import CharactersList from "../components/characters-list";
 import Button from "../components/ui/button";
+import { mapElementToImage } from "../lib/constants";
 import { useTeams } from "../lib/hooks/use-teams";
 import { RuntimeClient } from "../lib/runtime-client";
 import { Dexie } from "../lib/services/dexie";
-
-import fullCharacters from "../assets/characters.json";
-
-const elementColors: Record<string, string> = {
-  氷: "#4A9DA3",
-  岩: "#D4A017",
-  炎: "#E67E22",
-  雷: "#9B59B6",
-  草: "#27AE60",
-  水: "#3498DB",
-  風: "#2ECC71",
-};
-
-const mapElementToImage: Record<string, string> = {
-  氷: "cryo",
-  岩: "geo",
-  炎: "pyro",
-  雷: "electro",
-  草: "dendro",
-  水: "hydro",
-  風: "anemo",
-};
 
 const machine = setup({
   types: {
@@ -82,7 +62,7 @@ const machine = setup({
   },
 }).createMachine({
   id: "character-selection",
-  context: { currentIndex: 1, team: ["330111762298847427", null, null, null] },
+  context: { currentIndex: 1, team: [null, null, null, null] },
   initial: "Selection",
   states: {
     Selection: {
@@ -221,8 +201,23 @@ function RouteComponent() {
               Array.filterMap((id) =>
                 Array.findFirst(fullCharacters, (c) => c.id === id)
               ),
+              Array.sortBy(
+                Order.mapInput(
+                  Order.reverse(Order.number),
+                  (character: (typeof fullCharacters)[number]) =>
+                    character.rarity
+                ),
+                Order.mapInput(
+                  Order.reverse(Order.string),
+                  (character: (typeof fullCharacters)[number]) =>
+                    character.element
+                )
+              ),
               Array.map((character) => (
-                <div className="relative rounded-md overflow-hidden">
+                <div
+                  key={character.name}
+                  className="relative rounded-md overflow-hidden"
+                >
                   <img
                     src={`/original/${Encoding.encodeBase64Url(
                       character.name
